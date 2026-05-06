@@ -168,6 +168,22 @@ The KYA framework reduces but does not eliminate agent-related risk. Bond slashi
 
 Compromise of an Agent's runtime environment may result in unauthorized transactions within the Agent's scoped authority. Kill switch and revocation mechanisms mitigate but do not eliminate this risk.
 
+### 9.4 Session Key Compromise (Settlement Layer)
+
+Agent payments through the Settlement Layer are authorized by session keys carrying explicit payment scope (daily limit, per-call limit, duration, permitted recipient). Compromise of an agent runtime within the session key's scope still allows in-scope payments to drain. Payment scope sizing should reflect the principal's risk tolerance. Kill switch revocation applies to session keys but does not retroactively reverse executed payments.
+
+### 9.5 Paymaster Availability Risk
+
+The Settlement Layer relies on ERC-4337 paymasters for gas sponsorship. Phase 1 uses a third-party paymaster; Phase 1.5 transitions to OmniFlow's own paymaster. Paymaster outage temporarily disables sponsored transactions for affected agents. Distribution claim and gas-sponsored operations may be delayed during paymaster downtime.
+
+### 9.6 Settlement Replay and Cross-Rail Risk
+
+Settlement payments rely on facilitator enforcement of nonce-bound payment headers to prevent replay. Facilitator implementation errors could enable replay attempts. Phase 2 multi-chain expansion introduces the possibility of cross-rail settlement attacks, where an agent attempts to exceed its daily limit by settling on multiple chains in parallel. Mitigation depends on unified daily counter enforcement across rails.
+
+### 9.7 Travel Rule Aggregation and Reporting
+
+Per-call agent micropayments are aggregated per principal across calendar periods to comply with Singapore MAS PSN02 Travel Rule requirements. Aggregation accuracy and Suspicious Transaction Report (STR) responsibility chains are part of OmniFlow's compliance perimeter. Cross-jurisdiction agent payment expansion (Phase 2+) is contingent on additional legal review and may impose new aggregation or reporting obligations.
+
 ## 10. $OMNI Token Risks (Phase 2+)
 
 ### 10.1 Token Volatility

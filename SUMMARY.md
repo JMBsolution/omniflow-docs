@@ -29,6 +29,7 @@
 * [KYA Framework](for-ai-agents/kya-framework.md)
 * [Risk Oracle Standard](for-ai-agents/risk-oracle-standard.md)
 * [MCP Server & SDK](for-ai-agents/mcp-server-and-sdk.md)
+* [Settlement Layer](for-ai-agents/settlement-layer.md)
 
 ## Technical
 

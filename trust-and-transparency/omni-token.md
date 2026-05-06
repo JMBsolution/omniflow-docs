@@ -14,7 +14,7 @@ $OMNI is a governance and protocol-utility token that:
 
 - Captures protocol value through buyback-and-burn from protocol revenue (Phase 2+)
 
-- Provides fee discounts and access tiers for protocol services
+- Provides fee discount tiers for protocol services, including Settlement Layer agent payments (Phase 2+ activation; see [Settlement Layer](../for-ai-agents/settlement-layer.md))
 
 ## What $OMNI Is Not
 

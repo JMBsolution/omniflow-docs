@@ -30,6 +30,8 @@ Agents at OmniFlow are not a feature added on top of a human-only platform. They
 
 **Execution.** Subscription, redemption, secondary market trading, and yield claiming are accessible through TypeScript and Python SDKs, REST APIs, and a native MCP (Model Context Protocol) server.
 
+**Settlement.** Agents pay for OmniFlow protocol services autonomously through x402-based session keys (ERC-4337 + ERC-7710). Payment scope — daily limits, per-call limits, duration, permitted recipient — is delegated by the principal once and validated atomically with each call, removing the need for per-transaction human signing or pre-funded gas relayers. See [Settlement Layer](settlement-layer.md).
+
 **Risk.** Standardized risk metrics — volatility, liquidity score, concentration risk, counterparty risk, stress-test drawdown — are published per asset through the OmniFlow Risk Oracle. Agents consume these as structured data.
 
 **Composition.** Agents can compose OmniFlow positions with other DeFi primitives within OmniFlow's permissioned environment, including collateralization for stablecoin liquidity (Phase 3+).
@@ -38,14 +40,17 @@ Agents at OmniFlow are not a feature added on top of a human-only platform. They
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Layer 6 — Composition                                       │
+│  Layer 7 — Composition                                       │
 │  Permissioned DeFi integration, collateralization, vaults    │
 ├─────────────────────────────────────────────────────────────┤
-│  Layer 5 — Risk                                              │
+│  Layer 6 — Risk                                              │
 │  OmniFlow Risk Oracle (standardized metrics per asset)       │
 ├─────────────────────────────────────────────────────────────┤
-│  Layer 4 — Execution                                         │
+│  Layer 5 — Execution                                         │
 │  REST API, TypeScript/Python SDK, MCP Server                 │
+├─────────────────────────────────────────────────────────────┤
+│  Layer 4 — Settlement                                        │
+│  x402 micropayments + ERC-4337 + ERC-7710 session keys       │
 ├─────────────────────────────────────────────────────────────┤
 │  Layer 3 — Discovery                                         │
 │  Machine-readable asset metadata, NAV oracle, attestations   │
@@ -58,6 +63,8 @@ Agents at OmniFlow are not a feature added on top of a human-only platform. They
 └─────────────────────────────────────────────────────────────┘
 ```
 
+Layers 4 (Settlement) and 5 (Execution) operate as paired layers. The Execution interface returns HTTP 402 when payment is required; the Settlement Layer answers with a payment header within the same request-response cycle. The two are conceptually distinct but cycle-coupled in operation.
+
 ## What Is Live, What Is Coming
 
 OmniFlow is honest about the current state of the agent stack. Some layers are operational from Phase 1; others are in active development for Phase 2 and beyond.
@@ -69,6 +76,7 @@ OmniFlow is honest about the current state of the agent stack. Some layers are o
 | Discovery (metadata, NAV oracle) | Phase 1 — operational |
 | Execution (REST API, SDK) | Phase 1 — operational |
 | Execution (MCP Server) | Phase 1 — operational |
+| Settlement (x402 + session keys) | Phase 1 — spec, OmniFlow protocol fee scope; Phase 1.5 — self-paymaster; Phase 2 — external facilitator |
 | Risk Oracle (standard metrics) | Phase 1 — basic; Phase 2 — full standard |
 | Composition (collateralization) | Phase 3 — planned |
 
