@@ -46,7 +46,7 @@ A typical agent payment on OmniFlow follows this flow:
 
 5. **Resource delivery.** OmniFlow validates the payment and returns the requested resource (HTTP 200).
 
-6. **Settlement to mainnet.** Payments collected on Base are batched and settled to the OmniFlow treasury on Ethereum mainnet on a recurring schedule.
+6. **Treasury settlement.** Payments accrue directly to the OmniFlow treasury on Base — issuance and settlement share the same chain, so no cross-chain settlement leg exists.
 
 ## Mixed Scale — From Micropayment to Subscription
 
@@ -57,19 +57,18 @@ OmniFlow's services span four payment scales. The Settlement Layer handles each 
 | Risk Oracle query | $0.01–0.10 / query | Real micropayment, settled on Base via x402 |
 | MCP tool call (subscription simulation, etc.) | $0.001–0.10 / call | Real micropayment, settled on Base via x402 |
 | Distribution claim | Gas-only ($0.05–2) | Paymaster sponsorship; protocol covers under fee discount tier |
-| Subscription fee | 0.1% of subscription (e.g., $200 on a $200K minimum) | Settled to OmniFlow treasury on the issuance chain |
+| Subscription & redemption | 0% — no platform fee | No fee leg; investor pays network gas only (sponsored where applicable) |
 
-Subscription fees are too large to be called "micro" but use the same x402 interface for consistency. Distribution claims are typically gas-only, with the OmniFlow paymaster sponsoring gas to keep claim UX frictionless.
+Subscription and redemption carry no platform fee — human-facing entry and exit are free by design, with monetization concentrated in the machine channel (Risk Oracle queries, premium API tiers) and recurring fund economics. Distribution claims are typically gas-only, with the OmniFlow paymaster sponsoring gas to keep claim UX frictionless.
 
 ## Single-Chain Alignment
 
-OmniFlow's architectural commitment is that an issued RWA token resides on a single chain (Ethereum mainnet for Phase 1). The Settlement Layer respects this commitment without forcing all settlement to mainnet, where micropayment economics break down.
+OmniFlow's architectural commitment is that an issued RWA token resides on a single chain — **Base** for Phase 1. With issuance and settlement on the same chain, the Settlement Layer requires no cross-chain legs at all.
 
-- **Issuance and primary settlement: Ethereum mainnet.** Subscriptions, redemptions, and yield distributions touch the mainnet token.
-- **Micropayment settlement: Base.** Per-call x402 payments execute on Base for cost efficiency. OmniFlow operates as its own facilitator during Phase 1 — no third-party facilitator dependency.
-- **Periodic batch settlement: Base → mainnet.** Accumulated micropayments settle to the OmniFlow treasury on mainnet on a recurring schedule (initially weekly, target: daily as volume justifies).
+- **Issuance, settlement, and treasury: Base.** Subscriptions, redemptions, yield distributions, and per-call x402 micropayments all execute on Base. OmniFlow operates as its own facilitator during Phase 1 — no third-party facilitator dependency.
+- **Deposit rails: multi-chain.** Investors may fund from other chains via the MPI partner's deposit rails (see Cross-Chain Architecture); the issued token itself never leaves Base.
 
-This pattern keeps the issued token single-chain while accommodating the cost reality that a $0.01 micropayment cannot economically execute on mainnet.
+This keeps the issued token single-chain while giving agents micropayment economics that a mainnet-issuance design could not offer.
 
 ## Phase Rollout
 

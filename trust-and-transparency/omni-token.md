@@ -12,7 +12,7 @@ $OMNI is a governance and protocol-utility token that:
 
 - Provides governance rights over non-constitutional protocol parameters (Phase 2+)
 
-- Captures protocol value through buyback-and-burn from protocol revenue (Phase 2+)
+- Captures protocol value through an automated on-chain buyback-and-burn funded by protocol fee revenue — agent micropayments, API tier subscriptions, and secondary market fees — with a target allocation of 90% of net protocol fee revenue to buybacks. Fund management economics are excluded from the buyback pool. The parameter is subject to legal review and activates with the Foundation in Phase 2
 
 - Provides fee discount tiers for protocol services, including Settlement Layer agent payments (Phase 2+ activation; see [Settlement Layer](../for-ai-agents/settlement-layer.md))
 

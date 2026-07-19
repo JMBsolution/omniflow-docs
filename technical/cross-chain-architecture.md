@@ -52,7 +52,7 @@ chain boundaries.
 
 ## How It Works
 
-OmniFlow RWA tokens exist exclusively on a single primary issuance chain — Ethereum during the protocol's mainnet phase, with the option to migrate or extend to specific Layer-2 networks (Base, Arbitrum) where ERC-3643 compliance infrastructure is mature.
+OmniFlow RWA tokens exist exclusively on a single primary issuance chain — **Base** for Phase 1, chosen for its institutional adoption trajectory, native USDC support, and a cost profile compatible with agent micropayments. The protocol retains the option to extend issuance to Ethereum mainnet or other networks where ERC-3643 and ERC-7943 compliance infrastructure is mature.
 
 Investors can deposit stablecoins from any chain that the OmniFlow MPI partner supports — Ethereum, TRON, Base, Arbitrum, Solana (subject to MPI partner availability). The MPI partner aggregates deposits from all chains into a single USD settlement that funds the underlying asset purchase. RWA tokens are minted only on the issuance chain, regardless of which chain the investor's deposit originated from.
 
@@ -74,7 +74,7 @@ This architecture accepts certain trade-offs that other RWA platforms have chose
 
 **Deposit-side dependence on MPI partner chain coverage.** The set of chains from which investors can deposit is bounded by the chains the OmniFlow MPI partner supports. Adding deposit rail support for an additional chain is a partner integration, not a protocol modification.
 
-**Migration friction if changing issuance chain.** Should OmniFlow ever migrate the issuance chain (for example, from Ethereum mainnet to a specific L2), the migration is a coordinated burn-and-reissue executed under governance and multi-signature control, with all token holders notified and ample time provided. This is more disruptive than a chain-agnostic token, but ensures supply integrity at every step.
+**Migration friction if changing issuance chain.** Should OmniFlow ever migrate the issuance chain (for example, from Base to Ethereum mainnet), the migration is a coordinated burn-and-reissue executed under governance and multi-signature control, with all token holders notified and ample time provided. This is more disruptive than a chain-agnostic token, but ensures supply integrity at every step.
 
 ## Future Considerations: ZK-Verified Cross-Chain Transfer
 

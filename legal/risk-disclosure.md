@@ -86,6 +86,10 @@ OmniFlow relies on oracle attestations for NAV, risk metrics, and reserve verifi
 
 OmniFlow's deposit rails span multiple blockchains. Compromise of a deposit rail (exchange hack, wallet theft) does not affect issued RWA tokens (see Cross-Chain Architecture) but may affect the investor's deposit before settlement is confirmed.
 
+### 4.6 Layer 2 Sequencer Risk
+
+OmniFlow's Phase 1 issuance chain is Base, an Ethereum Layer 2 operated with a centralized sequencer. Sequencer downtime may temporarily delay transaction inclusion, including subscriptions, transfers, and distribution claims. Base provides an L1 escape hatch for forced transaction inclusion via Ethereum; however, during sequencer outages, timely execution is not guaranteed. Sequencer decentralization is on the Base roadmap but has not been realized as of this writing.
+
 ## 5. Regulatory and Legal Risks
 
 ### 5.1 Regulatory Change

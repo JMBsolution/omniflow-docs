@@ -2,7 +2,7 @@
 
 Institutional-grade real-world assets from Asia, on-chain. Settled in USDT, USDC, and USD1. Built for both institutions and AI agents.
 
-**OmniFlow** is a regulated on-chain protocol that brings institutional-grade real-world assets from Asia to global stablecoin holders. We tokenize income-producing real estate and real estate-backed credit assets through a structure that combines licensed Asian asset managers, Singapore's Variable Capital Company (VCC) framework, and compliance-aware ERC-3643 token issuance.
+**OmniFlow** is a regulated on-chain protocol that brings institutional-grade real-world assets from Asia to global stablecoin holders. We tokenize income-producing real estate and real estate-backed credit assets through a structure that combines licensed Asian asset managers, Singapore's Variable Capital Company (VCC) framework, and compliance-aware token issuance built on the ERC-3643 framework with the ERC-7943 uRWA interface.
 
 Our first asset category is Korean prime real estate and real estate-backed credit, where we have established deep sourcing relationships and structuring expertise. The protocol architecture is designed to extend to additional Asian markets and asset classes — Japanese real estate, Southeast Asian infrastructure, and pan-Asian credit — through the same regulatory and compliance framework.
 

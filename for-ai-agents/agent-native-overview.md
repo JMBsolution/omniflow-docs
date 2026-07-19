@@ -91,3 +91,5 @@ The pages in this section are written for two audiences:
 - **Developers building agent infrastructure** — engineers integrating OmniFlow into agent runtimes, LLM tool interfaces, or autonomous trading systems. Start with MCP Server & SDK.
 
 For institutional human investors, the How It Works section is the primary reference.
+
+This documentation site is itself machine-readable: llms.txt, per-page markdown outputs, and an MCP endpoint are exposed automatically, so agents can ingest these pages directly without scraping.

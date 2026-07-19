@@ -74,7 +74,7 @@ Reconciliation & Attestation
 
 - **Deposit Receipt (ERC-4626)**: Issued upon stablecoin deposit, before final RWA token issuance. Non-transferable. Burned at the moment of RWA token issuance.
 
-- **RWA Token (ERC-3643)**: The primary asset token. Represents beneficial interest in the VCC sub-fund. Subject to all compliance gating.
+- **RWA Token (ERC-3643 framework, ERC-7943 uRWA interface)**: The primary asset token. Represents beneficial interest in the VCC sub-fund. Subject to all compliance gating. The token exposes the ERC-7943 uRWA interface (finalized May 2026) for vendor-neutral transfer validation, freezing, and enforcement actions, implemented within the ERC-3643 compliance framework.
 
 - **Yield Distribution Tokens**: Per-cycle distribution claims, distributed via Merkle-tree airdrops to RWA token holders.
 
