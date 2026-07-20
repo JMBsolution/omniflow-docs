@@ -46,6 +46,7 @@ An illustrative bridge for a Seoul Capital Area logistics asset held through a S
 
 |  |  |
 | --- | --- |
+| **Availability** | **Offered** |
 | **Illustrative Net Yield** | ≈5.5% per annum, before hedge carry. Objective, not a forecast or a guarantee |
 | **Minimum Investment** | SGD 200,000 |
 | **Term** | 3–5 years |

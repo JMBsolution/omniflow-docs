@@ -44,6 +44,7 @@ The fund invests through two channels:
 
 |  |  |
 | --- | --- |
+| **Availability** | **Offered** |
 | **Estimated Net Yield** | 4.5–5.1% per annum. The ~7% headline is a **gross** listed-market yield; see the bridge below |
 | **Minimum Investment** | SGD 200,000 |
 | **Term** | 7+ years |

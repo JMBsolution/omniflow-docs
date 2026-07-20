@@ -12,8 +12,8 @@
 * [Products Overview](products/overview.md)
 * [Korea Listed REIT Income (Tier 1)](products/listed-reit-income.md)
 * [Korea Logistics Income (Tier 2)](products/logistics-income.md)
-* [Korea Senior Development Credit (Tier 3)](products/senior-development-credit.md)
-* [Korea Opportunistic Credit (Tier 4)](products/opportunistic-credit.md)
+* [Korea Senior Development Credit (Tier 3) — pipeline](products/senior-development-credit.md)
+* [Korea Opportunistic Credit (Tier 4) — pipeline](products/opportunistic-credit.md)
 
 ## How It Works
 

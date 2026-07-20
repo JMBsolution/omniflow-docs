@@ -25,14 +25,16 @@ Investors hold tokenized representations of their VCC Sub-Fund interests. The VC
 
 ## Current Products
 
-| **Tier** | **Strategy** | **Asset Category** | **Illustrative Net Yield** | **Min. Investment** | **Term** | **Risk Profile** |
+| **Tier** | **Strategy** | **Availability** | **Illustrative Net Yield** | **Min. Investment** | **Term** | **Risk Profile** |
 | --- | --- | --- | --- | --- | --- | --- |
-| T1 | Listed REIT Income | Korea | 4.5–5.1% p.a. | SGD 200,000 | Open-ended | Lowest |
-| T2 | Logistics Income | Korea | ≈5.5% p.a. | SGD 200,000 | 3–5 yrs | Moderate |
-| T3 | Senior Development Credit | Korea | Withheld pending underwriting | SGD 200,000 | 2–4 yrs | High |
-| T4 | Opportunistic Credit | Korea | Withheld pending underwriting | SGD 500,000 | 1–3 yrs | Highest |
+| T1 | Listed REIT Income | **Offered** | 4.5–5.1% p.a. | SGD 200,000 | Open-ended | Lowest |
+| T2 | Logistics Income | **Offered** | ≈5.5% p.a. | SGD 200,000 | 3–5 yrs | Moderate |
+| T3 | Senior Development Credit | Pipeline | To be published | SGD 200,000 | 2–4 yrs | High |
+| T4 | Opportunistic Credit | Pipeline | To be published | SGD 500,000 | 1–3 yrs | Highest |
 
-The ladder ascends in **risk**, which is the only ordering that can be stated honestly today. It does not ascend uniformly in published yield, and the reason is structural rather than presentational — see below.
+**Two tiers are offered and two are in the pipeline.** T1 and T2 are equity income strategies with a published gross-to-net bridge. T3 and T4 are credit strategies that are not currently open for subscription and carry no published yield; they are documented here so the intended range is legible, and each will be opened only when its return can be evidenced rather than modelled.
+
+The ladder ascends in **risk**, which is the ordering we can state honestly today.
 
 ## How This Range Was Rebuilt
 

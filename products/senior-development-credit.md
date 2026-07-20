@@ -1,6 +1,8 @@
 # Korea Senior Development Credit (Tier 3)
 
-Senior secured lending against Korean development projects. **This is a credit strategy, not an income product, and no yield target is published.**
+> **Pipeline — not currently offered.** This tier is documented so the intended product range is legible. It is not open for subscription, and no yield target is published. Return target: **to be published.**
+
+Senior secured lending against Korean development projects. This is a credit strategy rather than an income product, and the distinction is the reason it sits in the pipeline rather than in the offered range.
 
 ## Why No Yield Is Published
 
@@ -53,7 +55,8 @@ Coupon ranges are deliberately not published here. The most recent clean senior 
 
 |  |  |
 | --- | --- |
-| **Net Yield Target** | Withheld pending underwriting. Modelled at ~3.8% on unsourced assumptions; previous 8–9% withdrawn |
+| **Availability** | **Pipeline — not currently offered** |
+| **Net Yield Target** | To be published. Modelled at ~3.8% on unsourced assumptions; previous 8–9% withdrawn |
 | **Minimum Investment** | SGD 200,000 |
 | **Term** | 2–4 years |
 | **Distribution Frequency** | Semi-annual |
@@ -80,4 +83,4 @@ A complete risk disclosure is provided in the product IM at subscription.
 
 ## How to Invest
 
-Tier 3 deals are offered on a deal-by-deal basis with defined subscription windows. Contact your relationship manager for current and upcoming Tier 3 opportunities.
+This tier is not currently open. When it opens it will be offered on a deal-by-deal basis with defined subscription windows. Contact your relationship manager to register interest.

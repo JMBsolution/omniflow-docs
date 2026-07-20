@@ -1,8 +1,10 @@
 # Korea Opportunistic Credit (Tier 4)
 
-Exposure to Korean mezzanine project finance, bridge lending, and non-performing loans. **High risk. Return target withheld pending underwriting** — the previously published 9–12% has been withdrawn and is not replaced with another number.
+> **Pipeline — not currently offered.** This tier is documented so the intended product range is legible. It is not open for subscription. Return target: **to be published.**
 
-## Why No Target Is Published
+Exposure to Korean mezzanine project finance, bridge lending, and non-performing loans. **High risk.** The previously published 9–12% target has been withdrawn and is not replaced with another number.
+
+## Why This Tier Is in the Pipeline
 
 Korean mezzanine and junior project finance has no published pricing index and no audited, vintage-level realised return series in the public domain. We modelled the tier bottom-up on an assumed 13% gross coupon and arrived at roughly 7% net — and then discarded that figure, because it fails an external check that any allocator can run.
 
@@ -49,7 +51,8 @@ The fund pursues four primary deal types:
 
 |  |  |
 | --- | --- |
-| **Net Yield Target** | Withheld pending underwriting. Previous 9–12% withdrawn |
+| **Availability** | **Pipeline — not currently offered** |
+| **Net Yield Target** | To be published. Previous 9–12% withdrawn |
 | **Minimum Investment** | SGD 500,000 |
 | **Term** | 1–3 years |
 | **Distribution Frequency** | Deal-by-deal at realization |
