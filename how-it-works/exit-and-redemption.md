@@ -32,17 +32,21 @@ This option is contingent on (a) the readiness of permissioned DeFi infrastructu
 
 OmniFlow operates a protocol-level buyback program designed to defend NAV during periods of dislocation. The program is triggered when the secondary market price of an RWA token declines 15% or more below NAV.
 
-Upon trigger, OmniFlow's treasury executes open-market purchases of the affected token at prices designed to restore the secondary market price toward NAV. Purchased tokens are held in treasury and may be subsequently re-issued, redeemed, or burned, depending on circumstances.
+Upon trigger, OmniFlow's treasury executes open-market purchases of the affected token at prices designed to restore the secondary market price toward NAV. Purchased tokens are held in treasury and may subsequently be resold to eligible investors or retired at redemption.
+
+Two constraints follow from how the token is actually built, and both are deliberate. The token has no burn function: units are retired only through the redemption path, so a repurchase cannot quietly reduce supply. And there is no general mint: new units come into existence only by exchanging a deposit certificate, so a repurchased holding cannot be re-issued as if it were a new subscription. A buyback therefore parks units; it does not manufacture or destroy them.
 
 The buyback program is funded by OmniFlow's treasury and is subject to capital availability. The program is not a redemption guarantee and does not eliminate the possibility of NAV decline. Tier 3 products are not eligible for the buyback program.
 
 ## Layer 6 — Secondary Market Sale
 
-After the SFA §275 6-month lock-up period, RWA tokens may be transferred between qualified investors through OmniFlow's secondary market.
+Once the issuer-imposed six-month restriction on a parcel lapses, RWA tokens may be transferred between eligible investors through OmniFlow's secondary market. The restriction attaches at issuance and travels with the parcel; units received in a secondary transfer arrive unrestricted, and a later subscription does not re-restrict units already held.
 
-The secondary market operates as a permissioned RFQ (Request-for-Quote) and matching system. Investors register their order (sell offer or buy interest), OmniFlow matches counterparties subject to AI/II eligibility verification on both sides, and the transfer is executed atomically through the smart contract.
+The secondary market operates as a permissioned RFQ (Request-for-Quote) and matching system. Investors register their order (sell offer or buy interest), OmniFlow matches counterparties subject to eligibility verification on both sides, and the transfer settles atomically through the smart contract. Settlement is non-custodial: the venue moves tokens directly between whitelisted counterparties and never takes possession of them.
 
-OmniFlow charges a transaction fee of 0.10–0.30% per side, depending on the transaction size and product. OmniFlow may also provide liquidity through its own market-making inventory, in which case spreads of 0.5–2.0% may apply between OmniFlow's bid and ask quotes.
+OmniFlow charges a transaction fee of 0.10–0.30% per side, depending on transaction size and product.
+
+**What this is not.** This is a matched-bargain facility, not a continuous market. There is no order book, no automated market maker, and no commitment by OmniFlow or any third party to quote two-way prices or to stand behind a bid. An investor who needs to exit at a particular moment may find no counterparty at any price, and should plan around the maturity and redemption paths above rather than around secondary sale. Permissioned secondary venues for security tokens are, across the industry, thin and fragmented; regulated trading venues frequently have no market makers at all. Any future move to a licensed venue or to dealer-supported liquidity will be stated as a fact when it exists, not as an expectation.
 
 The secondary market is subject to ongoing AI/II eligibility verification at the smart contract level. A transfer attempt to a wallet that does not pass eligibility checks (for example, due to expired KYC, sanctions list match, or jurisdictional ineligibility) will be reverted automatically.
 
@@ -54,7 +58,7 @@ For institutional allocators with portfolio-level requirements (rebalancing, red
 
 ## Important Limitations
 
-- **Lock-up period.** All RWA tokens are subject to a 6-month transfer restriction following issuance (SFA §275). Layers 1, 2, 3, and 5 may operate within the lock-up period; Layer 6 (secondary market) is unavailable until the lock-up has elapsed.
+- **Lock-up period.** Newly issued RWA units carry a 6-month transfer restriction imposed by the issuer. It is not required by SFA §275, which contains no holding period. The restriction attaches per parcel at issuance; units received in a secondary transfer arrive unrestricted. Layers 1, 2, 3, and 5 may operate within the lock-up period; Layer 6 (secondary market) is unavailable until the lock-up has elapsed.
 
 - **Buyback capital constraint.** Layer 5 issuer buyback is dependent on treasury capacity and is not a guarantee of price floor.
 

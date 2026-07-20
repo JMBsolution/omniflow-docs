@@ -106,7 +106,7 @@ The Singapore Variable Capital Company structure was selected for the following 
 
 - **Regulatory clarity.** VCC is a purpose-built fund structure under Singapore law (VCC Act 2018), with clear regulatory treatment by MAS.
 
-- **Cross-border efficiency.** Singapore's network of double-tax treaties (including the Korea-Singapore treaty providing 10% withholding on dividend income for qualifying investors) provides tax-efficient access to Asian asset economics.
+- **Cross-border efficiency.** Singapore's network of double-tax treaties (including the Korea-Singapore treaty, under which dividend income to a qualifying Singapore resident is withheld at 15% rather than the 22% domestic rate) provides tax-efficient access to Asian asset economics.
 
 - **Sub-fund segregation.** Each product is structured as a separate sub-fund, providing legal segregation of assets and liabilities between products.
 

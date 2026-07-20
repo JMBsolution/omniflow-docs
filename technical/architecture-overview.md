@@ -76,7 +76,7 @@ Reconciliation & Attestation
 
 - **RWA Token (ERC-3643 framework, ERC-7943 uRWA interface)**: The primary asset token. Represents beneficial interest in the VCC sub-fund. Subject to all compliance gating. The token exposes the ERC-7943 uRWA interface (finalized May 2026) for vendor-neutral transfer validation, freezing, and enforcement actions, implemented within the ERC-3643 compliance framework.
 
-- **Yield Distribution Tokens**: Per-cycle distribution claims, distributed via Merkle-tree airdrops to RWA token holders.
+- **Distribution entitlements**: Per-cycle claims against the register as it stood at a stated record block. Entitlement is derived from token balances rather than supplied by the issuer, and a cycle cannot pay until the sum of the snapshot equals total supply at that block — so an incomplete holder list is unusable rather than merely wrong. Distributions are paid in the settlement currency, never in fund units.
 
 **Oracle & Attestation Layer.** Provides on-chain access to off-chain truths.
 
@@ -101,7 +101,7 @@ Reconciliation & Attestation
 The lifecycle of an OmniFlow RWA token, from issuance to redemption, follows a defined state machine:
 
 ```
-[ISSUED] ──────► [LOCKED]   (6-month SFA §275 lockup)
+[ISSUED] ──────► [LOCKED]   (6-month issuer-imposed restriction)
 │
 ▼
 [ACTIVE]    (transferable to qualified investors)

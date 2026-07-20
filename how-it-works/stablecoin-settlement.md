@@ -70,7 +70,7 @@ In addition to Singapore-side regulation, the cross-border flow is subject to th
 
 - **Foreign Exchange Transactions Act**: Cross-border USD-to-KRW conversion is subject to disclosure requirements administered by the Bank of Korea and the Ministry of Economy and Finance
 
-- **Korean tax withholding**: Distributions from the Korean REF to the VCC sub-fund are subject to 10% withholding under the Korea-Singapore tax treaty (subject to treaty benefit eligibility certification)
+- **Korean tax withholding**: Distributions from the Korean REF to the VCC sub-fund are subject to 15% withholding under the Korea-Singapore tax treaty, inclusive of local income tax (subject to treaty benefit eligibility certification; 22% applies without relief)
 
 Equivalent local frameworks apply to future asset jurisdictions and are documented on the relevant product pages at the time of category launch.
 

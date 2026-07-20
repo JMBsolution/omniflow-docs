@@ -137,12 +137,12 @@ Cross-border USD-to-KRW conversion is subject to Foreign Exchange Transactions A
 
 ### Tax Treaty Application
 
-Distributions from the Korean REF to the OmniFlow VCC are subject to 10% withholding under Article 10 of the Korea-Singapore tax treaty, applicable where the recipient qualifies for treaty benefits.
+Distributions from the Korean REF to the OmniFlow VCC are subject to 15% withholding under Article 10 of the Korea-Singapore tax treaty, applicable where the recipient qualifies for treaty benefits. The 10% tier under the same article requires a corporate holder of at least 25% of the capital of a company and is not expected to be available here. Treaty rates are inclusive of Korean local income tax; without relief the domestic rate of 22% applies.
 
 |  |  |
 | --- | --- |
 | **Treaty article** | Korea-Singapore Tax Treaty Article 10 (Dividends) |
-| **Treaty rate** | 10% withholding (subject to qualifying ownership and treaty benefit eligibility) |
+| **Treaty rate** | 15% withholding, inclusive of local income tax (subject to treaty benefit eligibility; 22% domestic rate applies without relief) |
 | **Eligibility certification** | Renewed annually with Korean tax authority |
 
 ## Investor Jurisdiction Compliance

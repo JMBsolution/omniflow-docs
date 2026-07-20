@@ -38,7 +38,7 @@ The fund pursues four primary deal types:
 | **Term** | 1–3 years |
 | **Distribution Frequency** | Deal-by-deal at realization |
 | **Settlement Currency** | USDT, USDC, USD1 |
-| **Lock-Up Period** | 6 months from issuance (SFA §275) |
+| **Lock-Up Period** | 6 months from issuance, issuer-imposed (not required by SFA §275) |
 | **Secondary Market** | Available after lock-up |
 | **Issuer Buyback** | Not applicable |
 

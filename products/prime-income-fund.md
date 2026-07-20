@@ -1,6 +1,6 @@
 # Korea Prime Income Fund (Tier 1)
 
-Stable income from prime Korean commercial real estate. Target net yield of 5–7% per annum.
+Stable income from Korean commercial real estate, led by Seoul Capital Area logistics. Illustrative net distribution yield of approximately 5.5% per annum, before any currency hedge carry. The gross-to-net bridge is published in full below — the bridge, not the headline, is the number to read.
 
 ## What It Is
 
@@ -14,25 +14,52 @@ The fund typically operates with no leverage or with conservative senior leverag
 
 ## Eligible Underlying Assets
 
-| **Asset Type** | **Target Cap Rate** |
-| --- | --- |
-| Seoul prime office (CBD, GBD, YBD) | 6.0–7.0% |
-| Seoul Metropolitan Area logistics centers | 5.0–6.0% |
-| Seoul-area branded hotels (3-4 star, operating cash flow) | 5.0–6.0% |
-| Senior secured notes backed by prime commercial assets | 5.0–7.0% |
+| **Asset Type** | **Going-In Cap Rate** | **Basis** |
+| --- | --- | --- |
+| Seoul Metropolitan Area logistics centers | 5.5–6.0% | Recent institutional transactions; a 2025 Seoul Capital Area logistics centre traded at approximately 5.8% |
+| Seoul prime office (CBD, GBD, YBD) | 4.0–4.5% | Market briefings, Q4 2025, on an effective-rent basis |
+| Seoul-area branded hotels (3-4 star, operating cash flow) | 5.0–6.0% | Indicative; not independently sourced |
+| Senior secured notes backed by prime commercial assets | 5.0–7.0% | Indicative; not independently sourced |
+
+Logistics leads the allocation for a specific reason. Korean senior debt for commercial real estate prices at roughly 4.1%, which sits at or above the prime office cap rate — so leverage on prime office adds no yield. Across a 50% to 65% loan-to-value range, levered cash-on-cash on a 4.2% cap moves by under 10 basis points. Logistics clears above the debt cost and is therefore the only one of these assets where leverage does useful work.
+
+## How the Yield Is Built
+
+An illustrative bridge for a Seoul Capital Area logistics asset held through a Singapore VCC sub-fund, stated so that it can be reproduced and challenged.
+
+| **Line** | **Value** | **Basis** |
+| --- | --- | --- |
+| Going-in cap rate | 5.80% | Recent comparable transaction |
+| Less senior debt interest, 60% LTV interest-only at 4.10% | −2.46 pts of asset value | Bank of Korea new corporate loan rate as a public proxy; actual stabilised pricing is not publicly disclosed |
+| **Levered cash-on-cash to the fund** | **8.35%** | (5.80 × 100 − 4.10 × 60) ÷ 40 |
+| Less fund-level fees and expenses, 0.75% of gross asset value | −1.88 pts on equity | **Assumption — not independently sourced.** Korean fund fee schedules are not public |
+| Pre-withholding distribution to the sub-fund | 6.47% | |
+| Less Korean withholding at the 15% treaty rate | −0.97 pts | Korea–Singapore double tax agreement, dividend article. The treaty rate is inclusive of Korean local income tax |
+| **Illustrative net distribution yield** | **≈5.50%** | |
+| Plus currency hedge carry, if hedged to USD | +75 to 100 bp | Analytical inference from the policy rate differential before cross-currency basis. Narrowing |
+
+**Sensitivity.** If treaty relief is unavailable and the domestic 22% withholding rate applies, the net figure falls to approximately 5.1%. The spread between the treaty rate and the domestic rate is worth roughly 40 basis points of net yield here — meaningful, but not the variable that decides the investment.
+
+**What this bridge excludes.** Capital appreciation, vacancy and re-leasing risk, and any expense beyond the assumed fee load. Disposal is separately taxable in Korea and is not treaty-protected; any model showing a tax-free exit is wrong.
 
 ## Product Terms
 
 |  |  |
 | --- | --- |
-| **Target Net Yield** | 5–7% per annum |
+| **Illustrative Net Yield** | ≈5.5% per annum, before hedge carry. Objective, not a forecast or a guarantee |
 | **Minimum Investment** | SGD 200,000 |
 | **Term** | 3–5 years |
 | **Distribution Frequency** | Semi-annual |
 | **Settlement Currency** | USDT, USDC, USD1 |
-| **Lock-Up Period** | 6 months from issuance (SFA §275) |
-| **Secondary Market** | Available after lock-up |
+| **Lock-Up Period** | 6 months from issuance, issuer-imposed. See the note below |
+| **Secondary Market** | Transfer between eligible holders is permitted after the restriction lapses. See Exit & Redemption for what this does and does not mean |
 | **Issuer Buyback Trigger** | NAV decline of 15% or greater |
+
+**On the lock-up.** The six-month restriction is imposed by the issuer. It is not required by SFA §275, which is a prospectus exemption for offers to accredited and institutional investors and contains no holding period. The transfer restriction that does apply to a fund interest placed under that exemption limits *who* a transferee may be, not *when* a transfer may occur — and that requirement is discharged by the eligibility register, which admits only verified accredited and institutional wallets.
+
+The restriction is retained for two reasons of our own. It aligns holders with the fund's semi-annual distribution cycle rather than its block time. And where treaty relief depends on documenting each underlying investor's tax residence at each payment date, a register that turns over freely makes that documentation volatile; a settled register is a tax-operational requirement, not a limitation.
+
+The restriction attaches to newly issued units and travels with the parcel. Units received in a secondary transfer arrive unrestricted, and a later subscription does not re-restrict units already held.
 
 ## Risks
 

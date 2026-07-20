@@ -14,7 +14,7 @@ For each OmniFlow RWA token, the Risk Oracle publishes the following standardize
 | counterparty_risk | Credit rating of largest counterparties (issuer, guarantor) | At underwriting; reviewed quarterly |
 | underlying_ltv | Loan-to-value ratio for credit positions | At NAV update |
 | stress_drawdown_p95 | 95th percentile drawdown under stress scenario | Quarterly |
-| lockup_remaining_days | Days remaining until SFA §275 lockup expires | Daily |
+| lockup_remaining_days | Days remaining until the issuer-imposed transfer restriction lapses on the oldest restricted parcel | Daily |
 | duration_remaining_days | Days until product maturity | Daily |
 | nav_last_updated | Timestamp of most recent NAV attestation | Per NAV update |
 

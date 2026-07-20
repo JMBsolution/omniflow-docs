@@ -25,14 +25,24 @@ Investors hold tokenized representations of their VCC Sub-Fund interests. The VC
 
 ## Current Products
 
-| **Tier** | **Strategy** | **Asset Category** | **Target Net Yield** | **Min. Investment** | **Term** | **Risk Profile** |
+| **Tier** | **Strategy** | **Asset Category** | **Illustrative Net Yield** | **Min. Investment** | **Term** | **Risk Profile** |
 | --- | --- | --- | --- | --- | --- | --- |
-| T1 | Prime Income | Korea | 5–7% p.a. | SGD 200,000 | 3–5 yrs | Low |
-| T2 | Growth Plus | Korea | 8–9% p.a. | SGD 200,000 | 2–4 yrs | Moderate |
-| T3 | Alpha Opportunity | Korea | 9–12% p.a. | SGD 500,000 | 1–3 yrs | High |
-| T4 | Core REIT | Korea | 6–7% p.a. | SGD 200,000 | 7+ yrs | Low |
+| T1 | Prime Income | Korea | ≈5.5% p.a. — bridge published | SGD 200,000 | 3–5 yrs | Low |
+| T2 | Growth Plus | Korea | 8–9% p.a. — bridge not yet published | SGD 200,000 | 2–4 yrs | Moderate |
+| T3 | Alpha Opportunity | Korea | 9–12% p.a. — bridge not yet published | SGD 500,000 | 1–3 yrs | High |
+| T4 | Core REIT | Korea | 6–7% p.a. — bridge not yet published | SGD 200,000 | 7+ yrs | Low |
 
-Target yields are net of fund-level expenses and management fees, but before any taxes that may apply at the investor level. Actual returns will differ from targets based on asset performance, market conditions, and the timing of distributions.
+## How to Read a Yield Figure
+
+Every figure above is an objective, not a forecast and not a guarantee.
+
+**A net yield is only meaningful with its bridge.** The distance between an asset's cap rate and what reaches an investor is large, and most of it is not optional: financing cost, fund-level fees and expenses, and Korean withholding levied at source. Withholding in particular is deducted before money reaches the Singapore sub-fund — it is not an investor-level tax that can be set aside as a footnote, and any figure presented "before tax" for this structure overstates what an investor receives.
+
+**T1 has been re-derived from sourced inputs and its full bridge is published** on the Korea Prime Income Fund page, including the assumptions that could not be independently sourced. That re-derivation moved the figure down, and it also moved the strategy's emphasis: Korean senior debt prices at roughly 4.1%, above the Seoul prime office cap rate, so leverage on prime office adds no yield and the allocation now leads with logistics, which clears the debt cost.
+
+**T2, T3 and T4 carry their original targets and have not yet been through the same exercise.** They should be read as indicative until their bridges are published. We would rather say that than restate them from figures we have not sourced.
+
+Actual returns will differ from any target based on asset performance, market conditions, vacancy and re-leasing, and the timing of distributions. Disposal is separately taxable in Korea and is not protected by the Korea–Singapore treaty.
 
 ## Future Categories
 
@@ -68,7 +78,7 @@ Each product offers up to six layers of exit optionality:
 
 1. **Issuer buyback** — protocol-level buyback at NAV-defended levels (subject to issuer capital constraints)
 
-1. **Secondary market sale** — peer-to-peer transfer to another qualified investor (subject to SFA §275 6-month holding period)
+1. **Secondary market sale** — peer-to-peer transfer to another qualified investor (subject to the issuer-imposed 6-month restriction on each parcel)
 
 Liquidity availability varies by product. See individual Tier pages for product-specific exit terms.
 

@@ -35,19 +35,23 @@ The calculation is performed by OmniFlow's fund accounting team, reviewed by the
 
 ## Distribution Mechanics
 
-Distributions are executed via a pull-based mechanism. For each distribution cycle, OmniFlow:
+Distributions are executed via a pull-based mechanism. For each cycle, OmniFlow:
 
-1. Computes per-token distribution amounts and the corresponding investor allocations
+1. Publishes the record block and the per-unit amount **before** the record instant, so any transfer can be priced with the entitlement known
 
-1. Generates a Merkle tree mapping investor wallets to distribution amounts
+1. Reconstructs the register as it stood at the record block, and reconciles it: the sum of holder balances must equal total supply at that block, exactly. A cycle that does not reconcile cannot proceed
 
-1. Posts the Merkle root on-chain to the distribution contract
+1. Funds the distribution contract with the aggregate amount in the settlement stablecoin, in the same transaction that opens the cycle — an unfunded cycle does not exist
 
-1. Funds the distribution contract with the aggregate distribution amount in the appropriate stablecoin
+1. Records each holder's entitlement, derived from their balance at the record block rather than supplied by the issuer
 
 1. Notifies investors that distributions are claimable
 
-Investors may then claim their distribution at any time by submitting a claim transaction to the distribution contract. Unclaimed distributions remain in the contract indefinitely; there is no expiry.
+**Entitlement is determined by the holder of record at the record block, with no time weighting.** This is the rule every transferable fund uses. An investor who acquires units after the record block receives nothing for that period and should have paid a price reflecting that; an investor who sells before it keeps the distribution, having already been compensated through the sale price. The obligation this creates is disclosure ahead of the record instant, which is why the first step above comes first.
+
+Investors may claim at any time. Unclaimed distributions remain claimable; there is no expiry and no sweep to the issuer.
+
+**Distributions are paid in the settlement currency only.** They are never paid in fund units. Paying in units would re-arm the transfer restriction on every recipient at every payment, which over a semi-annual cycle would leave holdings permanently restricted. Investors wishing to reinvest do so through a new subscription, and the resulting units carry a new restriction because a reinvestment is a new acquisition.
 
 For investors who prefer push-based distribution (delivery without manual claim), an opt-in standing instruction is available. Push distributions are executed in batches following each distribution cycle.
 
@@ -57,7 +61,7 @@ Each investor specifies a preferred distribution currency at onboarding (USDT, U
 
 ## Tax Treatment
 
-Distributions to investors are paid net of applicable withholding tax in the asset jurisdiction. For current Korean asset products, this means a 10% withholding under the Korea-Singapore tax treaty, applicable where the investor's beneficial owner of the income qualifies for treaty benefits. Investors are responsible for their own income tax compliance in their jurisdiction of tax residency.
+Distributions to investors are paid net of applicable withholding tax in the asset jurisdiction. For current Korean asset products, this means a 15% withholding under the Korea-Singapore tax treaty, inclusive of local income tax and applicable where the investor's beneficial owner of the income qualifies for treaty benefits. Investors are responsible for their own income tax compliance in their jurisdiction of tax residency.
 
 For institutional investors qualifying for tax-exempt status in Singapore (under IRAS §13(8) and §13(12) where applicable), OmniFlow assists with the documentation required to claim treaty benefits at source.
 

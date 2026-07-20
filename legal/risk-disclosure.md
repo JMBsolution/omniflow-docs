@@ -102,7 +102,11 @@ OmniFlow's operations depend on licenses held by partner LFMC, MPI, and Korean A
 
 ### 5.3 Tax Treaty Risk
 
-Distributions benefit from the Korea-Singapore tax treaty's 10% withholding rate on qualifying dividends. Treaty modifications, denial of treaty benefits, or changes in tax authority interpretation may increase withholding tax and reduce net distributions.
+Distributions are modelled on the Korea–Singapore tax treaty's 15% withholding rate. The treaty's lower 10% tier requires a corporate holder of at least 25% of the capital of a company and is not expected to be available to a fund holding a Korean real estate fund interest. Treaty rates are inclusive of Korean local income tax.
+
+Treaty benefits are not automatic. Relief depends on beneficial ownership, current certification of tax residence, filing before the payment date, and satisfying anti-treaty-shopping tests. Where Korean look-through rules apply to a foreign collective vehicle, relief may depend on documenting the residence of each underlying investor at each payment date; any portion that cannot be certified is taxed at the domestic rate. If relief is unavailable the domestic rate of 22% applies, inclusive of local income tax.
+
+Separately, and frequently missed: proceeds on disposal of an interest deriving its value principally from Korean immovable property are taxable in Korea and are **not** capped by the treaty. Any model showing a tax-free exit is incorrect.
 
 ### 5.4 Cross-Border Securities Law Risk
 
@@ -130,7 +134,7 @@ OmniFlow relies on KYC, document forensics, and audit service providers. Failure
 
 ### 7.1 Lock-Up Period
 
-All RWA tokens are subject to a 6-month transfer restriction following issuance under SFA §275. During the lock-up, investors cannot transfer tokens through the secondary market.
+Newly issued RWA units carry a 6-month transfer restriction imposed by the issuer, not required by statute. During that period the affected parcel cannot be transferred. Because the restriction is contractual rather than statutory it could in principle be varied by the issuer, and investors should not rely on it as a protection.
 
 ### 7.2 Secondary Market Liquidity
 

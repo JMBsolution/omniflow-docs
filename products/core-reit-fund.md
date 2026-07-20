@@ -32,7 +32,7 @@ The fund invests through two channels:
 | **Term** | 7+ years |
 | **Distribution Frequency** | Quarterly |
 | **Settlement Currency** | USDT, USDC, USD1 |
-| **Lock-Up Period** | 6 months from issuance (SFA §275) |
+| **Lock-Up Period** | 6 months from issuance, issuer-imposed (not required by SFA §275) |
 | **Secondary Market** | Available after lock-up |
 | **Issuer Buyback Trigger** | NAV decline of 15% or greater |
 
