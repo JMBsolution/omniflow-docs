@@ -22,4 +22,4 @@ For legal structure and regulatory positioning — including what is and is not 
 
 ## Stay Connected
 
-For institutional inquiries, contact partners@omniflow.xyz. For agent operator and developer inquiries, contact engineering@omniflow.xyz. No official public announcement channel has been established.
+For institutional inquiries, contact archiyong217@gmail.com. For agent operator and developer inquiries, contact archiyong217@gmail.com. No official public announcement channel has been established.

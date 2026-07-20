@@ -68,7 +68,7 @@ OmniFlow has engaged no auditor, no valuation provider, no fund manager, and no 
 
 OmniFlow's documentation is maintained on an ongoing basis. Despite reasonable care, errors and omissions may occur. **OmniFlow disclaims liability for inaccuracies in the documentation and reserves the right to update the documentation at any time without prior notice.**
 
-For corrections or feedback, contact docs@omniflow.xyz.
+For corrections or feedback, contact archiyong217@gmail.com.
 
 ## 12. Governing Law
 
@@ -76,4 +76,4 @@ These disclaimers are governed by the laws of Singapore and form part of the Ter
 
 ## 13. Contact
 
-For questions about these disclaimers or other legal documentation, contact legal@omniflow.xyz.
+For questions about these disclaimers or other legal documentation, contact archiyong217@gmail.com.

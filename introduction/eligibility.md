@@ -74,4 +74,4 @@ The eligibility model does not admit:
 
 - Persons identified as politically exposed in connection with adverse media risk indicators (subject to enhanced due diligence)
 
-OmniFlow has no compliance function and cannot render an eligibility determination today. For diligence questions, contact partners@omniflow.xyz.
+OmniFlow has no compliance function and cannot render an eligibility determination today. For diligence questions, contact archiyong217@gmail.com.

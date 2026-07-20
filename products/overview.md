@@ -90,4 +90,4 @@ There is no secondary market, no buyback facility and no DeFi integration. Exit 
 
 ## Contact
 
-Only Tier 2 is live, and only as a testnet demonstration — there is nothing to subscribe to today. For diligence questions, contact partners@omniflow.xyz.
+Only Tier 2 is live, and only as a testnet demonstration — there is nothing to subscribe to today. For diligence questions, contact archiyong217@gmail.com.

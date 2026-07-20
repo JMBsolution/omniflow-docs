@@ -10,7 +10,7 @@ Document version: [TBD]
 
 ## 1. Introduction
 
-OmniFlow Pte. Ltd. is the intended Singapore operating entity and has not been incorporated; until it is, the OmniFlow team acts as data controller. "OmniFlow," "we," "us," or "our" refers to whichever of the two is acting. We respect your privacy and is committed to protecting personal data we collect, use, and share in connection with the operation of the OmniFlow protocol and related services (collectively, the "Services").
+OmniFlow Pte. Ltd. is the intended Singapore operating entity and has not been incorporated; until it is, the OmniFlow team acts as data controller. "OmniFlow," "we," "us," or "our" refers to whichever of the two is acting. We respect your privacy and are committed to protecting personal data we collect, use, and share in connection with the operation of the OmniFlow protocol and related services (collectively, the "Services").
 
 This Privacy Policy explains how we collect, use, disclose, and protect personal data, and describes the rights you have with respect to your personal data.
 
@@ -204,7 +204,7 @@ Depending on your jurisdiction, you may have rights to:
 
 - Lodge a complaint with a supervisory authority
 
-To exercise your rights, contact privacy@omniflow.xyz. We will respond within the timeframe required by applicable law.
+To exercise your rights, contact archiyong217@gmail.com. We will respond within the timeframe required by applicable law.
 
 ## 11. Security
 
@@ -242,7 +242,7 @@ We may update this Privacy Policy from time to time. Material changes will be co
 
 For privacy-related inquiries, contact:
 
-- General privacy: privacy@omniflow.xyz
+- General privacy: archiyong217@gmail.com
 
 - Data Protection Officer: [TBD — DPO designation pending]
 

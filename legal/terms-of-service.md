@@ -216,8 +216,8 @@ You may not assign these Terms without OmniFlow's prior written consent. OmniFlo
 
 ### 13.6 Notices
 
-Notices to OmniFlow should be sent to legal@omniflow.xyz. Notices to you may be sent to any email address you have registered with OmniFlow.
+Notices to OmniFlow should be sent to archiyong217@gmail.com. Notices to you may be sent to any email address you have registered with OmniFlow.
 
 ### 13.7 Contact
 
-For questions about these Terms, contact legal@omniflow.xyz.
+For questions about these Terms, contact archiyong217@gmail.com.

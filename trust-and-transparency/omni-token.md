@@ -42,4 +42,4 @@ Under the intended structure, the $OMNI token would be issued and governed by th
 
 **Status:** The $OMNI Foundation has not been established. The $OMNI token has not been issued, sold, or allocated. No KYA agent operating bond exists in any denomination; see [KYA Framework](../for-ai-agents/kya-framework.md).
 
-The foundation@omniflow.foundation address is not monitored prior to Phase 2.
+The archiyong217@gmail.com address is not monitored prior to Phase 2.

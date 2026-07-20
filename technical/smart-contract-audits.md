@@ -32,7 +32,7 @@ No audit reports exist. Completed reports will be published here in full, alongs
 
 ## Coordinated Disclosure
 
-Researchers who identify vulnerabilities in the testnet contracts are encouraged to report them to security@omniflow.xyz. OmniFlow will credit researchers, with permission, in any public disclosure, and will not pursue legal action against researchers who follow coordinated disclosure.
+Researchers who identify vulnerabilities in the testnet contracts are encouraged to report them to archiyong217@gmail.com. OmniFlow will credit researchers, with permission, in any public disclosure, and will not pursue legal action against researchers who follow coordinated disclosure.
 
 ## Security Incidents
 

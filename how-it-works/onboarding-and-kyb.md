@@ -129,4 +129,4 @@ OmniFlow reserves the right to decline onboarding without disclosed cause, in li
 
 Where a decision can be communicated, the prospective investor is informed and may withdraw without prejudice.
 
-OmniFlow has no compliance function and cannot render an eligibility determination today. For diligence questions, contact partners@omniflow.xyz.
+OmniFlow has no compliance function and cannot render an eligibility determination today. For diligence questions, contact archiyong217@gmail.com.

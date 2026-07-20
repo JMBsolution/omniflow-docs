@@ -54,4 +54,4 @@ Testnet contracts may be redeployed at any time without notice. Nothing on this 
 
 The canonical list of OmniFlow contract addresses is maintained on this page. Addresses claimed to be associated with OmniFlow but not listed here have not been verified by OmniFlow.
 
-If you encounter an address claimed to be OmniFlow's that does not appear here, contact security@omniflow.xyz.
+If you encounter an address claimed to be OmniFlow's that does not appear here, contact archiyong217@gmail.com.
