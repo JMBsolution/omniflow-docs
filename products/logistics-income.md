@@ -18,7 +18,7 @@ The fund is modelled with senior leverage at 60% LTV, interest-only — the same
 
 | **Asset Type** | **Going-In Cap Rate** | **Basis** |
 | --- | --- | --- |
-| Seoul Capital Area logistics centres | 5.80% | Jegiri Logistics Center transaction, Newmark |
+| Seoul Capital Area logistics centres | 5.80% | A 2025 comparable institutional transaction, reported by Newmark |
 | Seoul prime office (CBD, GBD, YBD) | approximately 4.2% | Carried here only as the basis for the withdrawal described below |
 
 Logistics leads the allocation for a specific reason. Korean senior debt for commercial real estate is taken here at roughly 4.10% — the Bank of Korea new corporate loan rate, used as a public proxy, because actual stabilised pricing is not publicly disclosed. That sits at or above the prime office cap rate — so leverage on prime office adds no yield. Across a 50% to 65% loan-to-value range, levered cash-on-cash on a 4.2% cap moves by under 10 basis points. Logistics clears above the debt cost and is therefore the asset where leverage does useful work.
@@ -31,14 +31,14 @@ An illustrative bridge for a Seoul Capital Area logistics asset, modelled on a S
 
 | **Line** | **Value** | **Basis** |
 | --- | --- | --- |
-| Going-in cap rate | 5.80% | Jegiri Logistics Center transaction, Newmark |
+| Going-in cap rate | 5.80% | A 2025 comparable institutional transaction, reported by Newmark |
 | Less senior debt interest, 60% LTV interest-only at 4.10% | −2.46 pts of asset value | Bank of Korea new corporate loan rate as a public proxy; actual stabilised pricing is not publicly disclosed |
 | **Levered cash-on-cash to the fund** | **8.35%** | (5.80 × 100 − 4.10 × 60) ÷ 40 |
 | Less fund-level fees and expenses, 0.75% of gross asset value | −1.88 pts on equity | **Assumption — not independently sourced.** Korean fund fee schedules are not public |
 | Pre-withholding distribution to the holding vehicle | 6.47% | |
 | Less Korean withholding at the 15% treaty rate | −0.97 pts | Korea–Singapore double tax agreement, dividend article. The treaty rate is inclusive of Korean local income tax |
 | **Illustrative net distribution yield** | **≈5.50%** | |
-| Plus currency hedge carry, if hedged to USD | +75 to 100 bp | Analytical inference from the policy rate differential before cross-currency basis. Narrowing |
+| Plus currency hedge carry, if hedged to USD | +75 to 100 bp | Analytical inference from the policy rate differential before cross-currency basis. Excluded from the yield above; no hedge is in place |
 
 **Sensitivity.** If treaty relief is unavailable and the domestic 22% withholding rate applies, the net figure falls to approximately 5.0%. The spread between the treaty rate and the domestic rate is worth roughly 45 basis points of net yield here — meaningful, but not the variable that decides the investment.
 
