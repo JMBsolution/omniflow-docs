@@ -1,6 +1,16 @@
 # Settlement Layer
 
-The Settlement Layer enables AI agents to pay for OmniFlow protocol services autonomously — without per-transaction human signing, without manually refilled gas balances, and without exposing private keys for each micropayment. It combines three Ethereum-aligned standards: **x402** (HTTP-native stablecoin payments), **ERC-4337** (account abstraction with paymasters), and **ERC-7710** (smart contract delegation).
+The Settlement Layer enables AI agents to pay for OmniFlow protocol services autonomously — without per-transaction human signing and without the agent holding the gas token. It is built on **x402** (HTTP-native stablecoin payments), with **ERC-4337** (account abstraction with paymasters) and **ERC-7710** (smart contract delegation) as committed extensions.
+
+## What Is Built Today
+
+Being precise about this matters more than the roadmap, so it comes first.
+
+**Working now, on Base Sepolia.** An agent requests a paid resource and receives HTTP 402 carrying the price it did not know in advance. It signs an EIP-3009 `transferWithAuthorization` — an EIP-712 signature over a value, a recipient, a validity window and a single-use nonce — and retries. OmniFlow's facilitator recovers the signer, checks the authorization against the stated requirements, and relays it on chain, paying the gas itself. The agent never holds the gas token and never signs a raw transaction. Settlement is a real transfer of testnet USDC, visible on the block explorer.
+
+**Not built yet, and therefore not claimed.** There are no ERC-4337 smart accounts, no session keys, and no ERC-7710 delegation instruments in the current implementation. The agent signs with an ordinary key. What a session key would add — a standing payment ceiling, a validity period and a permitted-recipient list enforced cryptographically rather than by the facilitator's checks — is described below as a Phase 2 design, not as a present capability.
+
+The practical difference: today each payment is authorised individually and the ceiling is enforced by OmniFlow's own verification. Under the Phase 2 design the ceiling would travel with the key itself, so the agent could not exceed it even if OmniFlow's checks were wrong.
 
 This page describes why Settlement is a distinct layer in OmniFlow's Agent Stack, how the three standards combine in OmniFlow's design, and how the layer rolls out across Phase 1, Phase 1.5, and Phase 2.
 
@@ -36,13 +46,15 @@ The three together solve what x402 alone cannot: how an agent makes thousands of
 
 A typical agent payment on OmniFlow follows this flow:
 
-1. **Session key issuance.** During KYA onboarding, the principal grants the agent a session key with explicit payment scope: `{daily_limit: 50,000 USDC, per_call_limit: 500 USDC, valid_until: 2026-12-31, permitted_recipient: omniflow_facilitator}`. The session key is signed by the principal's primary signer through an ERC-4337 user operation that combines ERC-7710 delegation.
+The numbered flow below describes the **Phase 2 design**, in which the payment scope is carried by a session key. Steps 2 through 6 are implemented today; step 1 is not, and in the current implementation the agent signs each authorization with an ordinary key while OmniFlow's facilitator enforces the scope.
+
+1. **Session key issuance — Phase 2, not yet built.** During KYA onboarding, the principal grants the agent a session key with explicit payment scope: `{daily_limit: 50,000 USDC, per_call_limit: 500 USDC, valid_until: 2026-12-31, permitted_recipient: omniflow_facilitator}`. The session key is signed by the principal's primary signer through an ERC-4337 user operation that combines ERC-7710 delegation.
 
 2. **Service discovery.** The agent queries an OmniFlow endpoint (e.g., `GET /api/v1/risk-oracle/{assetId}`).
 
 3. **Payment requirement.** OmniFlow's facilitator returns HTTP 402 with the `PAYMENT-REQUIRED` header: chain (Base), token (USDC), amount ($0.10), recipient (OmniFlow facilitator), nonce, and expiration timestamp.
 
-4. **Atomic check and payment.** The agent's session key validates the requirement against its payment scope. If within scope, it constructs a payment transaction and submits via the `PAYMENT-SIGNATURE` header. The check (permission + payment ceiling + duration + nonce) is atomic — no race window exists between authorization and execution.
+4. **Check and payment.** The agent signs an EIP-3009 authorization over the stated value, recipient, validity window and a single-use nonce, and retries the request carrying it. OmniFlow's facilitator recovers the signer and checks recipient, amount, validity window, nonce reuse and payer balance before relaying anything on chain — a failed check is a refusal with a stated reason, not a reverted transaction. Under the Phase 2 design the ceiling and duration would additionally be enforced by the session key itself, so a scope breach would be impossible rather than merely rejected.
 
 5. **Resource delivery.** OmniFlow validates the payment and returns the requested resource (HTTP 200).
 
@@ -74,7 +86,7 @@ This keeps the issued token single-chain while giving agents micropayment econom
 
 The Settlement Layer rolls out in three milestones.
 
-**Phase 1 — Specification and protocol-fee scope (current).** The Settlement Layer is documented and its API surface is published. Activated payment scope is restricted to OmniFlow protocol fees only. Session keys are issued with `permitted_recipient: omniflow_facilitator`. External P2P payments to non-OmniFlow services are not enabled in Phase 1. Phase 1 uses third-party paymasters during ramp-up.
+**Phase 1 — x402 payment, protocol-fee scope (current).** An agent can discover a paid resource, receive a price over HTTP 402, sign an EIP-3009 authorization and have OmniFlow's facilitator settle it on chain. Payment scope is restricted to OmniFlow's own resources; the permitted recipient is fixed in the payment requirements the server issues, and external payments to non-OmniFlow services are not enabled. Gas is paid by OmniFlow's facilitator, which holds no authority over any OmniFlow contract — it can relay a signed authorization and nothing else.
 
 **Phase 1.5 — Self-paymaster operational.** OmniFlow operates its own ERC-4337 paymaster, replacing the third-party paymaster used in Phase 1. Distribution claim gas sponsorship is activated. Premium feature payments (priority Risk Oracle, advanced MCP tools) are enabled. The Settlement Layer undergoes an independent security audit before Phase 1.5 activation.
 
@@ -119,8 +131,9 @@ OmniFlow tracks the maturity of each Settlement Layer dependency:
 | **Standard** | **Status** | **OmniFlow Posture** |
 | --- | --- | --- |
 | x402 | Production; x402 Foundation launched April 2026 | Adopt; OmniFlow operates own facilitator |
-| ERC-4337 | Production; multiple paymaster providers operating | Adopt; Phase 1 third-party paymaster, Phase 1.5 self-paymaster |
-| ERC-7710 | Draft EIP, pending Final | Track; adapt to finalization changes |
+| EIP-3009 | Long-standing; implemented by Circle's USDC | **In use today** — the signed authorization x402's `exact` scheme settles with |
+| ERC-4337 | Production; multiple paymaster providers operating | **Not yet implemented.** Committed for Phase 2 session keys |
+| ERC-7710 | Draft EIP, pending Final | **Not yet implemented.** Tracked; adapt to finalization changes |
 | MCP Streamable HTTP | Standard remote transport since November 2025 | In production at `mcp.omniflow.xyz` |
 
 Where a dependency is in Draft, OmniFlow uses the current Draft interface and commits to migrating to Final upon standardization.
@@ -129,7 +142,7 @@ Where a dependency is in Draft, OmniFlow uses the current Draft interface and co
 
 The Settlement Layer reduces but does not eliminate agent payment risk:
 
-- **Session key compromise.** An agent runtime compromise within the session key's scope still allows in-scope payments to drain. The kill switch (Layer 1) revokes session-key authority within one block. Payment scope sizing — daily and per-call limits — should reflect the principal's risk tolerance.
+- **Agent key compromise.** In the current implementation the agent signs with an ordinary key, so a compromised agent runtime can sign payments up to the payer's balance. The only enforced ceilings are the per-request amount stated in the payment requirements and whatever the payer's wallet actually holds — so an agent wallet should be funded with the float it needs and no more. The session-key model described above is what removes this exposure, and it is not built yet.
 
 - **Paymaster availability.** Phase 1 uses a third-party paymaster. Paymaster outage temporarily disables sponsored transactions for affected agents. Phase 1.5 self-paymaster reduces external dependency but introduces OmniFlow's own paymaster as a single point of failure.
 
