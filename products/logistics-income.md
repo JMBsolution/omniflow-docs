@@ -1,10 +1,10 @@
-# Korea Prime Income Fund (Tier 1)
+# Korea Logistics Income (Tier 2)
 
 Stable income from Korean commercial real estate, led by Seoul Capital Area logistics. Illustrative net distribution yield of approximately 5.5% per annum, before any currency hedge carry. The gross-to-net bridge is published in full below — the bridge, not the headline, is the number to read.
 
 ## What It Is
 
-The Korea Prime Income Fund is OmniFlow's lowest-risk, income-focused product. It invests in stabilized, income-producing prime real estate in Seoul's primary office submarkets (CBD, GBD, YBD), large-scale logistics centers in the Seoul metropolitan area, and ABL-secured fixed-income notes backed by prime commercial assets.
+Korea Logistics Income invests in stabilized, income-producing logistics assets in the Seoul Capital Area, with selective exposure to other stabilized commercial property. It is the range's core direct-equity income tier: higher yielding than Tier 1 and not marked daily, but concentrated and illiquid where Tier 1 is diversified and listed.
 
 ## Strategy
 

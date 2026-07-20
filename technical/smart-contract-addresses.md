@@ -30,9 +30,9 @@ OmniFlow's mainnet contracts are deployed in a single coordinated event followin
 
 | **Product** | **Token Symbol** | **Address** | **Issuance Date** | **Status** |
 | --- | --- | --- | --- | --- |
-| Korea Prime Income Fund (T1) — Series A | [TBD] | [TBD] | [TBD] | Pre-issuance |
-| Korea Growth Plus Fund (T2) — Series A | [TBD] | [TBD] | [TBD] | Pre-issuance |
-| Korea Alpha Opportunity Fund (T3) — Series A | [TBD] | [TBD] | [TBD] | Pre-issuance |
+| Korea Listed REIT Income (T1) — Series A | [TBD] | [TBD] | [TBD] | Pre-issuance |
+| Korea Logistics Income (T2) — Series A | [TBD] | [TBD] | [TBD] | Pre-issuance |
+| Korea Senior Development Credit (T3) — Series A | [TBD] | [TBD] | [TBD] | Pre-issuance |
 
 Additional product series will be added to this registry at the time of issuance. Each series corresponds to a discrete subscription window and a specific underlying asset pool.
 

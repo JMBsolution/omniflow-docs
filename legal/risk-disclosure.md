@@ -14,7 +14,7 @@ This Risk Disclosure summarizes the principal risks of investing in OmniFlow pro
 
 ### 1.1 Risk of Loss
 
-Investment in OmniFlow products carries material risk of partial or total loss of principal. Tier 3 (Korea Alpha Opportunity Fund) products carry the highest risk and are suitable only for investors who can absorb total loss.
+Investment in OmniFlow products carries material risk of partial or total loss of principal. Tier 4 (Korea Opportunistic Credit) products carry the highest risk and are suitable only for investors who can absorb total loss.
 
 ### 1.2 No Guaranteed Returns
 
@@ -34,15 +34,15 @@ Underlying real estate values fluctuate based on macroeconomic conditions, inter
 
 Income from real estate assets depends on tenant performance and occupancy levels. Tenant defaults, vacancies, or rent renegotiations reduce income.
 
-### 2.3 Construction and Project Risk (Tier 2 PF Products)
+### 2.3 Construction and Project Risk (Tier 3 Products)
 
 PF loans are exposed to construction completion risk, cost overruns, project delays, and force majeure events. Repayment depends on completion guarantees from construction firms, the financial condition of which may deteriorate during the loan term.
 
-### 2.4 Subordination Risk (Tier 3 Products)
+### 2.4 Subordination Risk (Tier 4 Products)
 
-Tier 3 products may include junior or mezzanine positions that absorb losses before senior creditors. In distressed scenarios, junior positions may receive nothing while senior creditors are made whole.
+Tier 4 products may include junior or mezzanine positions that absorb losses before senior creditors. In distressed scenarios, junior positions may receive nothing while senior creditors are made whole.
 
-### 2.5 Recovery Risk on NPL (Tier 3 Products)
+### 2.5 Recovery Risk on NPL (Tier 4 Products)
 
 NPL acquisitions rely on recovery through asset auction or restructuring. Actual recovery may fall below modeled levels, potentially resulting in partial or total loss.
 

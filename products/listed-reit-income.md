@@ -1,4 +1,4 @@
-# Korea Core REIT Fund (Tier 4)
+# Korea Listed REIT Income (Tier 1)
 
 Long-duration income from listed Korean REITs. Estimated **net** distribution yield of 4.5–5.1% per annum against a gross listed-market yield of approximately 7%. Available from Phase 3.
 
@@ -21,7 +21,7 @@ This tier delivers *less* net income than Tier 1 while adding daily mark-to-mark
 
 ## What It Is
 
-The Korea Core REIT Fund provides long-duration, dividend-focused exposure through tokenized positions in Corporate Restructuring REITs (CR-REITs) and other publicly traded Korean REIT vehicles. Tier 4 is designed for investors with long investment horizons (7+ years) seeking stable dividend income with diversification benefits relative to single-asset exposure.
+Korea Listed REIT Income provides diversified, dividend-focused exposure through tokenized positions in exchange-listed Korean REIT shares. Tier 1 is the lowest-risk tier in the range: the underlying holdings are listed, diversified across managers and assets, and priced daily. That daily pricing is also its principal drawback relative to Tier 2 — see the note on mark-to-market below.
 
 **Tier 4 launches in Phase 3, following OmniFlow's acquisition of its own Korean Asset Management Company.**
 

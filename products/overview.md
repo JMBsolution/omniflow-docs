@@ -27,22 +27,26 @@ Investors hold tokenized representations of their VCC Sub-Fund interests. The VC
 
 | **Tier** | **Strategy** | **Asset Category** | **Illustrative Net Yield** | **Min. Investment** | **Term** | **Risk Profile** |
 | --- | --- | --- | --- | --- | --- | --- |
-| T1 | Prime Income | Korea | ≈5.5% p.a. | SGD 200,000 | 3–5 yrs | Low |
-| T2 | Growth Plus | Korea | ~3.8% p.a. (3.5–4.5%), low confidence | SGD 200,000 | 2–4 yrs | Moderate |
-| T3 | Alpha Opportunity | Korea | Withheld pending underwriting | SGD 500,000 | 1–3 yrs | High |
-| T4 | Core REIT | Korea | 4.5–5.1% p.a. | SGD 200,000 | 7+ yrs | Low |
+| T1 | Listed REIT Income | Korea | 4.5–5.1% p.a. | SGD 200,000 | Open-ended | Lowest |
+| T2 | Logistics Income | Korea | ≈5.5% p.a. | SGD 200,000 | 3–5 yrs | Moderate |
+| T3 | Senior Development Credit | Korea | Withheld pending underwriting | SGD 200,000 | 2–4 yrs | High |
+| T4 | Opportunistic Credit | Korea | Withheld pending underwriting | SGD 500,000 | 1–3 yrs | Highest |
 
-## This Is Not Currently a Risk Ladder
+The ladder ascends in **risk**, which is the only ordering that can be stated honestly today. It does not ascend uniformly in published yield, and the reason is structural rather than presentational — see below.
 
-All four tiers have now been re-derived from sourced inputs, and the result changes what the range means. On a net basis Tier 2 pays **less** than Tier 1 while taking more risk, and Tier 4 pays less than Tier 1 while adding daily mark-to-market. Tier 3 has no publishable target at all.
+## How This Range Was Rebuilt
 
-We are stating that plainly rather than presenting four numbers that ascend on a page but not in reality. A product range that inverts once put on a net basis is a product problem, and it is ours to fix — by repricing, by restructuring, or by withdrawing tiers — not something to be managed through presentation. Until that work is done, **Tier 1 is the only tier we would put in front of an income-seeking allocator.**
+The previous four tiers were ordered by target yield: 5–7%, 8–9%, 9–12%, 6–7%. Re-deriving each of them from sourced inputs showed that ordering did not survive contact with the arithmetic. On a net basis the old Tier 2 paid *less* than the old Tier 1 while taking more risk; the old Tier 2 and Tier 3 turned out to underwrite the same thing at two price points; and the old Tier 4 delivered less net income than Tier 1 while adding daily mark-to-market.
 
-Two structural issues sit behind the numbers, and both are being addressed:
+So the range has been rebuilt around **risk**, which we can order honestly, rather than around yield, which we could not.
 
-**Tier 2 and Tier 3 currently underwrite the same risk.** To deliver its previously published 8–9%, Tier 2 would have needed roughly 12.5% gross at asset level — pricing that exists in Korea only in mezzanine and junior project finance, which is Tier 3's mandate. Selling one underwriting at two price points, described as two risk levels, is a disclosure problem and not a product range.
+**Income tiers — T1 and T2 — publish a yield.** Both are equity exposures with a distributable cash return, and both publish a full gross-to-net bridge on their own page, including the assumptions we could not source.
 
-**Tier 4's wrapper adds no return.** Korea abolished the Investment Registration Certificate in December 2023, so a foreign institution can now buy listed Korean REITs directly at its own treaty rate. Our wrapper offers settlement rails, aggregation and consolidated filing — operational benefits, not access value, and we no longer describe them as such.
+**Credit tiers — T3 and T4 — do not publish a yield, and this is the substantive finding.** A fixed coupon does not survive this structure. Korean withholding at 15% plus the fee load takes a 7% senior coupon down to roughly 3.8% net — below Tier 1, for more risk. Equity tiers can use leverage to lift the return; a loan book held through a fund cannot. That means Korean credit does not work as an *income* product here at all: its return has to come from credit spread and recovery, which cannot be published as a target until loss experience can be evidenced rather than modelled.
+
+We would rather say that than manufacture a number. For Tier 4 in particular, the incumbent professionals in Korean distressed credit — the five licensed buyers — earned a median levered return on equity of 3.7%, 5.3% and about 8.7% over 2023–2025 at four to five times leverage. We will not publish a target that implies an unlevered offshore vehicle can beat them.
+
+**Tier 1's wrapper adds no return, and we say so on its page.** Korea abolished the Investment Registration Certificate in December 2023, so a foreign institution can buy listed Korean REITs directly at its own treaty rate. What the wrapper provides is stablecoin settlement, small-ticket aggregation and a single consolidated treaty filing — operational benefits, not access value.
 
 ## How to Read a Yield Figure
 

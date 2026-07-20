@@ -1,4 +1,4 @@
-# Korea Alpha Opportunity Fund (Tier 3)
+# Korea Opportunistic Credit (Tier 4)
 
 Exposure to Korean mezzanine project finance, bridge lending, and non-performing loans. **High risk. Return target withheld pending underwriting** — the previously published 9–12% has been withdrawn and is not replaced with another number.
 
@@ -20,7 +20,7 @@ We will publish a target when we can evidence loss experience rather than model 
 
 ## What It Is
 
-The Korea Alpha Opportunity Fund targets the highest-yield opportunities in the Korean real estate credit market: mezzanine and junior PF tranches, short-duration bridge financing, and non-performing loan (NPL) acquisitions. These positions offer attractive risk-adjusted returns due to the structural funding gap created by Korea's tightened bank lending standards, but they carry materially elevated risk relative to Tier 1 and Tier 2 products.
+Korea Opportunistic Credit takes the highest-risk positions in the range: mezzanine and junior PF tranches, short-duration bridge financing, and non-performing loan acquisitions. A structural funding gap exists in Korean development finance following tightened bank lending standards, and these positions are priced for it — but they sit behind senior creditors, and in the 2022–2024 stress a substantial share of junior Korean exposure was impaired. This tier is suitable only for investors who can absorb total loss of the allocation.
 
 **Tier 3 is restricted to investors with explicit acknowledgment of high-risk profile and is suitable only for capital that can absorb potential principal loss.**
 
