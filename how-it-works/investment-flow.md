@@ -1,94 +1,86 @@
 # Investment Flow
 
-This page describes the end-to-end flow of capital from investor subscription to RWA token issuance and ongoing yield distribution. The flow involves coordinated actions across regulated entities in Singapore and the asset jurisdiction. The description below uses OmniFlow's current asset category — Korean prime real estate and real estate-backed credit — for concrete illustration. The same architectural pattern applies to additional jurisdictions and asset categories as they are added in future phases, with jurisdiction-specific routing and regulatory steps adapted accordingly.
+This page describes the settlement workflow model: the sequence of steps that carries capital from a subscription to a fund token, and the SLA target attached to each. It is a model with a partial implementation. The on-chain steps run today on the **Base Sepolia testnet**; the off-chain steps are recorded by an operator workflow tracker and have never been executed against a live counterparty, because no counterparty is engaged. Read every step below as a specification, not as a description of operations in progress.
 
-## Eight-Step Flow
+The description uses the only product open in this build — Korea Logistics Income, Tier 2, on testnet — for concrete illustration. The same pattern is intended to carry to further jurisdictions and asset categories.
+
+## The 00–08 Workflow
 
 ```
-[1] Eligibility Verification         → 1–7 business days
-│
+[00] Product onboarding               → T+30
+│       (sourcing, diligence, product upload — once per product)
 ▼
-[2] Subscription & Investor Agreement → 1–3 business days
-│
+[01] Customer onboarding              → T+2 to T+5
+│       (KYB / eligibility, SFA §275 consent, AML/CFT screening)
 ▼
-[3] Stablecoin Deposit                → T+0
-│       (USDT / USDC / USD1 to MPI partner wallet)
+[02] Payment in                       → T+0
+│       (settlement token received at the receiving wallet)
 ▼
-[4] Deposit Receipt Issuance          → T+1 to T+2
-│       (ERC-4626 receipt token)
+[03] Certificate issue                → T+1 to T+2
+│       (ERC-4626 deposit certificate, non-transferable) — ON CHAIN
 ▼
-[5] Conversion & Cross-Border Settlement → T+2 to T+3
-│       (stablecoin → USD via MPI partner; SWIFT to asset jurisdiction)
+[04] FX and deposit                   → T+2 to T+3
+│       (settlement token → USD; deposit to the fund account)
 ▼
-[6] Local Capital Call                → T+3 to T+5
-│       (USD → local currency; regulatory filing; LP commitment)
+[05] Remittance                       → T+1 to T+2
+│       (cross-border transfer; AML explanatory pack)
 ▼
-[7] RWA Token Issuance                → T+5 to T+7
-│       (deposit receipt burned; ERC-3643 RWA token minted)
+[06] Capital call                     → T+3 to T+5
+│       (USD → local currency; foreign investment filing; LP contribution)
 ▼
-[8] Yield Distribution (recurring)    → Per product schedule
-(asset income → local fund → VCC → investor wallet)
+[07] RWA issue                        → T+5 to T+7
+│       (certificate redeemed; ERC-7943 fund token issued) — ON CHAIN
+▼
+[08] Distribution (recurring)         → Per product schedule
 ```
 
-Total time from subscription to RWA token receipt: typically 7 to 15 business days, depending on the speed of supporting documentation and cross-border settlement.
+Steps 02 through 07 carry a combined target of **12 to 19 calendar days**, payment received to token issued. First-time customer onboarding (step 01) is **2 to 5 days** and is reported separately, because it happens once per investor rather than once per subscription. Steps 04, 05 and 06 apply to the inbound-foreign route only; a domestic-currency deal has no conversion, no wire and no foreign-investment filing to make.
+
+Elapsed time is counted in calendar days in this build. A live deployment would count business days per jurisdiction.
+
+## Where the Demonstration Stops
+
+The demo agent advances the workflow to step 04 and halts there. Steps 04 through 06 require outcomes that only a human counterparty can produce — a conversion confirmation, a remittance message, a foreign-investment filing receipt — and the agent will not write an outcome it cannot source.
+
+That halt is enforced by the off-chain workflow tracker and by the demo script. It is **not** enforced by the smart contracts. `RwaToken.issue()` carries no access control, so a wallet that holds a deposit certificate and passes the eligibility registry could in principle issue itself fund tokens on chain without any of the intervening steps having occurred. Closing that gap — binding the on-chain issue to off-chain workflow state — is future work and is not built.
 
 ## Step-by-Step Detail
 
-**Step 1 — Eligibility Verification.** The prospective investor completes KYB (corporate entities) or KYC (individuals), AI/II eligibility verification, AML/CFT screening (OFAC, UN, EU sanctions; PEP; adverse media), and signs the SFA §275 acknowledgment. See Onboarding & KYB for required documents and the workflow.
+**Step 00 — Product onboarding.** Sourcing and due diligence on the asset, an NDA with a partner asset manager, and upload of the product to the platform. This runs once per product, before any investor is admitted. It is recorded, not executed, in this build.
 
-**Step 2 — Subscription & Investor Agreement.** The investor reviews the product Investment Memorandum (IM), executes the LP Investment Agreement, the VCC Subscription Form, and any product-specific risk acknowledgments. Document execution is conducted via DocuSign or equivalent qualified e-signature.
+**Step 01 — Customer onboarding.** The prospective investor completes KYB (corporate entities) or KYC (individuals), AI/II eligibility verification, AML/CFT screening (OFAC, UN, EU sanctions; PEP; adverse media), and signs the SFA §275 acknowledgment. A live deployment would run identity verification, sanctions screening and document forensics through licensed vendors. This build records a decision only. See Onboarding & KYB.
 
-**Step 3 — Stablecoin Deposit.** The investor transfers USDT, USDC, or USD1 from their registered wallet to the OmniFlow MPI partner's designated receiving wallet. The receiving wallet is operated by an MAS-licensed Major Payment Institution holding a Digital Payment Token license. The receiving wallet address and transaction reference are pre-confirmed by the MPI partner. Travel Rule data is exchanged for transfers above SGD 1,500.
+**Step 02 — Payment in.** The investor transfers the settlement token from their registered wallet to the receiving wallet, and the transaction is recorded. On testnet the settlement token is `MockUSDC`, a mock ERC-20 deployed for this demonstration — it is not Circle USDC and it carries no value. A live deployment would receive into a licensed payment institution's wallet under that institution's own custody controls. No such institution is engaged.
 
-**Step 4 — Deposit Receipt Issuance.** OmniFlow's deposit contract issues an ERC-4626 deposit receipt token to the investor's registered wallet. The receipt represents the investor's claim during the period between deposit and final RWA token issuance. The receipt is non-transferable and is burned upon RWA token issuance.
+**Step 03 — Certificate issue.** The deposit contract issues an ERC-4626 deposit certificate to the investor's wallet, representing the claim between payment and fund token issuance. The certificate is non-transferable and is redeemed at issuance. **This step executes on chain**, on Base Sepolia, in this build.
 
-**Step 5 — Conversion & Cross-Border Settlement.** The MPI partner converts the deposited stablecoin to USD at institutional OTC rates. USD is then transferred to OmniFlow's designated USD account at a Singapore correspondent bank, and from there transmitted via SWIFT MT103 to the receiving bank in the asset jurisdiction. AML supporting documentation (typically 11 documents covering source of funds, beneficial ownership, and corporate structure) is prepared and accompanies the SWIFT message.
+**Step 04 — FX and deposit.** Conversion of the settlement token to USD and deposit to the fund account, performed by a payment institution and a fund manager. Inbound-foreign route only. This is where the demonstration halts.
 
-**Step 6 — Local Capital Call.** The receiving bank in the asset jurisdiction converts USD to the local currency at the prevailing institutional rate. The partner local asset manager files the regulatory notification required for foreign capital inflow — for current Korean asset products, this is the Foreign Investment Promotion Act (FIPA) notification filed with Korea's Ministry of Trade, Industry and Energy. Local currency is then committed as LP capital to the local asset-holding vehicle (currently a Korean Real Estate Fund operated by the partner Korean AMC).
+**Step 05 — Remittance.** Cross-border transfer by a remitting bank, accompanied by an AML explanatory pack. Inbound-foreign route only.
 
-**Step 7 — RWA Token Issuance.** Upon confirmation of the LP capital commitment and the corresponding VCC sub-fund interest registration, the OmniFlow RWA contract atomically (a) burns the investor's deposit receipt and (b) mints the corresponding ERC-3643 RWA token to the investor's wallet. The RWA token represents the investor's beneficial interest in the VCC sub-fund.
+**Step 06 — Capital call.** A receiving bank in the asset jurisdiction converts USD to local currency; a partner asset manager files the foreign capital inflow notification required locally — for a Korean asset this is the Foreign Investment Promotion Act (FIPA) filing — and local currency is committed as LP capital to the local asset-holding vehicle. Inbound-foreign route only.
 
-**Step 8 — Yield Distribution.** As the underlying assets generate income (rental payments, loan coupon receipts, or operational cash flow), the income flows from the underlying asset to the local asset-holding vehicle, from there to the VCC sub-fund as LP distributions, and from the VCC sub-fund to investors as token-level distributions. Distribution mechanics are described in detail in Yield Distribution.
+**Step 07 — RWA issue.** The fund interest is recorded by an administrator, then in a single on-chain transaction the deposit certificate is redeemed and the corresponding **ERC-7943 (uRWA)** fund token is issued to the investor's wallet. The multi-day SLA target covers the administrator's recording; the on-chain leg settles in one transaction. **This step executes on chain**, on Base Sepolia, in this build.
 
-## Key Documents
+**Step 08 — Distribution.** Asset income flows up the structure and is paid out to holders. Distribution mechanics are described in Yield Distribution. No distribution has been paid.
 
-The following documents are generated and retained for each subscription:
+## Document Slots
 
-- KYB/KYC verification report
+Each step carries document slots that must be filled before the step can be completed. The workflow tracker defines them; the slots are empty in this build, because the steps that would produce the documents have not been run.
 
-- AI/II eligibility certification
-
-- SFA §275 acknowledgment (executed)
-
-- LP Investment Agreement (executed)
-
-- VCC Subscription Form (executed)
-
-- Product Investment Memorandum (delivered)
-
-- Travel Rule transfer record
-
-- MPI conversion confirmation
-
-- SWIFT MT103 settlement message
-
-- Local jurisdiction regulatory filing receipt (e.g., FIPA notification for Korean asset products)
-
-- Local asset-holding vehicle LP capital commitment record
-
-- RWA token issuance transaction hash
-
-All documents are retained in OmniFlow's compliance archive for the duration required by MAS regulations and applicable tax authorities.
-
-## Operational Counterparties
-
-| **Function** | **Counterparty** |
+| **Step** | **Document slots** |
 | --- | --- |
-| Fund Operation (Phase 1) | MAS-licensed CMS LFMC partner |
-| Stablecoin Settlement (Phase 1) | MAS MPI DPT-licensed partner |
-| Local Asset Management (Korea) | MOLIT-licensed Korean AMC partner |
-| Banking (Singapore) | Tier-1 Singapore bank |
-| Banking (Korea) | Tier-1 Korean bank |
-| Audit (Annual) | Big 4 accounting firm |
+| 00 Product onboarding | Information Memorandum; Term Sheet; NDA |
+| 02 Payment in | On-chain receipt |
+| 04 FX and deposit | Partner transaction confirmation |
+| 05 Remittance | Remittance message; AML explanatory pack |
+| 06 Capital call | Foreign investment registration; LP contribution agreement |
+| 08 Distribution | Distribution statement; Payment confirmation |
 
-For asset categories outside Korea, equivalent licensed counterparties in the relevant jurisdiction are engaged before the category is opened to subscriptions. Specific counterparty identities are disclosed under non-disclosure agreement during institutional due diligence and on the Legal Structure page following operational launch.
+Steps 03 and 07 record a transaction hash rather than a document, because they execute on chain.
+
+## Counterparty Roles
+
+The workflow assigns each step an owner by role: a compliance desk, a payment institution, a fund manager, a remitting bank, a receiving bank in the asset jurisdiction, a partner asset manager, a fund administrator.
+
+**None of these roles is filled.** No payment institution, fund manager, asset manager, bank, administrator or auditor has been engaged, and no agreement with any such party exists. The roles describe what a live deployment would require, which is also why the demonstration does not advance past step 04: there is no counterparty to produce the outcomes those steps record, and the agent will not write an outcome it cannot source.

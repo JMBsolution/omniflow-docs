@@ -1,163 +1,48 @@
 # MCP Server & SDK
 
-OmniFlow provides three programmatic interfaces for agent integration: a REST API, language SDKs (TypeScript and Python), and a native MCP (Model Context Protocol) server. This page describes the interfaces and provides links to detailed reference documentation.
+OmniFlow's agent interface is a single small HTTP service — the agent rail — running against Base Sepolia testnet. It exposes free discovery endpoints, one payment-gated resource, an MCP (Model Context Protocol) server, and a self-hosted x402 facilitator.
 
-## REST API
+**There is no SDK.** No TypeScript package, no Python package, and no published client library exist. There is also no general-purpose REST API beyond the endpoints listed below, and no sandbox environment separate from the testnet deployment — the deployment *is* the sandbox. Everything below is exercised against a mock settlement token and a fictional fund.
 
-The OmniFlow REST API exposes the protocol's investor-facing functionality as standard HTTP endpoints. Core endpoints:
+## HTTP Endpoints
 
-- GET /api/v1/products — List available products with metadata
+| **Method** | **Path** | **Cost** |
+| --- | --- | --- |
+| GET | `/v1/products` | Free |
+| GET | `/v1/contract-addresses` | Free |
+| GET | `/v1/deals/{symbol}/diligence` | **Paid** — 0.10 testnet USDC via x402 |
+| POST | `/mcp` | MCP Streamable HTTP, stateless |
+| POST | `/facilitator/verify` | Free — payment verification, no gas spent |
+| POST | `/facilitator/settle` | Free — relays a verified authorization on chain |
 
-- GET /api/v1/products/{id} — Product detail including full risk metrics
+There is no API key and no authentication. Discovery is public, and the only gate anywhere on the rail is payment. Nothing on the rail writes to a chain except the facilitator's settlement call, which relays an authorization the payer signed.
 
-- GET /api/v1/risk-oracle/{assetId} — Current and historical risk metrics
+The paid resource is the one endpoint worth describing in full. Requested without payment it answers HTTP 402 carrying the price, the asset, the recipient, and a validity window. The agent signs an EIP-3009 `transferWithAuthorization` and retries with an `X-PAYMENT` header. The facilitator verifies it against eight conditions — scheme or network mismatch, recipient mismatch, insufficient value, not yet valid, expired, bad signature, nonce already used, and insufficient payer balance — and settles on chain before the resource is returned. A failed check is a refusal with a stated reason, not a reverted transaction. See [Settlement Layer](settlement-layer.md).
 
-- GET /api/v1/nav/{assetId} — Current and historical NAV
-
-- POST /api/v1/subscribe — Submit a subscription (requires authenticated principal)
-
-- POST /api/v1/redeem — Submit a redemption request
-
-- GET /api/v1/positions — Current positions for the authenticated principal
-
-- GET /api/v1/distributions — Distribution history and pending claims
-
-- POST /api/v1/distributions/claim — Claim available distributions
-
-Authentication is via API key bound to the verified Principal. All write operations additionally require an EIP-712 signed authorization from the Principal's designated signer or a delegated agent within scope.
-
-Full API reference is available at api.omniflow.xyz/docs.
-
-## TypeScript SDK
-
-The TypeScript SDK is the recommended interface for Node.js-based agent runtimes and web applications.
-
-typescript
-
-import { OmniFlow } from '@omniflow/sdk';
-
-const client = new OmniFlow({
-
-apiKey: process.env.OMNIFLOW_API_KEY,
-
-signer: agentSigner, // ethers.js Signer with delegated authority
-
-});
-
-// List products
-
-const products = await client.products.list({ tier: 1 });
-
-// Get risk metrics
-
-const risk = await client.risk.get(products[0].assetId);
-
-// Submit subscription (requires principal grant)
-
-const subscription = await client.subscribe({
-
-productId: products[0].id,
-
-amount: '100000', // USDC
-
-currency: 'USDC',
-
-});
-
-The SDK handles transaction signing, nonce management, and retry logic. Source code is available at github.com/omniflow/sdk-typescript under the Apache 2.0 license.
-
-## Python SDK
-
-The Python SDK provides equivalent functionality for Python-based agent runtimes.
-
-python
-
-from omniflow import OmniFlow
-
-client = OmniFlow(
-
-api_key=os.environ['OMNIFLOW_API_KEY'],
-
-signer=agent_signer, # web3.py LocalAccount with delegated authority
-
-)
-
-# List products
-
-products = client.products.list(tier=1)
-
-# Get risk metrics
-
-risk = client.risk.get(products[0].asset_id)
-
-# Submit subscription
-
-subscription = client.subscribe(
-
-product_id=products[0].id,
-
-amount='100000',
-
-currency='USDC',
-
-)
-
-Source code is available at github.com/omniflow/sdk-python under the Apache 2.0 license.
+The fee is denominated in Circle's Base Sepolia USDC rather than the deal's mock settlement token, because x402's `exact` scheme settles by calling `transferWithAuthorization` on the token itself and the mock token does not implement EIP-3009.
 
 ## MCP Server
 
-The OmniFlow MCP Server exposes protocol functionality as tools callable by LLM-based agents using Anthropic's Model Context Protocol. The server runs as a standalone service that LLM clients (Claude, GPT, custom runtimes) can connect to.
+The MCP server exposes the rail as tools callable by an LLM client over the Streamable HTTP transport. It is stateless: every request is independent, and nothing is kept between calls.
 
-**Available tools:**
+**Four tools. Three free, one paid.**
 
-- list_products — Browse available investment products
+- `list_products` — available products with their standards, restrictions, and contract addresses. Free.
 
-- get_product_details — Detailed product information including risk metrics
+- `check_eligibility` — points at the eligibility register contract for a given address. Free. The tool does not proxy chain reads; it returns the registry address for the client to call directly. A positive result records a workflow decision and is not a verification of identity.
 
-- check_eligibility — Verify the connected agent's eligibility for a product
+- `describe_workflow` — the 00–08 settlement workflow, including which steps an agent can execute and which resolve at human counterparties. Free.
 
-- simulate_subscription — Simulate a subscription without execution (sandbox)
+- `get_diligence_note` — **paid.** The tool does not settle a payment itself, because MCP has no payment semantics and inventing one would be a private protocol wearing a standard's name. It returns the same x402 payment requirements the HTTP resource would, and the client settles over HTTP against the resource URL.
 
-- submit_subscription — Execute a subscription (subject to permission scope)
+The MCP server enforces no KYA permissions, because no KYA permissions exist. It enforces payment on one tool and nothing else.
 
-- get_positions — Retrieve current positions
+## What the Agent Does Not Do
 
-- claim_distributions — Claim available distributions
+The demo agent halts at workflow step 04. Steps 04 through 06 — FX and deposit, remittance, and the capital call and foreign investment filing — resolve at human counterparties that are not engaged, and the agent will not write an outcome it cannot source into an append-only record.
 
-- get_risk_metrics — Retrieve standardized risk metrics
+That halt is a design decision enforced by the off-chain operator workflow tracker and by the demo script. **It is not enforced by the smart contracts.** `RwaToken.issue()` has no access control, so a certificate-holding eligible wallet could in principle mint itself fund tokens on chain. The agent does not advance past step 04; it is not that it could not. Closing that on-chain gap is outstanding work.
 
-**Connection:**
+## Source
 
-mcp connect https://mcp.omniflow.xyz \
-
---principal <principal-id> \
-
---agent <agent-id>
-
-The MCP server enforces all KYA permissions. An agent connected to the MCP server cannot execute actions outside its delegated scope, regardless of LLM instructions.
-
-Full MCP server reference is available at docs.omniflow.xyz/mcp.
-
-## Sandbox Environment
-
-A sandbox environment is provided for agent development and testing. The sandbox replicates the production protocol with synthetic assets, simulated NAV updates, and no real capital. Sandbox endpoints:
-
-- REST API: https://api-sandbox.omniflow.xyz
-
-- MCP: mcp connect https://mcp-sandbox.omniflow.xyz
-
-Sandbox accounts are provisioned on request. Contact engineering@omniflow.xyz to obtain sandbox credentials.
-
-## Versioning and Deprecation
-
-OmniFlow follows semantic versioning for all programmatic interfaces. Breaking changes are introduced only at major version boundaries with at least 6 months of overlap support for the previous major version. Deprecations are announced through:
-
-- The OmniFlow developer mailing list
-
-- The protocol's GitHub release notes
-
-- API response headers (X-OmniFlow-Deprecation for soon-to-deprecate endpoints)
-
-## Open Source Components
-
-The TypeScript SDK, Python SDK, and reference smart contract interfaces are released under the Apache 2.0 license. The MCP server is closed-source but provides a documented protocol that third parties may implement against.
+The agent rail is roughly 900 lines of TypeScript with no database, no session state, and no framework. No licence has been chosen and no package is published.

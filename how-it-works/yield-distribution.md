@@ -1,21 +1,25 @@
 # Yield Distribution
 
-Yield distributions are paid in stablecoin directly to the investor's registered wallet. Distribution timing, amount, and currency are determined by product terms, underlying asset performance, and investor preferences set at onboarding. The same distribution mechanics apply across all product tiers and asset categories.
+This page describes how yield distributions are designed to work: paid in the settlement currency directly to the holder's registered wallet, with timing and amount set by product terms and underlying asset performance.
+
+**No distribution has been paid.** There is no distribution contract deployed, no asset generating income, and no holder to pay. What follows is the distribution model, which is worth reading for the rules it commits to rather than for any payment it describes.
 
 ## Distribution Frequency
 
-| **Tier** | **Frequency** |
-| --- | --- |
-| Tier 1 — Prime Income | Semi-annual |
-| Tier 2 — Growth Plus | Semi-annual |
-| Tier 3 — Alpha Opportunity | Deal-by-deal at realization |
-| Tier 4 — Core REIT | Quarterly |
+| **Tier** | **Product** | **Frequency** |
+| --- | --- | --- |
+| Tier 1 | Listed REIT Income | Not set |
+| Tier 2 | Korea Logistics Income | Semi-annual, as modelled |
+| Tier 3 | Senior Development Credit | Not set. The design contemplates deal-by-deal distribution at realization |
+| Tier 4 | Opportunistic Credit | Not set. The design contemplates deal-by-deal distribution at realization |
 
-Specific distribution dates within each cycle are published in advance in the product distribution calendar, available through the investor dashboard.
+Only Tier 2 is open in this build, and only on testnet, and its frequency is a modelled term rather than a schedule anything has been paid on. Tier 1 is documented but not open, and its terms are not set. Tiers 3 and 4 are pipeline. No yield target is published for Tier 1, 3 or 4.
+
+Specific distribution dates would be published in advance in a product distribution calendar. No calendar exists.
 
 ## Distribution Calculation
 
-For each distribution cycle, OmniFlow computes the per-token distribution amount as follows:
+The model computes a per-token distribution amount for each cycle as follows. Nothing computes this today: there is no distributable income, no holder and no deployed contract.
 
 Per-Token Distribution =
 
@@ -29,13 +33,13 @@ Per-Token Distribution =
 
 ÷ (Total Outstanding RWA Tokens for the Product)
 
-For current Korean asset products, the local currency is KRW and the applicable withholding rate is 10% under the Korea-Singapore tax treaty (subject to treaty benefit eligibility). For future asset categories, the equivalent local currency and tax treaty rates apply.
+For the Korean asset, the local currency is KRW and the applicable withholding rate is **15%** — the Korea-Singapore treaty rate, inclusive of local income tax, subject to treaty benefit eligibility. For future asset categories, the equivalent local currency and treaty rates apply.
 
-The calculation is performed by OmniFlow's fund accounting team, reviewed by the partner LFMC, and audited annually by the Big 4 auditor. The detailed calculation methodology and any exceptional adjustments are disclosed in each distribution statement.
+A live deployment would have this calculation performed by a fund accounting function, reviewed by a licensed fund manager, and audited annually. None of those parties is engaged, no audit of any kind has been performed, and no distribution statement has been produced.
 
 ## Distribution Mechanics
 
-Distributions are executed via a pull-based mechanism. For each cycle, OmniFlow:
+The model is pull-based. No distribution contract is deployed, so the sequence below is a specification the implementation would have to satisfy, not a description of code running on chain. For each cycle:
 
 1. Publishes the record block and the per-unit amount **before** the record instant, so any transfer can be priced with the entitlement known
 
@@ -45,33 +49,33 @@ Distributions are executed via a pull-based mechanism. For each cycle, OmniFlow:
 
 1. Records each holder's entitlement, derived from their balance at the record block rather than supplied by the issuer
 
-1. Notifies investors that distributions are claimable
+1. Notifies holders that distributions are claimable
 
 **Entitlement is determined by the holder of record at the record block, with no time weighting.** This is the rule every transferable fund uses. An investor who acquires units after the record block receives nothing for that period and should have paid a price reflecting that; an investor who sells before it keeps the distribution, having already been compensated through the sale price. The obligation this creates is disclosure ahead of the record instant, which is why the first step above comes first.
 
-Investors may claim at any time. Unclaimed distributions remain claimable; there is no expiry and no sweep to the issuer.
+The specification commits to claims being open-ended: an investor could claim at any time, unclaimed distributions would remain claimable, and there would be no expiry and no sweep to the issuer. No claim can be made today, because no distribution contract is deployed.
 
-**Distributions are paid in the settlement currency only.** They are never paid in fund units. Paying in units would re-arm the transfer restriction on every recipient at every payment, which over a semi-annual cycle would leave holdings permanently restricted. Investors wishing to reinvest do so through a new subscription, and the resulting units carry a new restriction because a reinvestment is a new acquisition.
+**Distributions are paid in the settlement currency only.** They are never paid in fund units. A distribution paid in units would be a fresh issuance of a security rather than a payment of income: it would compound the position instead of distributing it, each payment would arrive as a newly restricted parcel, and every recipient would have to be re-checked against the eligibility register at every payment date. Investors wishing to reinvest do so through a new subscription, and the resulting units carry their own 180-day restriction because a reinvestment is a new issuance.
 
-For investors who prefer push-based distribution (delivery without manual claim), an opt-in standing instruction is available. Push distributions are executed in batches following each distribution cycle.
+A push-based option — delivery without a manual claim, batched after each cycle — is part of the design. It is not built.
 
 ## Distribution Currency
 
-Each investor specifies a preferred distribution currency at onboarding (USDT, USDC, or USD1). Distributions are paid in the preferred currency where operationally feasible. Where conversion is required (for example, if the underlying USD-to-stablecoin conversion is paused for a specific stablecoin), distributions are paid in the next-available preferred currency and the variation is disclosed in the distribution statement.
+The design has each investor specify a preferred distribution currency at onboarding, with payment in that currency where operationally feasible and any substitution disclosed in the distribution statement. Multi-stablecoin settlement is not integrated; see Stablecoin Settlement.
 
 ## Tax Treatment
 
-Distributions to investors are paid net of applicable withholding tax in the asset jurisdiction. For current Korean asset products, this means a 15% withholding under the Korea-Singapore tax treaty, inclusive of local income tax and applicable where the investor's beneficial owner of the income qualifies for treaty benefits. Investors are responsible for their own income tax compliance in their jurisdiction of tax residency.
+Distributions would be paid net of applicable withholding tax in the asset jurisdiction. For the Korean asset this means **15% withholding** under the Korea-Singapore tax treaty, inclusive of local income tax, applicable where the beneficial owner of the income qualifies for treaty benefits. Without treaty relief the domestic rate of 22% applies, which is the sensitivity case in the yield derivation. Investors are responsible for their own income tax compliance in their jurisdiction of tax residency.
 
-For institutional investors qualifying for tax-exempt status in Singapore (under IRAS §13(8) and §13(12) where applicable), OmniFlow assists with the documentation required to claim treaty benefits at source.
-
-For investors in jurisdictions with FATCA or CRS reporting requirements, OmniFlow files the required information returns with the relevant tax authorities.
+Treaty-benefit documentation, Singapore tax-exemption claims under IRAS §13(8) and §13(12), and FATCA/CRS information returns would all be part of a live deployment's obligations. None is being performed, because there are no investors and no distributions.
 
 Detailed tax treatment for each investor situation is the subject of individual tax advisory; OmniFlow does not provide tax advice.
 
 ## Variability of Distributions
 
-Actual distribution amounts will vary from period to period and from product targets, based on:
+Only one yield figure is published: an **illustrative net distribution yield of 5.50%** for Tier 2, derived from a 5.80% going-in cap on Seoul Capital Area logistics, 60% LTV interest-only senior debt at 4.10%, fund fees assumed at 0.75% of GAV, and 15% Korean withholding — 8.35% levered cash-on-cash, 6.47% after fees, 5.50% after withholding. It falls to approximately 5.0% if withholding reverts to the 22% domestic rate. FX hedge carry of +75 to 100 bp is excluded. It is illustrative and has never been earned or paid.
+
+Actual distribution amounts would vary from period to period and from that figure, based on:
 
 - Underlying asset performance (occupancy, rent collection, loan repayment, asset sale outcomes)
 
@@ -83,11 +87,11 @@ Actual distribution amounts will vary from period to period and from product tar
 
 - Timing of underlying cash flow events relative to distribution cycle dates
 
-Target yields communicated at subscription represent OmniFlow's good-faith expected range. Actual distributions will differ, sometimes materially, and may be zero in particular cycles.
+Actual distributions would differ from the illustrative figure, sometimes materially, and may be zero in particular cycles.
 
 ## Distribution Statements
 
-For each distribution cycle, each investor receives a distribution statement detailing:
+The design provides each holder, each cycle, with a distribution statement detailing:
 
 - Per-token distribution amount and total distribution to the investor
 
@@ -101,4 +105,4 @@ For each distribution cycle, each investor receives a distribution statement det
 
 - Any exceptional adjustments
 
-Distribution statements are delivered through the investor dashboard and are also auditable on-chain through the distribution contract event log.
+Statements would be delivered through the investor application. On-chain auditability of a cycle depends on a distribution contract, which is not deployed; the append-only event log that exists today records workflow steps, not payments.

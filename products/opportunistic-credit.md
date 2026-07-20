@@ -2,7 +2,7 @@
 
 > **Pipeline — not currently offered.** This tier is documented so the intended product range is legible. It is not open for subscription. Return target: **to be published.**
 
-Exposure to Korean mezzanine project finance, bridge lending, and non-performing loans. **High risk.** The previously published 9–12% target has been withdrawn and is not replaced with another number.
+Exposure to Korean mezzanine project finance, bridge lending, and non-performing loans. **High risk.** The previously published target has been withdrawn and is not replaced with another number.
 
 ## Why This Tier Is in the Pipeline
 
@@ -22,48 +22,50 @@ We will publish a target when we can evidence loss experience rather than model 
 
 ## What It Is
 
-Korea Opportunistic Credit takes the highest-risk positions in the range: mezzanine and junior PF tranches, short-duration bridge financing, and non-performing loan acquisitions. A structural funding gap exists in Korean development finance following tightened bank lending standards, and these positions are priced for it — but they sit behind senior creditors, and in the 2022–2024 stress a substantial share of junior Korean exposure was impaired. This tier is suitable only for investors who can absorb total loss of the allocation.
+Korea Opportunistic Credit is designed to take the highest-risk positions in the range: mezzanine and junior PF tranches, short-duration bridge financing, and non-performing loan acquisitions. A structural funding gap exists in Korean development finance following tightened bank lending standards, and these positions are priced for it — but they sit behind senior creditors, and in the 2022–2024 stress a substantial share of junior Korean exposure was impaired. This tier is suitable only for investors who can absorb total loss of the allocation.
 
-**Tier 3 is restricted to investors with explicit acknowledgment of high-risk profile and is suitable only for capital that can absorb potential principal loss.**
+**Were this tier opened, it would be restricted to investors giving an explicit acknowledgment of its high-risk profile, and it is suitable only for capital that can absorb potential principal loss.**
 
 ## Strategy
 
-The fund pursues four primary deal types:
+No fund vehicle has been formed. The strategy contemplates four primary deal types:
 
 **Urban Redevelopment Bridge Loans.** Short-duration loans to redevelopment associations, secured by land mortgage and association consent agreements, typically with 1–2 year maturities.
 
 **Junior PF Tranches.** Subordinated debt in officetel or mid-rise residential developments, with sales proceeds rights as collateral, typically deployed after sales rate exceeds 60%.
 
-**NPL Senior Acquisitions.** Acquisition of senior NPL claims at meaningful discount, with recovery through asset auction or restructuring, targeting recovery rates of 130–150% of acquisition cost.
+**NPL Senior Acquisitions.** Acquisition of senior NPL claims, with recovery through asset auction or restructuring. No recovery multiple is published: secured Korean bank NPL pools cleared at roughly 71% of unpaid principal in 2025, and no public loss series exists against which a recovery target could be evidenced.
 
 **Regional Mid-Tier PF.** Senior or mezzanine PF loans on regional metropolitan developments, with strict construction firm credit screening and regional market discount applied.
 
 ## Eligible Underlying Assets
 
-| **Asset Type** | **Target Yield** |
+| **Asset Type** | **Position** |
 | --- | --- |
-| Urban redevelopment bridge loans (land mortgage, association consent) | 10–13% |
-| Junior PF, officetel and mid-rise residential (sales proceeds, post-60% sales rate) | 9–11% |
-| NPL senior acquisitions (auction or asset disposition recovery) | 10–12% |
-| Regional metropolitan large-scale development PF | 10–12% |
+| Urban redevelopment bridge loans | Land mortgage, association consent |
+| Junior PF, officetel and mid-rise residential | Sales proceeds rights, post-60% sales rate |
+| NPL senior acquisitions | Auction or asset disposition recovery |
+| Regional metropolitan large-scale development PF | Senior or mezzanine |
+
+Target yields are deliberately not published here. There is no published pricing index for Korean mezzanine and junior project finance and no audited realised return series, so any range quoted at this level would be a model output presented as pricing.
 
 ## Product Terms
 
 |  |  |
 | --- | --- |
 | **Availability** | **Pipeline — not currently offered** |
-| **Net Yield Target** | To be published. Previous 9–12% withdrawn |
-| **Minimum Investment** | SGD 500,000 |
-| **Term** | 1–3 years |
-| **Distribution Frequency** | Deal-by-deal at realization |
-| **Settlement Currency** | USDT, USDC, USD1 |
-| **Lock-Up Period** | 6 months from issuance, issuer-imposed (not required by SFA §275) |
-| **Secondary Market** | Available after lock-up |
+| **Net Yield Target** | To be published. The previous target has been withdrawn |
+| **Minimum Investment** | Not set |
+| **Term** | Not set |
+| **Distribution Frequency** | Not set. The design contemplates deal-by-deal distribution at realization |
+| **Settlement Currency** | Not set. No contract is deployed for this tier; the only settlement asset that exists anywhere in this build is testnet mock USDC on Base Sepolia |
+| **Lock-Up Period** | Not set. The 180-day transfer restriction exists only in the Tier 2 token on Base Sepolia testnet; no contract enforces anything for this tier |
+| **Secondary Market** | None. No secondary market exists |
 | **Issuer Buyback** | Not applicable |
 
 ## Risks
 
-**Tier 3 is the highest-risk product in the OmniFlow line and carries material risk of partial or total principal loss.** Principal risks include:
+**Tier 4 is the highest-risk product in the OmniFlow line and carries material risk of partial or total principal loss.** Principal risks include:
 
 - **PF project delay or cancellation risk** — extended timelines or project failure can result in delayed repayment or partial loss
 
@@ -73,12 +75,12 @@ The fund pursues four primary deal types:
 
 - **Regional concentration risk** — regional Korean real estate markets carry elevated volatility relative to Seoul
 
-- **Limited issuer buyback** — Tier 3 positions are not eligible for the protocol-level buyback program
+- **No issuer buyback** — there is no buyback arrangement at this tier
 
-- All Tier 1 and Tier 2 risks
+- All risks carried by the tiers below it
 
-A complete risk disclosure is provided in the deal-specific IM at subscription. Investors must additionally execute a high-risk acknowledgment confirming understanding of principal loss potential.
+This is not a complete risk disclosure. No Investment Memorandum has been issued for this or any tier, no subscription process exists, and no acknowledgment is being collected.
 
 ## How to Invest
 
-Tier 3 deals are offered on a deal-by-deal basis to a narrower subset of qualified investors who have completed enhanced suitability assessment. Contact your relationship manager for access.
+This tier is not currently open. When it opens, deals will be offered on a deal-by-deal basis to a narrower subset of qualified investors who have completed enhanced suitability assessment.

@@ -1,10 +1,12 @@
 # Eligibility
 
-OmniFlow products are restricted to qualified investors. Participation requires verification of investor status under applicable regulatory frameworks.
+OmniFlow products would be restricted to qualified investors, with participation conditioned on verification of investor status under applicable regulatory frameworks.
+
+No offering is currently open and no investor has been onboarded. The current build is a Base Sepolia testnet demonstration. This page documents the eligibility model that would apply, not a live subscription process. Read the sections below as what a live deployment would require.
 
 ## Singapore: Accredited and Institutional Investors
 
-OmniFlow operates under the §274/§275 exemptions of the Singapore Securities and Futures Act. Eligible participants are:
+A live offering would rely on the institutional investor (§274) and accredited investor (§275) exemptions under the Singapore Securities and Futures Act. There is no offering today, and nothing has been offered or issued to anyone under those exemptions. Eligible participants under that model would be:
 
 **Institutional Investors (II)** as defined in SFA §4A:
 
@@ -36,9 +38,9 @@ OmniFlow operates under the §274/§275 exemptions of the Singapore Securities a
 
 ## Other Jurisdictions
 
-OmniFlow accepts investors from jurisdictions where private placement to qualified investors is permitted under local law, including but not limited to:
+The eligibility model contemplates investors from jurisdictions where private placement to qualified investors is permitted under local law, including but not limited to:
 
-- **United States**: Qualified Purchasers under Reg D 506(c) and Reg S
+- **United States**: accredited investors under Rule 506(c) of Regulation D, and offshore purchasers under Regulation S. If a vehicle is later structured to rely on Investment Company Act §3(c)(7), the higher "qualified purchaser" standard would apply instead; that determination has not been made.
 
 - **European Union**: Professional Investors under MiFID II
 
@@ -46,21 +48,23 @@ OmniFlow accepts investors from jurisdictions where private placement to qualifi
 
 - **Hong Kong**: Professional Investors under SFO
 
-- **South Korea**: Qualified Professional Investors under FSCMA (subject to outbound investment compliance)
+South Korea is excluded. The global track is not available to Korean entities or residents. A separate Korean track is dated to the commencement of the Korean token-securities regime on 2027-02-04 and has not been built.
 
-OmniFlow does not accept investors who are residents of, or whose investment funds originate from, jurisdictions subject to comprehensive sanctions by OFAC, the United Nations, the European Union, or the Monetary Authority of Singapore.
+The eligibility model excludes investors who are residents of, or whose investment funds originate from, jurisdictions subject to comprehensive sanctions by OFAC, the United Nations, the European Union, or the Monetary Authority of Singapore.
 
 ## AI Agent Eligibility
 
-AI agents may participate as first-class investors under the OmniFlow KYA (Know Your Agent) framework. KYA verification establishes the agent's operating principal (a verified human or institutional KYB-passed entity), the agent's permission scope, and an operating bond denominated in $OMNI tokens. See KYA Framework for the complete onboarding workflow.
+The KYA (Know Your Agent) framework is designed to let AI agents participate as first-class investors. KYA verification would establish the agent's operating principal (a verified human or institutional KYB-passed entity) and the agent's permission scope. It is a design and is not built. The operating bond denominated in $OMNI is Phase 2; the $OMNI token is not live and no bond can be posted. No agent has been onboarded as an investor.
+
+What exists today is the agent payment rail on Base Sepolia testnet: an HTTP 402 challenge, an EIP-3009 signed authorization, verification by a self-hosted facilitator, on-chain settlement, and a paid diligence note priced at 0.10 testnet USDC. See KYA Framework for the intended onboarding workflow.
 
 ## Verification Process
 
-The eligibility verification process generally takes 3 to 7 business days for institutional investors and 1 to 3 business days for accredited individual investors after all documentation is submitted. Required documentation, the step-by-step workflow, and document specifications are detailed in Onboarding & KYB.
+First-time onboarding carries a target of 2 to 5 days after all documentation is submitted. That is a target, not an observed figure — no investor has been verified. It is reported separately from the settlement cycle. Required documentation, the step-by-step workflow, and document specifications are detailed in Onboarding & KYB.
 
 ## Restricted Persons
 
-OmniFlow does not onboard:
+The eligibility model does not admit:
 
 - Residents of South Korea (the underlying asset jurisdiction; included to avoid potential extraterritorial application of Korean securities law)
 
@@ -70,4 +74,4 @@ OmniFlow does not onboard:
 
 - Persons identified as politically exposed in connection with adverse media risk indicators (subject to enhanced due diligence)
 
-For a complete eligibility determination, contact compliance@omniflow.xyz with a brief description of the investor entity and jurisdiction.
+OmniFlow has no compliance function and cannot render an eligibility determination today. For diligence questions, contact partners@omniflow.xyz.

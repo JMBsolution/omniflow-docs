@@ -1,79 +1,37 @@
 # Korea Listed REIT Income (Tier 1)
 
-Long-duration income from listed Korean REITs. Estimated **net** distribution yield of 4.5–5.1% per annum against a gross listed-market yield of approximately 7%. Available from Phase 3.
+Long-duration income from listed Korean REITs — the lowest rung on the ladder. **Tier 1 is documented, not open in this build, and publishes no yield.**
 
-## How the Yield Is Built
+## Why No Yield Is Published
 
-| **Line** | **Value** | **Basis** |
-| --- | --- | --- |
-| Gross portfolio dividend yield | ~7.0% | Listed K-REIT market snapshot, June 2026 |
-| Less Korean withholding at the 15% treaty rate | −1.05 pts → 5.95% | Korea–Singapore treaty dividend article, inclusive of local income tax |
-| Less management fee on gross asset value | −0.75 pts → 5.20% | **Assumption — not independently sourced** |
-| Less VCC administration, audit and custody | −0.15 to −0.30 pts | **Assumption — obtain an administrator quote** |
-| **Estimated net distribution yield** | **4.9–5.1%** | |
-| Downside: Korean look-through rules apply and withholding is 22% | ~4.4–4.5% | |
+We built a bridge for this tier and did not like what came out of it. A listed-REIT portfolio held through an offshore fund loses Korean withholding at source and a fund-level fee load before anything reaches an investor, and two of the inputs are ones we cannot source: an administrator quote for VCC administration, audit and custody, and the treaty treatment of the wrapper itself. A net yield whose load-bearing terms are both assumptions is not a net yield, so the number was withdrawn rather than published with qualifiers.
 
-**Two things an allocator will notice, so we state them first.**
+It will be published when it can be evidenced rather than modelled.
 
-This tier delivers *less* net income than Tier 1 while adding daily mark-to-market volatility. Listed REIT prices move with the equity market and with rates; the largest constituents have had drawdowns exceeding 20% over twelve months. Tier 1 does not mark daily. If income is the objective, Tier 1 is the better instrument.
+## The Wrapper Adds No Return
 
-**The wrapper adds no return.** Korea abolished the Investment Registration Certificate in December 2023: a foreign institution can now buy listed Korean REITs directly, claiming its own treaty rate, without look-through exposure. Holding them through a Singapore VCC gives at best the same 15% and at worst 22%, plus fund administration, audit, directors and custody. What the wrapper does provide is stablecoin settlement rails, small-ticket aggregation below the size at which direct custody is practical, a single consolidated treaty filing, and centralised currency hedging. Those are operational benefits, not return enhancements, and we do not present them as access value.
+Korea abolished the Investment Registration Certificate in December 2023: a foreign institution can buy listed Korean REITs directly, claiming its own treaty rate. Holding them through a Singapore vehicle gives at best the same treaty rate, and at worst the 22% domestic rate if look-through rules apply — plus fund administration, audit, directors and custody.
 
-## What It Is
+What the wrapper would provide is stablecoin settlement rails, small-ticket aggregation below the size at which direct custody is practical, and a single consolidated treaty filing. Those are operational benefits, not return enhancements, and we do not present them as access value. It is the reason this tier sits at the bottom of the ladder rather than at the front of the range.
 
-Korea Listed REIT Income provides diversified, dividend-focused exposure through tokenized positions in exchange-listed Korean REIT shares. Tier 1 is the lowest-risk tier in the range: the underlying holdings are listed, diversified across managers and assets, and priced daily. That daily pricing is also its principal drawback relative to Tier 2 — see the note on mark-to-market below.
+## Daily Mark-to-Market
 
-**Tier 4 launches in Phase 3, following OmniFlow's acquisition of its own Korean Asset Management Company.**
+Tier 1 would hold listed securities — diversified across managers and assets, and priced daily. No asset has been acquired at this or any tier. The diversification is why it sits at the lowest-risk rung; the daily pricing is its principal drawback against Tier 2, which is designed around a single asset held through a fund and would not mark daily. Listed REIT prices move with the equity market and with rates. If the objective is income rather than liquidity, that volatility is a cost.
 
-## Strategy
+## Intended Strategy
 
-The fund invests through two channels:
+Acquisition of beneficial interests in exchange-listed Korean public REITs across the office, retail, logistics and residential rental categories, for diversification across multiple underlying properties.
 
-**Listed REIT Beneficial Interests.** Acquisition of beneficial interests in listed Korean public REITs across the office, retail, logistics, and residential rental categories. Provides immediate diversification across multiple underlying properties.
+Korean REIT structures benefit from pass-through treatment under Corporate Tax Act §51-2 when 90% or more of distributable income is distributed. That treatment is a feature of the underlying securities, not something OmniFlow arranges.
 
-**OmniFlow-Operated CR-REIT.** Following AMC acquisition, OmniFlow will establish and operate proprietary CR-REIT vehicles, allowing direct asset selection and operational control while preserving the dividend-income tax efficiency that Korean tax law (Corporate Tax Act §51-2) provides to REIT structures.
+## Status
 
-## Eligible Underlying Assets
-
-| **Asset Type** | **Target Yield** |
+| | |
 | --- | --- |
-| Listed Korean REIT shares (exchange-traded) | ~7% gross portfolio dividend yield |
-| OmniFlow-operated CR-REIT (Phase 3+, direct asset selection and management) | 6–7% |
+| **Availability** | Documented in the product ladder · not open in this build |
+| **Published yield** | None |
+| **Terms** | Not set. Minimum subscription, term, distribution frequency and transfer restrictions would be fixed at launch. |
+| **Vehicle** | None formed. No asset manager, fund administrator or custodian has been engaged. |
+| **Assets held** | None |
 
-## Product Terms
-
-|  |  |
-| --- | --- |
-| **Availability** | **Offered** |
-| **Estimated Net Yield** | 4.5–5.1% per annum. The ~7% headline is a **gross** listed-market yield; see the bridge below |
-| **Minimum Investment** | SGD 200,000 |
-| **Term** | 7+ years |
-| **Distribution Frequency** | Quarterly |
-| **Settlement Currency** | USDT, USDC, USD1 |
-| **Lock-Up Period** | 6 months from issuance, issuer-imposed (not required by SFA §275) |
-| **Secondary Market** | Available after lock-up |
-| **Issuer Buyback Trigger** | NAV decline of 15% or greater |
-
-## Tax Efficiency
-
-Korean CR-REITs benefit from a pass-through tax treatment under Corporate Tax Act §51-2 when distributing 90% or more of distributable income. This treatment reduces tax leakage at the fund level and supports the after-tax yield delivered to investors. OmniFlow structures all CR-REIT operations to maintain this tax-efficient status.
-
-## Risks
-
-Tier 4 risk profile is similar to Tier 1 (low) but with a longer duration. Principal risks include:
-
-- **REIT market valuation risk** — listed REIT prices fluctuate with broader market sentiment
-
-- **Long-duration interest rate risk** — 7+ year duration creates greater sensitivity to long-term interest rate movements
-
-- **Concentration risk on Korean real estate** — fund is fully exposed to Korean macro conditions
-
-- **Phase 3 launch risk** — Tier 4 is contingent on completion of OmniFlow's AMC acquisition; product availability may be delayed
-
-- All Tier 1 risks (tenant, market, currency, liquidity, smart contract)
-
-A complete risk disclosure is provided in the IM at subscription.
-
-## How to Invest
-
-Tier 4 is in development and launches following Phase 3 milestones. Register interest through your relationship manager to receive launch notifications.
+There is nothing to subscribe to. See Products Overview for the full ladder and for the one tier that is live.

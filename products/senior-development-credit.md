@@ -6,7 +6,7 @@ Senior secured lending against Korean development projects. This is a credit str
 
 ## Why No Yield Is Published
 
-A fixed coupon does not survive this structure. Korean withholding at 15% on the fund distribution, plus the servicing and fee load a credit strategy carries, takes a 7% senior coupon down to roughly 3.8% net — below Tier 1, for materially more risk. An equity tier can use leverage to lift its return; a loan book held inside a fund cannot. That arithmetic does not improve with better execution, so publishing a distribution yield here would misrepresent what the tier is for.
+A fixed coupon does not survive this structure. Korean withholding at 15% on the fund distribution, plus the servicing and fee load a credit strategy carries, takes a 7% senior coupon down to roughly 3.8% net — below the income tier, for materially more risk. An equity tier can use leverage to lift its return; a loan book held inside a fund cannot. That arithmetic does not improve with better execution, so publishing a distribution yield here would misrepresent what the tier is for.
 
 The return in this tier comes from credit spread and recovery, and it cannot honestly be stated as a target until we can evidence loss experience rather than model it.
 
@@ -33,11 +33,11 @@ An allocator should read this tier as unproven rather than as underwritten.
 
 ## What It Is
 
-Korea Senior Development Credit lends senior secured against Korean development projects, ranking ahead of the mezzanine and junior tranches held in Tier 4. It sits above the equity income tiers in the risk order because construction-phase credit carries completion, permitting and sponsor risk that a stabilized asset does not.
+Korea Senior Development Credit is designed to lend senior secured against Korean development projects, ranking ahead of the mezzanine and junior tranches contemplated in Tier 4. It sits above the equity income tiers in the risk order because construction-phase credit carries completion, permitting and sponsor risk that a stabilized asset does not.
 
 ## Strategy
 
-The tier deploys through a single channel: **first-lien senior loans** to Korean development projects in the Seoul metropolitan area, secured by land mortgages, trust beneficiary rights, and completion guarantees from established Korean construction firms. Maturities are typically two to four years.
+The tier is designed to deploy through a single channel: **first-lien senior loans** to Korean development projects in the Seoul metropolitan area, secured by land mortgages, trust beneficiary rights, and completion guarantees from established Korean construction firms. Loans of this kind typically carry maturities of two to four years. No capital has been raised and no position has been acquired.
 
 The value-add equity sleeve previously described here has been removed. Repositioning assets produce little distributable cash during the hold and realise their return at exit, so they cannot sit in a tier that pays a periodic distribution — and separately, the return engine for Korean value-add office is currently absent, with cap rates close to the cost of debt and no plausible route to further compression against a central bank that has resumed hiking.
 
@@ -56,14 +56,13 @@ Coupon ranges are deliberately not published here. The most recent clean senior 
 |  |  |
 | --- | --- |
 | **Availability** | **Pipeline — not currently offered** |
-| **Net Yield Target** | To be published. Modelled at ~3.8% on unsourced assumptions; previous 8–9% withdrawn |
-| **Minimum Investment** | SGD 200,000 |
-| **Term** | 2–4 years |
-| **Distribution Frequency** | Semi-annual |
-| **Settlement Currency** | USDT, USDC, USD1 |
-| **Lock-Up Period** | 6 months from issuance, issuer-imposed (not required by SFA §275) |
-| **Secondary Market** | Available after lock-up |
-| **Issuer Buyback Trigger** | NAV decline of 15% or greater |
+| **Net Yield Target** | To be published. Modelled at ~3.8% on unsourced assumptions; the previous target has been withdrawn |
+| **Minimum Investment** | Not set |
+| **Term** | Not set |
+| **Distribution Frequency** | Not set. The design contemplates deal-by-deal distribution at realization |
+| **Settlement Currency** | Not set. No contract is deployed for this tier; the only settlement asset that exists anywhere in this build is testnet mock USDC on Base Sepolia |
+| **Lock-Up Period** | Not set. The 180-day transfer restriction exists only in the Tier 2 token on Base Sepolia testnet; no contract enforces anything for this tier |
+| **Secondary Market** | None. No secondary market exists |
 
 ## Risks
 
@@ -79,8 +78,8 @@ Tier 3 carries greater risk than the equity income tiers. Additional risk factor
 
 - All risks common to the income tiers (market, currency, liquidity, smart contract)
 
-A complete risk disclosure is provided in the product IM at subscription.
+This is not a complete risk disclosure. No Investment Memorandum has been issued for this or any tier, and no subscription process exists.
 
 ## How to Invest
 
-This tier is not currently open. When it opens it will be offered on a deal-by-deal basis with defined subscription windows. Contact your relationship manager to register interest.
+This tier is not currently open. When it opens it will be offered on a deal-by-deal basis with defined subscription windows.

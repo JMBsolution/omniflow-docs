@@ -2,109 +2,81 @@
 
 This page describes OmniFlow's protocol architecture at a level appropriate for technical due diligence and integration planning. Detailed contract interfaces are documented in the smart contract repository; this page provides the conceptual map.
 
+Read it with one distinction in mind. A subset of this architecture is deployed and exercised end to end on **Base Sepolia testnet**; the rest is design. Each section below states which it is. Nothing described here runs on mainnet, and no real asset, fund vehicle or counterparty stands behind any of it.
+
 ## Design Principles
 
 OmniFlow's architecture rests on five design principles, each chosen to address a specific class of risk that has surfaced in prior on-chain RWA deployments.
 
-**1. Off-chain truth, on-chain mirror.** The legal source of truth for ownership of OmniFlow VCC sub-fund interests is the VCC's official sub-register, maintained by the partner LFMC under MAS oversight. The on-chain RWA token is a cryptographic mirror of this register, updated through a defined reconciliation process. This separation ensures that token holders' legal rights are anchored in established Singapore corporate law rather than dependent solely on smart contract state.
+**1. Off-chain truth, on-chain mirror.** The intended legal source of truth for ownership is a fund register maintained off chain by a licensed fund manager. The on-chain RWA token is designed as a cryptographic mirror of that register, updated through a defined reconciliation process. The purpose of the separation is that token holders' legal rights would be anchored in established corporate law rather than dependent solely on smart contract state. Only the on-chain half of this model exists today: there is no fund vehicle, no manager, and no register to reconcile against.
 
-**2. Compliance enforced at the protocol level.** Eligibility gating, transfer restrictions, and lock-up periods are enforced by the smart contracts themselves, not by external policies. A transfer that would violate compliance — for example, to a wallet that has not passed AI/II verification — reverts at the contract level, regardless of the sender's intent.
+**2. Eligibility enforced in the contracts.** Eligibility gating and the transfer lock-up are enforced by the deployed contracts on Base Sepolia testnet, not by external policy. A transfer to a wallet that is not marked eligible in the EligibilityRegistry, or of tokens still inside the 180-day lock-up, reverts on chain regardless of the sender's intent. Issuance is not gated the same way — see Known Gaps.
 
 **3. Single source of truth for token supply.** RWA tokens exist on a single primary issuance chain. Other chains may serve as deposit rails (where investors send stablecoins) but do not hold native RWA tokens. This eliminates the lock-and-mint bridge attack surface that has caused over USD 2 billion in losses across the industry. See Cross-Chain Architecture.
 
-**4. Modular jurisdiction support.** The compliance engine is decomposed into per-jurisdiction modules. Adding a new asset category — Japanese real estate, Southeast Asian infrastructure — requires deploying a new jurisdiction module without modifying core token, settlement, or distribution logic.
+**4. Modular jurisdiction support (designed).** The compliance engine is designed to decompose into per-jurisdiction modules, so that adding a new asset category would require deploying a new jurisdiction module without modifying core token or settlement logic. No jurisdiction module has been built. The deployed registry is a single global eligibility list with no jurisdictional dimension.
 
-**5. Constitutional limits.** Certain protocol parameters cannot be modified by governance, multi-signature, or any operational role. These constitutional limits include the supply invariant, the AI/II gating requirement, and the burn-and-reissue exclusivity property. Constitutional limits are enforced through immutable contract code, not through policy.
+**5. Non-upgradeable core.** The deployed contracts have no proxy and no upgrade path. The lock-up duration, the settlement asset and the registry address are set at construction and are immutable; changing any of them means redeploying and reissuing. This is a deliberate trade: it removes the upgrade key as an attack surface, and it means a bug cannot be patched in place.
 
 ## System Module Map
 
+What is deployed on Base Sepolia testnet:
+
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                    OFF-CHAIN TRUTH LAYER                         │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │  VCC Sub-Register (LFMC-managed, MAS-supervised)         │   │
-│  │  Big 4 Audit (Annual)                                    │   │
-│  │  Independent Valuation (CBRE / JLL / Cushman&Wakefield)  │   │
-│  └──────────────────────────────────────────────────────────┘   │
-└────────────────────────────────┬────────────────────────────────┘
-│
-Reconciliation & Attestation
-│
-┌────────────────────────────────▼────────────────────────────────┐
-│                    ON-CHAIN MIRROR LAYER                         │
-│                                                                   │
-│   ┌───────────────┐    ┌──────────────┐    ┌─────────────────┐  │
-│   │ Identity      │    │ Compliance   │    │ Jurisdiction    │  │
-│   │ Registry      ├───►│ Module       │◄───┤ Modules         │  │
-│   │ (KYC/KYA)     │    │ (Pre-trade)  │    │ (KR, JP, ...)   │  │
-│   └───────┬───────┘    └──────┬───────┘    └─────────────────┘  │
-│           │                    │                                  │
-│           ▼                    ▼                                  │
-│   ┌──────────────────────────────────────────────────┐           │
-│   │         Token Layer                                │           │
-│   │  ┌──────────────┐  ┌──────────────┐  ┌─────────┐ │           │
-│   │  │ Deposit      │  │ RWA Token    │  │ Yield   │ │           │
-│   │  │ Receipt      │─►│ (ERC-3643)   │─►│ Distrib │ │           │
-│   │  │ (ERC-4626)   │  │              │  │         │ │           │
-│   │  └──────────────┘  └──────┬───────┘  └─────────┘ │           │
-│   └─────────────────────────────┼─────────────────────┘           │
-│                                 │                                  │
-│   ┌─────────────────────────────▼─────────────────────┐           │
-│   │         Oracle & Attestation Layer                 │           │
-│   │  NAV Oracle │ Risk Oracle │ Reserve Attestation   │           │
-│   └────────────────────────────────────────────────────┘           │
-│                                                                    │
-│   ┌────────────────────────────────────────────────────┐          │
-│   │         Governance Layer                             │          │
-│   │  Multi-sig (5/9) │ Timelock (24-72h) │ Constitutional│         │
-│   │                                          Limits      │          │
-│   └────────────────────────────────────────────────────┘          │
-└────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────┐
+│           ON-CHAIN — BASE SEPOLIA TESTNET (DEPLOYED)         │
+│                                                               │
+│   ┌──────────────────────────────────────────────────┐       │
+│   │  EligibilityRegistry                              │       │
+│   │  owner-maintained address allow-list              │       │
+│   └────────────────────┬─────────────────────────────┘       │
+│                        │ consulted on transfer & issuance     │
+│   ┌────────────────────▼─────────────────────────────┐       │
+│   │  DepositCertificate  (ERC-4626, non-transferable) │       │
+│   │  issued on mUSDC deposit; burned at issuance      │       │
+│   └────────────────────┬─────────────────────────────┘       │
+│                        │                                      │
+│   ┌────────────────────▼─────────────────────────────┐       │
+│   │  RwaToken  (ERC-20 + ERC-7943 uRWA)               │       │
+│   │  180-day lock-up from issuance                    │       │
+│   │  freeze / forced transfer / pause — owner only    │       │
+│   └───────────────────────────────────────────────────┘       │
+│                                                               │
+│   MockUSDC — a mock settlement token, not Circle USDC        │
+└──────────────────────────────────────────────────────────────┘
 ```
+
+Designed but **not built**: the off-chain register and its reconciliation process, per-jurisdiction compliance modules, a distribution entitlement mechanism, the NAV and risk oracles, reserve attestation, and a multi-signature or timelocked governance layer. None of these exists as code or as an engaged counterparty.
 
 ## Module Descriptions
 
-**Identity Registry.** The on-chain registry of verified investor wallets. Each entry binds a wallet address to a verified KYC or KYA identity, the eligibility status (AI/II), the jurisdictional classification (resident/non-resident of restricted jurisdictions), and the expiration of the verification. The Identity Registry is the gatekeeper for all token transfers.
+**EligibilityRegistry (deployed, testnet).** A mapping of wallet address to a boolean eligibility flag, set by the contract owner. It is consulted on every issuance and every transfer. It is not an identity registry: it does not bind a wallet to a verified identity record, does not carry an accreditation classification, does not carry a jurisdiction, and has no expiry. Whatever verification stands behind an entry happens off chain and leaves no on-chain trace beyond the flag itself.
 
-**Compliance Module.** A pre-trade compliance check invoked on every token transfer. The module verifies (a) sender and receiver are both in the Identity Registry with valid status, (b) lock-up period has elapsed where applicable, (c) sender and receiver are not on the protocol's sanctions list, (d) jurisdictional restrictions are satisfied, and (e) any product-specific transfer rules are met. A failed check reverts the transfer.
+**Transfer checks (deployed, testnet).** There is no separate compliance contract. The checks live in RwaToken and run on every transfer: sender and receiver both eligible, the transferred amount not frozen, the sender's lock-up elapsed, and the contract not paused. A failed check reverts with a reason. Sanctions screening and jurisdictional rules are not implemented on chain.
 
-**Jurisdiction Modules.** Per-asset-jurisdiction rule sets that the Compliance Module consults during transfer evaluation. The Korea module, currently the only active module, configures restrictions specific to Korean asset products (e.g., Korean resident exclusion). Future jurisdiction modules — Japan, Vietnam, Thailand — are deployed as new asset categories are launched, without modifying the core Compliance Module.
+**Jurisdiction modules (not built).** Per-asset-jurisdiction rule sets that a compliance module would consult during transfer evaluation. This is a design for how new asset categories would be added; no module has been written, and the Korean-resident exclusion that applies to the global track is an off-chain policy, not an on-chain rule.
 
-**Token Layer.** Three token types serve different stages of the investor lifecycle:
+**Token layer.** Two token types are deployed; the third is designed.
 
-- **Deposit Receipt (ERC-4626)**: Issued upon stablecoin deposit, before final RWA token issuance. Non-transferable. Burned at the moment of RWA token issuance.
+- **DepositCertificate (ERC-4626, deployed on testnet)**: issued on deposit of the mock settlement token, before RWA token issuance. Non-transferable. Burned at the moment of RWA token issuance.
 
-- **RWA Token (ERC-3643 framework, ERC-7943 uRWA interface)**: The primary asset token. Represents beneficial interest in the VCC sub-fund. Subject to all compliance gating. The token exposes the ERC-7943 uRWA interface (finalized May 2026) for vendor-neutral transfer validation, freezing, and enforcement actions, implemented within the ERC-3643 compliance framework.
+- **RwaToken (ERC-20 with the ERC-7943 uRWA interface, deployed on testnet)**: the asset token. It implements the ERC-7943 uRWA interface for vendor-neutral transfer validation, freezing and enforcement actions. It is **not** an ERC-3643 token and does not use the ERC-3643 framework. In the intended structure it would represent a beneficial interest in a fund vehicle; on testnet it represents nothing.
 
-- **Distribution entitlements**: Per-cycle claims against the register as it stood at a stated record block. Entitlement is derived from token balances rather than supplied by the issuer, and a cycle cannot pay until the sum of the snapshot equals total supply at that block — so an incomplete holder list is unusable rather than merely wrong. Distributions are paid in the settlement currency, never in fund units.
+- **Distribution entitlements (designed, not built)**: per-cycle claims against the register as it stood at a stated record block, with entitlement derived from token balances rather than supplied by the issuer, and a cycle unable to pay until the sum of the snapshot equals total supply at that block — so an incomplete holder list would be unusable rather than merely wrong. No distribution contract has been deployed and no distribution has been paid.
 
-**Oracle & Attestation Layer.** Provides on-chain access to off-chain truths.
+**Oracle and attestation layer (not built).** The design calls for a NAV oracle publishing NAV per token on the product's cadence, a risk oracle publishing standardized per-asset metrics (see Risk Oracle Standard), and periodic attestation that on-chain supply matches the off-chain register. None of the three is deployed, and the signing parties each design assumes — a fund manager, an independent valuer, an auditor — are not engaged.
 
-- **NAV Oracle**: Publishes the latest NAV per RWA token, updated on the product's NAV cadence (monthly or event-based). Each NAV update is signed by the LFMC, OmniFlow, and the independent valuer.
-
-- **Risk Oracle**: Publishes standardized risk metrics per asset (see Risk Oracle Standard).
-
-- **Reserve Attestation**: Periodic attestations that the on-chain RWA token supply matches the VCC sub-register, signed by the LFMC and the Big 4 auditor.
-
-**Governance Layer.** Controls protocol parameters that are not constitutional.
-
-- **5-of-9 multi-signature** for routine administrative actions
-
-- **24-hour timelock** for parameter changes (transfer fees, oracle update authorities)
-
-- **72-hour timelock** for contract upgrades
-
-- **Constitutional limits** enforced by immutable code: supply invariant, AI/II gating, and burn-and-reissue exclusivity cannot be modified by any role
+**Administration (deployed, testnet).** The deployed contracts are owned by a single deployer account. That owner can pause and unpause, freeze a holder's tokens, and execute a forced transfer. There is no multi-signature, no timelock and no governance process behind that key. A multi-signature and timelock arrangement is a design target for production; it is not a deployed control.
 
 ## Token Lifecycle
 
-The lifecycle of an OmniFlow RWA token, from issuance to redemption, follows a defined state machine:
+The intended lifecycle of an OmniFlow RWA token, from issuance to redemption:
 
 ```
-[ISSUED] ──────► [LOCKED]   (6-month issuer-imposed restriction)
+[ISSUED] ──────► [LOCKED]   (180 days from issuance)
 │
 ▼
-[ACTIVE]    (transferable to qualified investors)
+[ACTIVE]    (transferable to eligible wallets)
 │
 ┌───────────┼───────────┐
 ▼           ▼           ▼
@@ -116,27 +88,23 @@ transfer    by issuer   cash-out
 [REDEEMED]  (at maturity, asset sale, or redemption)
 │
 ▼
-[BURNED]   (token destroyed; cap table reconciled)
+[BURNED]   (token destroyed; register reconciled)
 ```
 
-State transitions are enforced by the smart contracts and produce on-chain events for full audit traceability.
+Only the first three states are implemented. Issuance, the 180-day lock-up and transfer between eligible wallets are enforced by the deployed contracts and emit on-chain events. The deployed RwaToken has no redemption or burn function, and no secondary market, buyback or refinance path exists. Everything below [ACTIVE] in the diagram is design.
 
-## Upgrade Mechanism
+## Upgrades
 
-OmniFlow uses the UUPS (Universal Upgradeable Proxy Standard) pattern for upgradeable contracts, with the upgrade authority controlled by the governance layer. Upgrade history, including the proposing transaction, the timelock period, the executing transaction, and the new implementation hash, is recorded on-chain.
-
-Constitutional limits are implemented in immutable contract code that the upgrade mechanism cannot reach. The list of constitutional limits is published in the smart contract repository and any change to that list would require redeploying the protocol from genesis.
+There is no upgrade mechanism. The deployed contracts are not behind a proxy and cannot be upgraded; a change to contract logic requires a fresh deployment and a reissuance of tokens to holders. Parameters fixed at construction — lock-up duration, settlement asset, registry address — are immutable.
 
 ## Security Posture
 
-- **Audits**: At least two independent firms audit each production contract before mainnet deployment.
+The deployed contracts have **not been audited**. No independent security review, no formal verification, and no bug bounty programme exists. The contracts build on OpenZeppelin implementations of ERC-20, ERC-4626, Ownable and Pausable, and are covered by the repository's own test suite, which is not a substitute for review.
 
-- **Formal verification**: Critical invariants (supply, compliance gating) are formally verified using Certora or equivalent.
+Multi-firm audit and formal verification of supply and gating invariants are prerequisites we have set for any mainnet deployment. They have not been started.
 
-- **Bug bounty**: Continuous program through Immunefi with payouts up to USD 500,000 for critical findings.
+### Known Gaps
 
-- **Key management**: Multi-signature keys held in HSMs distributed across multiple geographies and counterparty types (no single failure point).
+**`RwaToken.issue()` has no access control.** Any wallet that is marked eligible in the registry and holds a deposit certificate can call `issue()` and mint itself fund tokens on chain. In the demonstration, the agent does not advance past workflow step 04 — steps 04 through 06 require human counterparties, and the agent will not write an outcome it cannot source. That halt is enforced by the off-chain operator workflow tracker and by the demo script. **It is not enforced by the smart contracts.** Closing this gap — restricting issuance to an authorized issuer role — is required future work and a precondition for any deployment outside testnet.
 
-- **Monitoring**: 24/7 anomaly detection on all production contracts with automated freeze on detected anomalies pending governance review.
-
-See Smart Contract Audits for current audit status and Smart Contract Addresses for deployment details.
+See Smart Contract Addresses for deployment details.

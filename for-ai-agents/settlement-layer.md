@@ -1,6 +1,6 @@
 # Settlement Layer
 
-The Settlement Layer enables AI agents to pay for OmniFlow protocol services autonomously — without per-transaction human signing and without the agent holding the gas token. It is built on **x402** (HTTP-native stablecoin payments), with **ERC-4337** (account abstraction with paymasters) and **ERC-7710** (smart contract delegation) as committed extensions.
+The Settlement Layer lets AI agents pay for OmniFlow protocol services autonomously on the **Base Sepolia testnet**, against a testnet fee token — without per-transaction human signing and without the agent holding the gas token. It is built on **x402** (HTTP-native stablecoin payments), with **ERC-4337** (account abstraction with paymasters) and **ERC-7710** (smart contract delegation) as committed extensions that are not implemented.
 
 ## What Is Built Today
 
@@ -20,13 +20,13 @@ Permissioning (Layer 2) establishes what an agent is allowed to do. Execution (L
 
 This gap is the practical limit of "agent autonomy" in earlier protocols. An agent that requires a human to refill its balance every Tuesday is not autonomous in any meaningful sense.
 
-The Settlement Layer closes this gap. It provides:
+The Settlement Layer closes this gap. One of the three pieces below is built:
 
-- **Pull-based pricing.** OmniFlow services advertise their price through the HTTP 402 status code (x402). An agent receives the price requirement and decides — within its delegated payment scope — whether to pay.
+- **Pull-based pricing — built, on testnet.** OmniFlow services advertise their price through the HTTP 402 status code (x402). An agent receives the price requirement and decides whether to pay.
 
-- **Session-key execution.** A session key (ERC-4337 + ERC-7710 combined) carries permission, payment ceiling, and duration in a single cryptographic primitive. The principal grants a session key once; the agent uses it for hundreds or thousands of micropayments without touching the principal's primary key.
+- **Session-key execution — design.** A session key (ERC-4337 + ERC-7710 combined) would carry permission, payment ceiling, and duration in a single cryptographic primitive, granted once by the principal and used for many micropayments without touching the principal's primary key. Not implemented.
 
-- **Atomic permission-payment validation.** Permission and payment are validated in a single check. An agent cannot exceed payment scope by racing two separate checks (Time-of-Check-to-Time-of-Use safety).
+- **Atomic permission-payment validation — design.** Validating permission and payment in a single check would remove the Time-of-Check-to-Time-of-Use gap between them. Not implemented; today the facilitator's checks are what enforce scope.
 
 Layer 4 (Settlement) and Layer 5 (Execution) operate as paired layers. Settlement happens within the Execution request-response cycle through HTTP 402 negotiation — the server responds with 402 carrying payment requirements, the agent answers with a payment header, the server returns the resource. The two layers are conceptually distinct but cycle-coupled in operation.
 
@@ -34,7 +34,7 @@ Layer 4 (Settlement) and Layer 5 (Execution) operate as paired layers. Settlemen
 
 OmniFlow's Settlement Layer is built on three standards. Each addresses a different part of agent payment.
 
-**x402.** The HTTP 402 Payment Required status code, dormant in the HTTP specification since 1996, was operationalized by the x402 protocol in 2025. A server requesting payment returns 402 with a `PAYMENT-REQUIRED` header containing chain, token, amount, and recipient. The client constructs a stablecoin transaction and resubmits with a `PAYMENT-SIGNATURE` header. The server validates and serves the resource. The x402 Foundation, launched in April 2026 by Coinbase and the Linux Foundation with founding members including Stripe, Cloudflare, AWS, Google, Microsoft, Visa, and Mastercard, stewards the protocol as an open standard.
+**x402.** The HTTP 402 Payment Required status code, dormant in the HTTP specification since 1996, was operationalized by the x402 protocol in 2025. A server requesting payment returns 402 with a `PAYMENT-REQUIRED` header containing chain, token, amount, and recipient. The client constructs a stablecoin transaction and resubmits with a `PAYMENT-SIGNATURE` header. The server validates and serves the resource. The protocol is stewarded as an open standard by a foundation rather than by a single vendor, which is why OmniFlow adopts it rather than defining a payment scheme of its own.
 
 **ERC-4337 (Account Abstraction).** ERC-4337 enables smart contract wallets to validate transactions through arbitrary logic, including session keys with restricted authority. The paymaster pattern allows a third party to sponsor gas, eliminating the need for the agent to hold the native gas token. Multiple production paymaster providers operate as of April 2026, including Coinbase CDP, Circle, Crossmint, Biconomy, Stackup, and ZeroDev.
 
@@ -50,35 +50,28 @@ The numbered flow below describes the **Phase 2 design**, in which the payment s
 
 1. **Session key issuance — Phase 2, not yet built.** During KYA onboarding, the principal grants the agent a session key with explicit payment scope: `{daily_limit: 50,000 USDC, per_call_limit: 500 USDC, valid_until: 2026-12-31, permitted_recipient: omniflow_facilitator}`. The session key is signed by the principal's primary signer through an ERC-4337 user operation that combines ERC-7710 delegation.
 
-2. **Service discovery.** The agent queries an OmniFlow endpoint (e.g., `GET /api/v1/risk-oracle/{assetId}`).
+2. **Service discovery.** The agent requests the one priced resource on the agent rail — the diligence note, over HTTP or through the paid MCP tool. There is no general-purpose REST API and no risk-oracle endpoint; see [MCP Server & SDK](mcp-server-and-sdk.md) for the full endpoint list.
 
-3. **Payment requirement.** OmniFlow's facilitator returns HTTP 402 with the `PAYMENT-REQUIRED` header: chain (Base), token (USDC), amount ($0.10), recipient (OmniFlow facilitator), nonce, and expiration timestamp.
+3. **Payment requirement.** OmniFlow's facilitator returns HTTP 402 carrying the payment requirements: chain (Base Sepolia testnet), token (Circle's testnet USDC), amount (0.10 testnet USDC), recipient, nonce, and validity window.
 
 4. **Check and payment.** The agent signs an EIP-3009 authorization over the stated value, recipient, validity window and a single-use nonce, and retries the request carrying it. OmniFlow's facilitator recovers the signer and checks recipient, amount, validity window, nonce reuse and payer balance before relaying anything on chain — a failed check is a refusal with a stated reason, not a reverted transaction. Under the Phase 2 design the ceiling and duration would additionally be enforced by the session key itself, so a scope breach would be impossible rather than merely rejected.
 
 5. **Resource delivery.** OmniFlow validates the payment and returns the requested resource (HTTP 200).
 
-6. **Treasury settlement.** Payments accrue directly to the OmniFlow treasury on Base — issuance and settlement share the same chain, so no cross-chain settlement leg exists.
+6. **Settlement.** Payments accrue to a subscription account on Base Sepolia — a demo wallet, not a treasury. Issuance and settlement share the same chain, so no cross-chain settlement leg exists.
 
-## Mixed Scale — From Micropayment to Subscription
+## Priced Resources
 
-OmniFlow's services span four payment scales. The Settlement Layer handles each through the same x402 interface but with different settlement parameters.
+One resource is priced today: the diligence note, at 0.10 testnet USDC, reachable over HTTP or through the paid MCP tool. That is the entire fee surface.
 
-| **Service** | **Typical Fee** | **Settlement Pattern** |
-| --- | --- | --- |
-| Risk Oracle query | $0.01–0.10 / query | Real micropayment, settled on Base via x402 |
-| MCP tool call (subscription simulation, etc.) | $0.001–0.10 / call | Real micropayment, settled on Base via x402 |
-| Distribution claim | Gas-only ($0.05–2) | Paymaster sponsorship; protocol covers under fee discount tier |
-| Subscription & redemption | 0% — no platform fee | No fee leg; investor pays network gas only (sponsored where applicable) |
-
-Subscription and redemption carry no platform fee — human-facing entry and exit are free by design, with monetization concentrated in the machine channel (Risk Oracle queries, premium API tiers) and recurring fund economics. Distribution claims are typically gas-only, with the OmniFlow paymaster sponsoring gas to keep claim UX frictionless.
+The intended commercial shape is that machine-channel access is priced per call while human-facing subscription and redemption carry no platform fee, with monetization concentrated in the machine channel and recurring fund economics. No fee other than the diligence note has been implemented, no fee has ever been charged in anything but testnet tokens, and there is no revenue.
 
 ## Single-Chain Alignment
 
-OmniFlow's architectural commitment is that an issued RWA token resides on a single chain — **Base** for Phase 1. With issuance and settlement on the same chain, the Settlement Layer requires no cross-chain legs at all.
+OmniFlow's architectural commitment is that an issued RWA token resides on a single chain. Today that chain is **Base Sepolia testnet**; there is no mainnet deployment.
 
-- **Issuance, settlement, and treasury: Base.** Subscriptions, redemptions, yield distributions, and per-call x402 micropayments all execute on Base. OmniFlow operates as its own facilitator during Phase 1 — no third-party facilitator dependency.
-- **Deposit rails: multi-chain.** Investors may fund from other chains via the MPI partner's deposit rails (see Cross-Chain Architecture); the issued token itself never leaves Base.
+- **Issuance and settlement on one chain.** Subscriptions, certificate issuance, and per-call x402 micropayments all execute on Base Sepolia. OmniFlow operates as its own facilitator — no third-party facilitator dependency.
+- **Deposit rails.** A multi-chain deposit design is described elsewhere in this documentation; it is not built, and no deposit rail partner is engaged.
 
 This keeps the issued token single-chain while giving agents micropayment economics that a mainnet-issuance design could not offer.
 
@@ -86,23 +79,25 @@ This keeps the issued token single-chain while giving agents micropayment econom
 
 The Settlement Layer rolls out in three milestones.
 
-**Phase 1 — x402 payment, protocol-fee scope (current).** An agent can discover a paid resource, receive a price over HTTP 402, sign an EIP-3009 authorization and have OmniFlow's facilitator settle it on chain. Payment scope is restricted to OmniFlow's own resources; the permitted recipient is fixed in the payment requirements the server issues, and external payments to non-OmniFlow services are not enabled. Gas is paid by OmniFlow's facilitator, which holds no authority over any OmniFlow contract — it can relay a signed authorization and nothing else.
+**Phase 1 — x402 payment, protocol-fee scope (current, on testnet).** An agent can discover a paid resource, receive a price over HTTP 402, sign an EIP-3009 authorization and have OmniFlow's facilitator settle it on chain. Payment scope is restricted to OmniFlow's own resources; the permitted recipient is fixed in the payment requirements the server issues, and external payments to non-OmniFlow services are not enabled. Gas is paid by OmniFlow's facilitator, which holds no authority over any OmniFlow contract — it can relay a signed authorization and nothing else, and its key is deliberately not the deployer key that owns eligibility, pause, and forced transfer.
 
-**Phase 1.5 — Self-paymaster operational.** OmniFlow operates its own ERC-4337 paymaster, replacing the third-party paymaster used in Phase 1. Distribution claim gas sponsorship is activated. Premium feature payments (priority Risk Oracle, advanced MCP tools) are enabled. The Settlement Layer undergoes an independent security audit before Phase 1.5 activation.
+**Phase 1.5 — Paymaster.** OmniFlow would operate its own ERC-4337 paymaster and activate gas sponsorship for distribution claims. No paymaster exists today, of any kind, third-party or otherwise — the facilitator simply pays gas when it relays. An independent security audit is intended before this phase; no audit has been performed and no audit firm has been engaged.
 
-**Phase 2 — $OMNI bond and external facilitator.** Operating bonds are converted from Phase 1's stablecoin denomination to $OMNI. Fee discount tiers tied to $OMNI staking are activated (see [The OMNI Token](../trust-and-transparency/omni-token.md)). External facilitator partnerships are evaluated, enabling agents to settle payments to non-OmniFlow services within the same session-key scope, subject to per-jurisdiction legal review.
+**Phase 2 — $OMNI bond and external facilitator.** An operating bond denominated in $OMNI would be introduced. No bond exists today in any denomination, and the $OMNI token is not issued (see [The OMNI Token](../trust-and-transparency/omni-token.md)). Fee discount tiers tied to $OMNI staking would be activated. External facilitator partnerships would be evaluated, enabling agents to settle payments to non-OmniFlow services within the same session-key scope, subject to per-jurisdiction legal review.
 
 ## Phase 1 Scope Limit
 
-In Phase 1, the Settlement Layer's payment scope is restricted to **OmniFlow protocol fees only**. Agents cannot use OmniFlow-issued session keys to pay external counterparties, even if technically capable.
+In Phase 1, the Settlement Layer's payment scope is restricted to **OmniFlow protocol fees only**. No session key exists to carry a broader scope — OmniFlow issues none — and external payments to non-OmniFlow services are not enabled.
 
-This restriction is deliberate. External P2P agent payments — for example, an agent paying a third-party data API — raise compliance questions across multiple jurisdictions:
+The immediate reason is simply that nothing else is built: the permitted recipient is fixed in the payment requirements the server issues, and there is one priced resource.
 
-- **Travel Rule applicability.** Singapore MAS PSN02 exempts micropayments below SGD 1,500 individually, but cumulative agent transactions per principal may reach reportable thresholds. Phase 1 limits payment scope to OmniFlow's own facilitator, which simplifies aggregation.
-- **STR (Suspicious Transaction Report) chain of responsibility.** Agent-initiated external payments raise the question of who is the reporting entity. Phase 1's restricted scope avoids this question by routing all settlement through OmniFlow's compliance perimeter.
-- **Cross-jurisdiction risk.** Agent payment to a Korean-hosted API may trigger Korean Capital Markets Act applicability. OmniFlow's structure assumes Singapore-only regulatory perimeter for Phase 1; external payment expansion requires additional legal review before activation.
+The restriction is also deliberate, because external P2P agent payments — an agent paying a third-party data API, say — raise questions that would need answering first:
 
-Phase 2 expansion is contingent on legal review of agent-initiated external payment under each relevant jurisdiction.
+- **Travel Rule applicability.** Singapore MAS PSN02 exempts micropayments below SGD 1,500 individually, but cumulative agent transactions per principal could reach reportable thresholds. A single-recipient scope keeps aggregation tractable.
+- **STR (Suspicious Transaction Report) chain of responsibility.** Agent-initiated external payments raise the question of who the reporting entity is. OmniFlow is not a reporting entity — it holds no licence — so this question would have to be resolved before any such expansion, not assumed away.
+- **Cross-jurisdiction risk.** Agent payment to a Korean-hosted API may raise Korean Capital Markets Act questions.
+
+These are open questions, not resolved positions. No counsel has reviewed them.
 
 ## MCP Transport Compatibility
 
@@ -110,19 +105,17 @@ The x402 protocol operates over HTTP. OmniFlow's MCP server uses the **Streamabl
 
 The legacy MCP-over-stdio transport, used in some local development environments, does not support x402 natively. Agents using stdio-mode MCP must either use a separate payment mechanism (typically EIP-712 signed permits resolved out-of-band) or run the MCP server in HTTP mode.
 
-OmniFlow's hosted MCP endpoint (`https://mcp.omniflow.xyz`) operates in Streamable HTTP mode by default. See [MCP Server & SDK](mcp-server-and-sdk.md) for connection details.
+OmniFlow's MCP server operates in Streamable HTTP mode, stateless, on the `/mcp` path of the agent rail. See [MCP Server & SDK](mcp-server-and-sdk.md) for the endpoint list and tool surface.
 
 ## Compliance Notes
 
 The Settlement Layer extends the [KYA Framework](kya-framework.md)'s principal-agent accountability model to agent payments. Several aspects warrant explicit acknowledgment.
 
-**KYA payment scope is OmniFlow's framework, not a regulatory standard.** OmniFlow's position — that a principal's grant of a payment scope to an agent constitutes the principal's pre-authorization of in-scope payments — is OmniFlow's own legal position, not adopted by MAS or any other regulator. The position is designed to satisfy the spirit of MAS PSN02 AML/CFT requirements as applied to autonomous payment flows, by ensuring every agent-initiated payment has a verifiable, accountable principal.
+**KYA payment scope is OmniFlow's framework, not a regulatory standard** — and it is not built. The [KYA Framework](kya-framework.md) is a design; no principal has granted a payment scope to any agent. OmniFlow's position, that such a grant would constitute pre-authorization of in-scope payments, is its own and has not been adopted by MAS or reviewed by counsel.
 
-**Travel Rule cumulative aggregation.** Per-call micropayments below the SGD 1,500 individual threshold are aggregated per principal across calendar periods to detect cumulative reportable activity. Aggregation is computed automatically and reported to compliance daily.
+**No compliance perimeter exists.** There is no Travel Rule aggregation system, no STR review process, and no compliance function. Those are things a licensed operator would need, and OmniFlow holds no licence. They are listed here as work required before real value moves, not as controls in place.
 
-**STR responsibility.** Suspicious patterns in agent payment activity — sudden spikes, repeated near-ceiling payments, payments to flagged recipients — trigger STR review by OmniFlow compliance. The principal remains the underlying responsible party.
-
-**Lawyer review required for Phase 2 expansion.** External agent payment, $OMNI fee discount classification under securities law, and cross-jurisdiction payment scope all require additional legal review before Phase 2 activation.
+**Legal review required throughout.** External agent payment, $OMNI fee discount classification under securities law, and cross-jurisdiction payment scope all require legal review that has not been obtained.
 
 ## Standards Status (May 2026)
 
@@ -134,7 +127,7 @@ OmniFlow tracks the maturity of each Settlement Layer dependency:
 | EIP-3009 | Long-standing; implemented by Circle's USDC | **In use today** — the signed authorization x402's `exact` scheme settles with |
 | ERC-4337 | Production; multiple paymaster providers operating | **Not yet implemented.** Committed for Phase 2 session keys |
 | ERC-7710 | Draft EIP, pending Final | **Not yet implemented.** Tracked; adapt to finalization changes |
-| MCP Streamable HTTP | Standard remote transport since November 2025 | In production at `mcp.omniflow.xyz` |
+| MCP Streamable HTTP | Standard remote transport since November 2025 | **In use today** — stateless, on the agent rail's `/mcp` path |
 
 Where a dependency is in Draft, OmniFlow uses the current Draft interface and commits to migrating to Final upon standardization.
 
@@ -144,11 +137,11 @@ The Settlement Layer reduces but does not eliminate agent payment risk:
 
 - **Agent key compromise.** In the current implementation the agent signs with an ordinary key, so a compromised agent runtime can sign payments up to the payer's balance. The only enforced ceilings are the per-request amount stated in the payment requirements and whatever the payer's wallet actually holds — so an agent wallet should be funded with the float it needs and no more. The session-key model described above is what removes this exposure, and it is not built yet.
 
-- **Paymaster availability.** Phase 1 uses a third-party paymaster. Paymaster outage temporarily disables sponsored transactions for affected agents. Phase 1.5 self-paymaster reduces external dependency but introduces OmniFlow's own paymaster as a single point of failure.
+- **Facilitator availability.** There is one facilitator, run by OmniFlow, and it is a single point of failure. If it is down or its key is unfunded, no payment settles.
 
-- **Replay protection depends on facilitator correctness.** OmniFlow's facilitator strictly enforces nonce-bound payment headers. Replay attempts are rejected; this protection depends on facilitator implementation correctness, which is in scope for the Phase 1.5 audit.
+- **Replay protection depends on facilitator correctness.** The facilitator rejects a reused nonce before relaying, and the token itself enforces single use on chain. The off-chain check is a clean refusal rather than a reverted transaction; the on-chain enforcement is what the guarantee actually rests on. Neither has been audited.
 
-- **Cross-rail settlement attack surface.** Phase 2's multi-chain expansion introduces the possibility of an agent attempting to exceed its daily limit by settling on multiple chains in parallel. OmniFlow's session key validates against a unified daily counter visible across rails.
+- **Cross-rail settlement attack surface.** A future multi-chain expansion would introduce the possibility of an agent exceeding a daily limit by settling on several chains in parallel. Defending that requires a unified counter across rails. No such counter exists, because there are no daily limits and no second rail.
 
 For settlement-related risks disclosed to investors, see [Risk Disclosure](../legal/risk-disclosure.md).
 
@@ -156,9 +149,9 @@ For settlement-related risks disclosed to investors, see [Risk Disclosure](../le
 
 The following Settlement Layer enhancements are planned but not in current scope:
 
-- **KYA payment scope formal slashing conditions.** Phase 1.5 will extend the [KYA Framework](kya-framework.md)'s slashing conditions (currently five) to include payment-scope violations.
+- **KYA payment scope slashing conditions.** The [KYA Framework](kya-framework.md)'s slashing conditions are a design and none is implemented; payment-scope violations would be added to them.
 
-- **Audit 5: Settlement Layer.** The Settlement Layer will undergo independent security audit before Phase 1.5 self-paymaster activation. Audit firm selection in progress; results will be published in [Smart Contract Audits](../technical/smart-contract-audits.md).
+- **Settlement Layer audit.** No security audit has been performed on any part of this system, and no audit firm has been engaged. An independent audit is required before any of this handles real value. See [Smart Contract Audits](../technical/smart-contract-audits.md).
 
 - **External facilitator partnerships.** Phase 2 evaluation of third-party x402 facilitators for cross-jurisdiction payment scope expansion. Subject to legal review per jurisdiction.
 

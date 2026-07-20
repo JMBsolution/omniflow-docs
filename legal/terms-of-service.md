@@ -4,11 +4,13 @@ Last updated: [TBD]
 
 Document version: [TBD]
 
-**These Terms are subject to legal review.** This page contains a working draft of OmniFlow's Terms of Service. The final Terms, following review by OmniFlow's Singapore counsel and supplementary jurisdiction review, will be published prior to Phase 1 launch.
+**These Terms are a working draft and have not been reviewed by counsel.** No Singapore counsel has been engaged. Final Terms would be published prior to any launch.
+
+**What the Services currently are.** A testnet demonstration on Base Sepolia and this documentation. No product is open for subscription, no fund exists, no assets are held, and no investor has been onboarded. Provisions below that describe subscriptions, fees, distributions, or fund interests describe an intended future service, not one you can use today.
 
 ## 1. Agreement to Terms
 
-These Terms of Service (the "Terms") constitute a binding agreement between you ("you," "your," or the "User") and OmniFlow Pte. Ltd., a Singapore private limited company, together with its affiliates and the OmniFlow VCC sub-funds (collectively, "OmniFlow," "we," "us," or "our") regarding your access to and use of the OmniFlow protocol, the website at omniflow.xyz, the documentation at docs.omniflow.xyz, and all related services (collectively, the "Services").
+These Terms of Service (the "Terms") constitute a binding agreement between you ("you," "your," or the "User") and OmniFlow Pte. Ltd., the intended Singapore operating entity, which has not been incorporated (referred to throughout as "OmniFlow," "we," "us," or "our") regarding your access to and use of the OmniFlow protocol, the website at omniflow.xyz, the documentation at docs.omniflow.xyz, and all related services (collectively, the "Services"). No VCC sub-fund has been established; references to sub-funds throughout describe the intended structure.
 
 By accessing or using the Services, you confirm that you have read, understood, and agreed to these Terms. If you do not agree, you must not access or use the Services.
 
@@ -16,7 +18,7 @@ By accessing or using the Services, you confirm that you have read, understood, 
 
 ### 2.1 Investor Eligibility
 
-The Services are offered exclusively to:
+No investment product is currently offered to anyone. Any future offer would be made exclusively to:
 
 - Institutional Investors as defined in Section 4A of the Singapore Securities and Futures Act
 
@@ -24,9 +26,9 @@ The Services are offered exclusively to:
 
 - Qualified investors under analogous frameworks in other permitted jurisdictions
 
-- AI Agents that have completed OmniFlow's KYA verification framework, operating under a verified Principal who satisfies the above criteria
+- AI Agents operating under a verified Principal who satisfies the above criteria, once OmniFlow's KYA framework is built — it is currently a design and no agent has been verified through it
 
-The Services are not offered to retail investors and are not directed at any person in any jurisdiction where the offering of private placement securities to local persons is prohibited.
+No product would be offered to retail investors, or to any person in a jurisdiction where the offering of private placement securities to local persons is prohibited.
 
 ### 2.2 Restricted Persons
 
@@ -34,7 +36,7 @@ You may not access or use the Services if you are:
 
 - A resident of any jurisdiction subject to comprehensive sanctions by OFAC, the United Nations, the European Union, or the Monetary Authority of Singapore
 
-- A resident of any jurisdiction whose securities laws may apply extraterritorially to the underlying asset offering, as currently configured to exclude residents of South Korea for Korean asset products
+- A Korean entity or a resident of South Korea. The global track is not available to Korean entities or residents; a separate Korean track is dated to 2027-02-04 and is not built
 
 - A person appearing on any sanctions list, terrorist designation list, or similar restricted list maintained by the foregoing authorities
 
@@ -42,17 +44,17 @@ You may not access or use the Services if you are:
 
 ### 2.3 Verification
 
-Access to the Services requires verification of your identity and eligibility through OmniFlow's Onboarding & KYB process (or, for AI Agents, the KYA process). You agree to provide accurate, complete, and current information and to update it as required.
+Access to any future investment product would require verification of your identity and eligibility through OmniFlow's Onboarding & KYB process (or, for AI Agents, the KYA process). Neither process is operational and no verification has been performed. You agree to provide accurate, complete, and current information and to update it as required.
 
 ## 3. Services
 
 ### 3.1 Description
 
-OmniFlow operates a regulated on-chain protocol for the issuance, transfer, and management of tokenized interests in Singapore VCC sub-funds, which in turn hold beneficial interests in Asian real-world assets. Detailed descriptions of available products are provided in the Products section of the documentation and in the product-specific Investment Memorandum delivered at subscription.
+**OmniFlow is not regulated and holds no licence of any kind.** It is designing an on-chain protocol for the issuance, transfer, and management of tokenized interests in Singapore VCC sub-funds holding beneficial interests in Asian real-world assets. What is deployed today is a testnet demonstration of that design: smart contracts on Base Sepolia, an agent payment rail, and an off-chain settlement workflow, exercised against a fictional fund and a mock settlement token.
 
 ### 3.2 Modifications
 
-OmniFlow may modify the Services from time to time in accordance with the protocol governance framework described in the documentation. Material modifications affecting investor rights are communicated in advance through the institutional dashboard and through direct relationship manager communication.
+OmniFlow may modify the Services from time to time. No protocol governance framework is operational. Material modifications affecting investor rights would be communicated in advance, by whatever channels are established at the time.
 
 ### 3.3 Availability
 
@@ -70,7 +72,7 @@ You are solely responsible for the security of your wallet, private keys, and an
 
 ### 4.3 Accurate Information
 
-You agree to provide accurate, complete, and current information during onboarding and ongoing operation. Material inaccuracy or omission may result in suspension or termination of your access to the Services and may be reportable to relevant authorities.
+You agree to provide accurate, complete, and current information during onboarding and ongoing operation. Material inaccuracy or omission may result in suspension or termination of your access to the Services. OmniFlow holds no licence, is not a reporting entity, and has no supervisory reporting channel.
 
 ### 4.4 Prohibited Conduct
 
@@ -92,7 +94,7 @@ You may not:
 
 ## 5. Fees
 
-The Services are subject to fees as disclosed in the product Investment Memorandum, the Products section of the documentation, and the operational documentation accompanying each transaction. Fees are subject to modification with advance notice.
+One fee exists today: a 0.10 testnet USDC charge for the agent-accessible diligence note. It settles in testnet tokens and produces no revenue. Any future fee would be disclosed in the product Investment Memorandum and the Products section of the documentation, and would be subject to modification with advance notice.
 
 ## 6. Risk Acknowledgment
 
@@ -102,27 +104,27 @@ You acknowledge and agree that:
 
 - Past performance is not indicative of future results
 
-- Target yields are good-faith estimates and actual returns may differ materially
+- Published yields are illustrative derivations, not observed returns, and actual returns may differ materially
 
-- The Services involve novel technology that may have undiscovered defects
+- The Services involve novel technology that has not been audited and may have undiscovered defects
 
 - The regulatory framework applicable to RWA tokens and stablecoin-settled investments is evolving and may change in ways that affect the Services
 
-You should review the Risk Disclosure and the product-specific Investment Memorandum prior to subscription.
+You should review the Risk Disclosure. No product-specific Investment Memorandum has been issued, and no subscription is open.
 
 ## 7. Intellectual Property
 
 ### 7.1 OmniFlow Property
 
-All intellectual property in the Services — including but not limited to the website, documentation, software, designs, logos, and trademarks — is owned by OmniFlow or its licensors. You receive no ownership interest in any OmniFlow intellectual property.
+All intellectual property in the Services — including but not limited to the website, documentation, software, designs, logos, and trademarks — is held by the OmniFlow team or its licensors. It will vest in OmniFlow Pte. Ltd. on incorporation; that entity does not yet exist. You receive no ownership interest in any OmniFlow intellectual property.
 
 ### 7.2 Open-Source Components
 
-Certain OmniFlow components — including the TypeScript SDK, Python SDK, and reference smart contract interfaces — are released under the Apache 2.0 license. Use of these components is governed by the applicable open-source license.
+OmniFlow has published no open-source components and released no SDK. Should components be released in future, use of them would be governed by the applicable open-source license.
 
 ### 7.3 User Content
 
-You retain ownership of any content you provide to OmniFlow during onboarding or operation. You grant OmniFlow a limited license to use such content for the purpose of providing the Services and meeting OmniFlow's regulatory obligations.
+You retain ownership of any content you provide to OmniFlow during onboarding or operation. You grant OmniFlow a limited license to use such content for the purpose of providing the Services.
 
 ## 8. Disclaimers
 
@@ -136,7 +138,7 @@ The Services are provided "as is" and "as available," without warranty of any ki
 
 ### 8.3 Third-Party Services
 
-The Services may rely on or interoperate with third-party services, including blockchain networks, custody providers, banking partners, MPI partners, LFMC partners, and asset management partners. OmniFlow does not warrant the performance of third-party services and is not responsible for their failures.
+The Services rely on public blockchain networks and their RPC providers. The intended structure additionally contemplates custody, banking, payment institution, fund management, and asset management roles; none is filled and no such party is engaged. OmniFlow does not warrant the performance of third-party services and is not responsible for their failures.
 
 ## 9. Limitation of Liability
 
@@ -198,7 +200,7 @@ These Terms, together with the documents incorporated by reference (including th
 
 ### 13.2 Modifications
 
-OmniFlow may modify these Terms from time to time. Material modifications will be communicated through the institutional dashboard and the relationship manager. Your continued use of the Services after the effective date of modifications constitutes acceptance of the modified Terms.
+OmniFlow may modify these Terms from time to time. Material modifications will be communicated through the channels established at the time. Your continued use of the Services after the effective date of modifications constitutes acceptance of the modified Terms.
 
 ### 13.3 Severability
 
@@ -214,7 +216,7 @@ You may not assign these Terms without OmniFlow's prior written consent. OmniFlo
 
 ### 13.6 Notices
 
-Notices to OmniFlow should be sent to legal@omniflow.xyz. Notices to you may be sent to the email address registered during onboarding or through the institutional dashboard.
+Notices to OmniFlow should be sent to legal@omniflow.xyz. Notices to you may be sent to any email address you have registered with OmniFlow.
 
 ### 13.7 Contact
 

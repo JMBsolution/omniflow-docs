@@ -1,47 +1,55 @@
 # Trust & Security
 
-OmniFlow is designed around five layers of trust. Each layer addresses a specific class of risk and is independently verifiable. We document each layer here so that institutional allocators, partner protocols, and AI agent operators can independently assess our integrity before committing capital.
+OmniFlow is designed around five layers of trust. Each layer addresses a specific class of risk. We document each layer here so that institutional allocators, partner protocols, and AI agent operators can assess what has been built and, just as importantly, what has not.
+
+Read this page against a single fact: OmniFlow is pre-funding. Everything deployed on chain is a Base Sepolia testnet demonstration. There is no licence, no fund, no asset, no investor and no appointed counterparty. The layers below describe an intended structure and the small part of it that currently exists.
 
 ## Layer 1 — Regulatory Trust
 
-OmniFlow operates within Singapore's Monetary Authority of Singapore (MAS) regulatory framework. The protocol relies on licensed counterparties at each step:
+OmniFlow holds no licence of any kind and is not regulated by the Monetary Authority of Singapore. The structure is designed around licensed counterparties at each step, and none has been engaged:
 
-- **Fund Operations**: Conducted by an MAS-licensed Capital Markets Services (CMS) Licensed Fund Management Company (LFMC). During Phase 1, fund operations are conducted under partnership with an established LFMC. OmniFlow's own CMS A/I LFMC application is targeted for Phase 2.
+- **Fund Operations**: designed to be conducted by an MAS-licensed Capital Markets Services (CMS) Licensed Fund Management Company (LFMC). No LFMC has been appointed.
 
-- **Stablecoin Settlement**: Conducted by an MAS Major Payment Institution (MPI) holding a Digital Payment Token (DPT) license. Phase 1 settlement uses a licensed MPI partner; OmniFlow's own MPI license is targeted for Phase 2.
+- **Stablecoin Settlement**: designed to be conducted by an MAS Major Payment Institution (MPI) holding a Digital Payment Token (DPT) license. No MPI has been appointed.
 
-- **Korean Asset Management**: Real estate assets are held through Korean Real Estate Funds (REFs) operated by partner Korean Asset Management Companies (AMCs). OmniFlow targets the acquisition of its own AMC in Phase 3.
+- **Korean Asset Management**: real estate assets would be held through Korean Real Estate Funds (REFs) operated by a partner Korean Asset Management Company (AMC). No AMC has been appointed.
 
-The protocol issues securities to qualified investors only. Eligibility is governed by the Singapore Securities and Futures Act (SFA) §274 and §275 — the institutional investor (II) and accredited investor (AI) exemptions. All token transfers are gated at the smart contract level to enforce these eligibility rules.
+The eligibility model is drawn from the Singapore Securities and Futures Act (SFA) §274 and §275 — the institutional investor (II) and accredited investor (AI) exemptions. Nothing has been offered or issued to anyone under those exemptions.
+
+On testnet, the token contract does enforce the eligibility gate it describes: every transfer is checked against an on-chain eligibility registry, and a transfer from or to an ineligible address reverts.
 
 ## Layer 2 — Asset Trust
 
-Underlying assets are sourced, audited, and valued by independent third parties:
+OmniFlow holds no assets. No valuation has been commissioned, no independent valuer has been engaged, and no accounting firm audits anything. The intended process, for when assets exist, is:
 
-- **Sourcing**: All deals are originated through Korean partner AMCs and validated through OmniFlow's investment committee.
+- **Sourcing**: deals originated through a partner AMC and validated through an investment committee.
 
-- **Valuation**: Independent valuations are conducted by globally recognized firms (CBRE, JLL, Cushman & Wakefield).
+- **Valuation**: independent valuation by an appointed third-party valuation firm.
 
-- **Audit**: Annual audits are conducted by Big 4 accounting firms.
+- **Audit**: annual audit of the fund vehicle by an appointed auditor.
 
-- **Title and Lease Verification**: Korean property registry, building registry, and lease documents are verified at acquisition and re-verified at NAV update intervals.
+- **Title and Lease Verification**: Korean property registry, building registry, and lease documents verified at acquisition and re-verified at NAV update intervals.
 
-NAV updates are published on a defined schedule (monthly or event-based, depending on the product) and are attested on-chain via multi-signature Proof-of-Reserve.
+No NAV has been published, because there is nothing to value.
 
 ## Layer 3 — Technical Trust
 
-OmniFlow's smart contracts implement transfer restrictions, eligibility verification, and yield distribution at the protocol level. Key technical commitments:
+The smart contracts are deployed on Base Sepolia testnet and have been exercised end to end. They implement transfer restrictions, eligibility verification, and a 180-day lock-up from issuance at the contract level. The token implements ERC-7943 (uRWA), which supplies the permissioned controls a restricted asset needs: eligibility gating, freezing, and issuer-forced transfers.
 
-- **Audits**: All production smart contracts are audited by at least two independent firms before mainnet deployment. See Smart Contract Audits.
+Three things are honest to state plainly:
 
-- **Bug Bounty**: A continuous bug bounty program is operated through Immunefi.
+- **No audit has been performed.** No smart-contract audit firm has reviewed this code. Independent audit before any mainnet deployment is a requirement, not an accomplishment.
 
-- **Upgradeability**: Contract upgrades are governed by multi-signature with mandatory timelock. Critical parameters (token supply invariants, eligibility rules, KYC gating) are protected by constitutional limits and cannot be unilaterally modified.
+- **No bug bounty exists.** There is no Immunefi program or any other bounty.
+
+- **There is an open access-control gap.** The demo agent stops at workflow step 04 because steps 04 to 06 require human counterparties, and it will not write an outcome it cannot source. That halt is enforced by the off-chain operator workflow tracker and the demo script — it is **not** enforced by the contracts. `RwaToken.issue()` has no access control, so a certificate-holding eligible wallet could in principle mint itself fund tokens on chain. Closing that gap is future work.
+
+Upgrade governance by multi-signature with a mandatory timelock is a design commitment for production deployment, not a property of the current testnet contracts.
 
 ## Layer 4 — Cryptographic Trust
 
-OmniFlow does not rely on centralized claims for any verifiable property. Reserves, NAV updates, eligibility status, and supply totals are anchored on-chain through cryptographic attestations. Investors and AI agents can independently verify these properties without trusting OmniFlow.
+What is on chain can be verified without trusting OmniFlow: contract bytecode, eligibility state, supply totals, lock-up timestamps and the full event history are readable at the deployed Base Sepolia addresses by anyone. That is the limit of what cryptography can attest to here. There are no reserves, no NAV attestation and no proof-of-reserve, because there is nothing off chain to prove.
 
 ## Layer 5 — Reputational Trust
 
-OmniFlow's leadership, partners, and advisors are publicly identified. Partner LFMC, MPI, and AMC entities are disclosed in the Legal Structure page. Counterparty changes are announced in advance.
+No LFMC, MPI or AMC partner is disclosed, because none has been engaged. When counterparties are appointed, they will be named, and any subsequent change announced in advance.

@@ -2,6 +2,8 @@
 
 OmniFlow's cross-chain design is one of the most consequential architectural decisions in the protocol. This page explains the design and the reasoning behind it.
 
+It is a design. The contracts are deployed on **Base Sepolia testnet** and nowhere else, and the multi-chain deposit rails described below have not been built. What follows is the architecture we have committed to, and the reasoning for it, not a description of live infrastructure.
+
 ## The Bridge Problem
 
 Between 2022 and 2024, more than USD 2 billion was lost across cross-chain bridge exploits — Ronin (USD 625M), Wormhole (USD 325M), Nomad (USD 190M), Multichain (USD 230M), Harmony (USD 100M), and others. Every one of these incidents shared the same structural pattern: assets were locked on a source chain, and synthetic representations of those assets were minted on a destination chain. When the lock contract or its keys were compromised, attackers minted unbacked synthetics, draining liquidity and destroying user holdings.
@@ -30,8 +32,8 @@ RWA Token
 (single chain)
 ▲
 │
-│ minted only after settlement
-│ from VCC sub-register
+│ minted only after off-chain
+│ settlement is recorded
 │
 ┌───────────┐    ┌─────┴─────┐    ┌───────────┐
 │ Chain A   │    │           │    │ Chain B   │
@@ -52,29 +54,31 @@ chain boundaries.
 
 ## How It Works
 
-OmniFlow RWA tokens exist exclusively on a single primary issuance chain — **Base** for Phase 1, chosen for its institutional adoption trajectory, native USDC support, and a cost profile compatible with agent micropayments. The protocol retains the option to extend issuance to Ethereum mainnet or other networks where ERC-3643 and ERC-7943 compliance infrastructure is mature.
+OmniFlow RWA tokens exist exclusively on a single primary issuance chain — **Base**, chosen for its institutional adoption trajectory, native USDC support, and a cost profile compatible with agent micropayments. Today that means Base Sepolia testnet; there is no mainnet deployment. The protocol retains the option to extend issuance to Ethereum mainnet or other networks where ERC-7943 compliance infrastructure is mature.
 
-Investors can deposit stablecoins from any chain that the OmniFlow MPI partner supports — Ethereum, TRON, Base, Arbitrum, Solana (subject to MPI partner availability). The MPI partner aggregates deposits from all chains into a single USD settlement that funds the underlying asset purchase. RWA tokens are minted only on the issuance chain, regardless of which chain the investor's deposit originated from.
+The design provides for investors to deposit stablecoins from other chains through a payments partner that aggregates those deposits into a single fiat settlement, with RWA tokens minted only on the issuance chain regardless of where the deposit originated. No such partner is engaged and no deposit rail has been built. On testnet, deposits are made in a mock settlement token on Base Sepolia itself.
 
-There is no scenario in which an OmniFlow RWA token exists on more than one chain simultaneously. There is no scenario in which a synthetic representation of an OmniFlow RWA token is minted on any chain. The token is single-chain native by design.
+The property this buys is structural: no OmniFlow RWA token exists on more than one chain simultaneously, and no synthetic representation of one is minted on any chain. The token is single-chain native by design, and adding deposit rails would not change that.
 
-## Why This Architecture Is Immune to Bridge Exploits
+## Why This Architecture Has No Bridge Exposure
 
 Bridge exploits exploit the gap between two synchronization mechanisms — the lock event on the source chain and the mint event on the destination chain. If the synchronization is compromised (whether through key theft, oracle manipulation, or smart contract bug), unbacked synthetics can be minted.
 
-OmniFlow has no such gap. The RWA token's mint event is gated solely on settlement of the underlying asset purchase, attested by the LFMC and verified against the VCC sub-register. There is no cross-chain message, no bridge oracle, and no lock contract whose compromise could trigger an unauthorized mint.
+OmniFlow has no such gap, because it has no bridge. There is no cross-chain message, no bridge oracle, and no lock contract whose compromise could trigger a mint on another chain. This holds today and would continue to hold with deposit rails added, since a deposit rail carries value in one direction and mints nothing.
 
-The deposit chains are merely fiat-equivalent rails. The investor sends USDT on TRON; the MPI partner credits USD on the OmniFlow Singapore account. From the protocol's perspective, this is no different than receiving a SWIFT wire from a bank — the source rail's compromise (an exchange hack, a wallet theft) does not threaten the integrity of the issued RWA tokens, because the RWA tokens are minted only after settled USD funds the underlying asset purchase.
+Deposit chains are intended to function as fiat-equivalent rails: value arrives, a payments partner settles it in fiat, and tokens are minted on the issuance chain only against that settled position. From the protocol's perspective this is no different from receiving a bank wire — a compromise of the source rail does not threaten the integrity of issued tokens.
+
+What this argument does **not** cover is authorization of the mint itself. On the deployed testnet contracts, `RwaToken.issue()` has no access control: any eligible wallet holding a deposit certificate can mint itself fund tokens. The discipline that keeps issuance tied to settlement is off-chain workflow, not on-chain enforcement. Restricting issuance to an authorized issuer role is required work before any deployment outside testnet. Absence of bridge risk is a real property of this architecture; it is not a claim that the mint path is fully constrained.
 
 ## Trade-Offs Accepted
 
 This architecture accepts certain trade-offs that other RWA platforms have chosen differently:
 
-**Single-chain liquidity.** Secondary market trading of OmniFlow RWA tokens occurs on the issuance chain. Investors who want to use OmniFlow tokens in DeFi protocols on other chains do not have a synthetic version available. We believe this trade-off is appropriate for RWA assets: composability with permissioned DeFi within the issuance chain provides meaningful flexibility, while the alternative (multi-chain synthetics) reintroduces bridge attack surface.
+**Single-chain liquidity.** Any secondary trading of OmniFlow RWA tokens would occur on the issuance chain, and holders wanting to use the token in DeFi protocols on other chains would have no synthetic version available. We believe this trade-off is appropriate for RWA assets: the alternative, multi-chain synthetics, reintroduces bridge attack surface. No secondary market exists today.
 
-**Deposit-side dependence on MPI partner chain coverage.** The set of chains from which investors can deposit is bounded by the chains the OmniFlow MPI partner supports. Adding deposit rail support for an additional chain is a partner integration, not a protocol modification.
+**Deposit-side dependence on a payments partner.** The set of chains from which investors could deposit would be bounded by the chains the payments partner supports. Adding a deposit rail is a partner integration, not a protocol modification — which also means the capability does not exist until such a partner is engaged, and none is.
 
-**Migration friction if changing issuance chain.** Should OmniFlow ever migrate the issuance chain (for example, from Base to Ethereum mainnet), the migration is a coordinated burn-and-reissue executed under governance and multi-signature control, with all token holders notified and ample time provided. This is more disruptive than a chain-agnostic token, but ensures supply integrity at every step.
+**Migration friction if changing issuance chain.** Should OmniFlow ever migrate the issuance chain, the migration is a coordinated burn-and-reissue with all token holders notified and ample time provided. This is more disruptive than a chain-agnostic token, but ensures supply integrity at every step. The deployed contracts have no burn or redemption function, so this path is not yet implemented, and the multi-signature control it assumes does not exist — the testnet contracts are owned by a single key.
 
 ## Future Considerations: ZK-Verified Cross-Chain Transfer
 

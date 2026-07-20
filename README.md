@@ -1,23 +1,25 @@
 # Welcome to OmniFlow
 
-Institutional-grade real-world assets from Asia, on-chain. Settled in USDT, USDC, and USD1. Built for both institutions and AI agents.
+Asian real-world asset settlement, demonstrated end to end on Base Sepolia testnet. Built for both institutions and AI agents.
 
-**OmniFlow** is a regulated on-chain protocol that brings institutional-grade real-world assets from Asia to global stablecoin holders. We tokenize income-producing real estate and real estate-backed credit assets through a structure that combines licensed Asian asset managers, Singapore's Variable Capital Company (VCC) framework, and compliance-aware token issuance built on the ERC-3643 framework with the ERC-7943 uRWA interface.
+**OmniFlow** is a pre-launch venture building on-chain settlement for income-producing Asian real estate and real estate-backed credit. The full subscription path — eligibility, deposit certificate, and compliance-aware token issuance under the ERC-7943 (uRWA) standard — is deployed and exercised end to end on Base Sepolia testnet. Nothing runs on mainnet, no assets have been acquired, and OmniFlow holds no licence of any kind.
 
-Our first asset category is Korean prime real estate and real estate-backed credit, where we have established deep sourcing relationships and structuring expertise. The protocol architecture is designed to extend to additional Asian markets and asset classes — Japanese real estate, Southeast Asian infrastructure, and pan-Asian credit — through the same regulatory and compliance framework.
+The intended structure uses Singapore's Variable Capital Company (VCC) framework with a partner asset manager in each source market. No such entity is engaged today, and no fund vehicle has been formed.
 
-Our investors are accredited and institutional capital allocators — family offices, treasury operators, multi-strategy funds, and sovereign wealth pools — primarily based in the Middle East, Southeast Asia, and Greater China. We also support AI agents as first-class participants through our KYA (Know Your Agent) framework, programmable yield primitives, and native MCP server.
+Our first asset category is Korean logistics real estate and real estate-backed credit. The architecture is designed to extend to additional Asian markets and asset classes through the same compliance framework.
 
-Each OmniFlow product is structured to deliver real economic yield from underlying asset cash flows, not from token inflation. Target net yields range from 6% to 12% annually, depending on the product tier and underlying risk profile.
+The intended investor base is accredited and institutional capital allocators — family offices, treasury operators, multi-strategy funds, and sovereign wealth pools. Two agent-facing capabilities are built and run on Base Sepolia testnet: an x402 agent payment rail, and an MCP server exposing four tools. A KYA (Know Your Agent) workflow is designed to admit agents as first-class participants; it is not built.
+
+Each OmniFlow product is designed to deliver real economic yield from underlying asset cash flows rather than from token inflation. No asset has been acquired and no distribution has ever been paid. One tier is live in this build: **Korea Logistics Income (Tier 2)**, at a 5.50% illustrative net distribution yield on testnet. Tiers 1, 3, and 4 are documented but not open, and no yield is published for them.
 
 ## Get Started
 
-If you are an institutional or accredited investor, begin by reviewing the Eligibility page and submitting a KYB inquiry through your dedicated relationship manager. If you operate an AI agent that allocates capital programmatically, see Agent-Native Overview for our KYA workflow.
+If you are an institutional or accredited investor, begin by reviewing the [Eligibility](introduction/eligibility.md) page. The global track is not available to entities or residents of South Korea; a Korean track is dated to the 2027-02-04 commencement of the Korean token-securities regime and is not built. If you operate an AI agent that allocates capital programmatically, see [Agent-Native Overview](for-ai-agents/agent-native-overview.md) for the KYA workflow.
 
-If you are a developer, partner protocol, or auditor, the Technical section provides the system architecture, smart contract addresses, and audit reports.
+If you are a developer or partner protocol, the Technical section provides the system architecture and the Base Sepolia contract addresses. No smart-contract audit has been performed.
 
-For trust and transparency information — including our legal structure, regulatory framework, and custody arrangements — see Trust & Security.
+For legal structure and regulatory positioning — including what is and is not yet in place — see [Trust & Security](introduction/trust-and-security.md).
 
 ## Stay Connected
 
-For institutional inquiries, contact partners@omniflow.xyz. For agent operator and developer inquiries, contact engineering@omniflow.xyz. Public announcements are made on Twitter @OmniFlow and our official Telegram channel.
+For institutional inquiries, contact partners@omniflow.xyz. For agent operator and developer inquiries, contact engineering@omniflow.xyz. No official public announcement channel has been established.

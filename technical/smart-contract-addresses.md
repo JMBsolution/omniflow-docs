@@ -1,103 +1,57 @@
 # Smart Contract Addresses
 
-This page lists the deployed smart contract addresses for OmniFlow's protocol. Addresses are published immediately upon deployment and verified on the respective block explorers. Investors and integrators should verify any address against this page before transacting.
+This page lists OmniFlow's deployed smart contract addresses. Every contract below is deployed on **Base Sepolia testnet** and nowhere else. Integrators should verify any address against this page before transacting.
 
 ## Status
 
-**Status:** Pre-deployment. **Target deployment:** Phase 1, [TBD — to be confirmed at audit completion]. **Last updated:** [TBD]
+**Status:** Testnet only. No mainnet deployment exists, and no address on this page controls real assets.
 
-OmniFlow's mainnet contracts are deployed in a single coordinated event following completion of audits, regulatory approvals, and partner integrations. Until that point, all addresses below are placeholders and no production contracts exist on-chain.
+The contracts below are a working testnet demonstration: they have been deployed and exercised end to end on Base Sepolia. The settlement asset is a mock token minted for the demonstration, not Circle USDC. There is no fund, no register of members and no licensed issuer behind these contracts.
 
-## Mainnet Contract Registry
+## Base Sepolia Testnet — Current Deployment
 
-### Core Protocol — Ethereum Mainnet
+Network: Base Sepolia (chain ID 84532). Verify on [BaseScan Sepolia](https://sepolia.basescan.org).
 
-| **Contract** | **Address** | **Source Commit** | **Deployed At** |
-| --- | --- | --- | --- |
-| Identity Registry | [TBD] | [TBD] | [TBD] |
-| Compliance Module | [TBD] | [TBD] | [TBD] |
-| Korea Jurisdiction Module | [TBD] | [TBD] | [TBD] |
-| Deposit Receipt (ERC-4626) | [TBD] | [TBD] | [TBD] |
-| RWA Token Factory (ERC-3643) | [TBD] | [TBD] | [TBD] |
-| Yield Distribution Contract | [TBD] | [TBD] | [TBD] |
-| NAV Oracle | [TBD] | [TBD] | [TBD] |
-| Risk Oracle | [TBD] | [TBD] | [TBD] |
-| Reserve Attestation | [TBD] | [TBD] | [TBD] |
-| Governance Multi-sig (5/9) | [TBD] | [TBD] | [TBD] |
-| Governance Timelock | [TBD] | [TBD] | [TBD] |
+| **Contract** | **Address** | **Notes** |
+| --- | --- | --- |
+| MockUSDC | `0x0f77b3a298c6c1b6940a6147b536cbe687aa98ef` | Mock settlement token, 6 decimals. Not Circle USDC. |
+| EligibilityRegistry | `0x814D7F34D0259b725B4857c09650Cd328324295e` | Allow-list consulted by the token's transfer checks |
+| DepositCertificate | `0xd5252fd4c9a6fdd683bce0356b044a0fe9912bd9` | ERC-4626, non-transferable. Symbol `ofDC-KLI1` |
+| RwaToken | `0xb88d9fb681ab743e5b3701b2c8102baa79446c32` | ERC-20 plus ERC-7943 (uRWA). Symbol `ofKLI1` |
 
-### Per-Product RWA Tokens — Ethereum Mainnet
+The implemented permissioned-token standard is **ERC-7943 (uRWA)**, not ERC-3643. `RwaToken` advertises the ERC-7943 fungible interface id `0x3edbb4c4` and reverts at deployment if that id drifts from the interface definition.
 
-| **Product** | **Token Symbol** | **Address** | **Issuance Date** | **Status** |
-| --- | --- | --- | --- | --- |
-| Korea Listed REIT Income (T1) — Series A | [TBD] | [TBD] | [TBD] | Pre-issuance |
-| Korea Logistics Income (T2) — Series A | [TBD] | [TBD] | [TBD] | Pre-issuance |
-| Korea Senior Development Credit (T3) — Series A | [TBD] | [TBD] | [TBD] | Pre-issuance |
+### Subscription Account
 
-Additional product series will be added to this registry at the time of issuance. Each series corresponds to a discrete subscription window and a specific underlying asset pool.
+| **Role** | **Address** | **Notes** |
+| --- | --- | --- |
+| Subscription account | `0xb61bAf800658Dd6Fbe3287287Bc1b04f7357C5f9` | Demonstration wallet that receives the mock settlement asset when a certificate is exchanged. Not a treasury, not a custodian, not a segregated account. |
 
-### Stablecoin Settlement Addresses
+### Deployed Parameters
 
-The following addresses are used by OmniFlow's MPI partner for stablecoin deposit receipt across supported chains. These are MPI partner-controlled wallets, not OmniFlow protocol contracts.
+| **Parameter** | **Value** |
+| --- | --- |
+| Certificate | `OmniFlow Deposit Certificate — Korea Logistics Income Fund I` (`ofDC-KLI1`) |
+| Fund token | `OmniFlow Korea Logistics Income Fund I (Testnet Demo)` (`ofKLI1`) |
+| Settlement asset | `mUSDC`, 6 decimals |
+| Transfer restriction | 15,552,000 seconds — 180 days from issuance |
 
-| **Chain** | **Stablecoin** | **Receiving Address** | **Verification Source** |
-| --- | --- | --- | --- |
-| Ethereum | USDT | [TBD] | MPI partner attestation [TBD] |
-| Ethereum | USDC | [TBD] | MPI partner attestation [TBD] |
-| Ethereum | USD1 | [TBD] | MPI partner attestation [TBD] |
-| TRON | USDT | [TBD] | MPI partner attestation [TBD] |
-| Base | USDT | [TBD] | MPI partner attestation [TBD] |
-| Base | USDC | [TBD] | MPI partner attestation [TBD] |
-| Arbitrum | USDT | [TBD] | MPI partner attestation [TBD] |
-| Arbitrum | USDC | [TBD] | MPI partner attestation [TBD] |
-| Solana | USDT | [TBD] | MPI partner attestation [TBD] |
-| Solana | USDC | [TBD] | MPI partner attestation [TBD] |
+The lock-up is enforced on chain as a FIFO queue of per-parcel lots: each issuance creates a lot with its own unlock date, lots are consumed oldest-first, and a later acquisition does not re-lock units already seasoned. `lotsOf(address)` returns the live lots for any holder and `unrestrictedBalanceOf(address)` returns the seasoned total.
 
-Investors must confirm the current receiving address with their relationship manager before each subscription. Addresses may rotate periodically per MPI partner security policy.
+## Known Limitation — Issuance Access Control
 
-## Testnet Deployments
+`RwaToken.issue()` has no access control. Any wallet that holds a deposit certificate and passes the eligibility registry can call it and mint itself fund tokens on chain.
 
-Pre-production testing is conducted on Ethereum Sepolia testnet. Testnet addresses are made available to integration partners and audit firms upon request. Testnet contracts are not for use with real funds and may be redeployed at any time without notice.
+In the demonstration, the workflow does not reach that point: the agent halts at workflow step 04 because steps 04 to 06 require human counterparties, and it will not write an outcome it cannot source. That halt is enforced by the off-chain operator workflow tracker and by the demo script — **it is not enforced by the smart contracts**. Closing this gap on chain is future work.
 
-### Sepolia Testnet — Current Test Build
+## Verification
 
-| **Contract** | **Address** | **Source Commit** | **Deployed At** |
-| --- | --- | --- | --- |
-| Identity Registry | [TBD] | [TBD] | [TBD] |
-| Compliance Module | [TBD] | [TBD] | [TBD] |
-| Korea Jurisdiction Module | [TBD] | [TBD] | [TBD] |
-| Deposit Receipt (test) | [TBD] | [TBD] | [TBD] |
-| RWA Token Factory (test) | [TBD] | [TBD] | [TBD] |
-| NAV Oracle (test) | [TBD] | [TBD] | [TBD] |
+Each contract above is deployed with source available for verification on BaseScan Sepolia. Contracts are unaudited — see [Smart Contract Audits](smart-contract-audits.md).
 
-To request testnet access, contact engineering@omniflow.xyz with the integration use case.
-
-## Verification Standard
-
-All mainnet contracts are:
-
-- Deployed with verified source code on the relevant block explorer (Etherscan, BaseScan, etc.)
-
-- Audited by at least two independent firms (see Smart Contract Audits)
-
-- Tagged with a permanent reference to the audited source commit
-
-- Published with the deployment transaction hash for chain-of-custody verification
-
-## Programmatic Address Resolution
-
-The canonical list of OmniFlow contract addresses is also available in machine-readable form, signed by the OmniFlow operations team:
-
-GET https://api.omniflow.xyz/v1/contract-addresses
-
-The endpoint returns the same address list as this page, plus an EIP-191 signature from the OmniFlow operations key. Integration partners and agents are encouraged to verify the signature before consuming the address list programmatically.
-
-## Address Update Policy
-
-Address list updates are signed transactions executed by the governance multi-signature. New deployments (additional jurisdiction modules, additional product variants) extend the list. Address removals or replacements occur only in the case of contract migration and are subject to the standard 72-hour governance timelock and advance notification to all token holders.
+Testnet contracts may be redeployed at any time without notice. Nothing on this page should be used with real funds.
 
 ## Address Authority Notice
 
-The canonical list of OmniFlow contract addresses is maintained on this page. Addresses claimed to be associated with OmniFlow but not listed here have not been verified by OmniFlow. Investors and integrators should verify any address against this page before transacting.
+The canonical list of OmniFlow contract addresses is maintained on this page. Addresses claimed to be associated with OmniFlow but not listed here have not been verified by OmniFlow.
 
-If you encounter an address claimed to be OmniFlow's that does not appear here, contact security@omniflow.xyz immediately.
+If you encounter an address claimed to be OmniFlow's that does not appear here, contact security@omniflow.xyz.

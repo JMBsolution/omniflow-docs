@@ -1,6 +1,6 @@
 # Agent-Native Overview
 
-OmniFlow is built for both institutional investors and AI agents that allocate capital autonomously.
+OmniFlow is designed for both institutional investors and AI agents that allocate capital autonomously. What is built today runs on Base Sepolia testnet; this page marks each layer accordingly.
 
 ## Why AI Agents Matter for RWA
 
@@ -20,23 +20,21 @@ OmniFlow is designed from inception to remove all four limitations.
 
 ## What Agent-Native Means at OmniFlow
 
-Agents at OmniFlow are not a feature added on top of a human-only platform. They are first-class participants integrated into the protocol's design.
+Agents are treated as first-class participants in OmniFlow's design rather than as a feature bolted onto a human-only platform. Two layers of that design are built and exercised end to end on testnet. The rest is design, and is marked as such.
 
-**Identity.** Agents pass KYA (Know Your Agent) verification, a parallel to KYC tailored to autonomous systems. KYA establishes the agent's operating principal (a verified human or institutional entity), the agent's permission scope, and an operating bond denominated in $OMNI tokens. See KYA Framework.
+**Settlement — built, on Base Sepolia testnet.** An agent pays for a priced OmniFlow resource without a human signing each transaction and without holding the gas token. It requests the resource, receives HTTP 402 carrying a price it did not know in advance, signs an EIP-3009 `transferWithAuthorization`, and retries. A self-hosted facilitator recovers the signer, checks the authorization against eight refusal conditions, and relays it on chain while paying the gas itself. Settlement is a real transfer of testnet USDC, visible on the block explorer. See [Settlement Layer](settlement-layer.md).
 
-**Permissioning.** Agent authority is enforced cryptographically through scoped delegation. An agent operating under a $10M position limit cannot exceed that limit at the smart contract level, even if instructed to do so. Rate limits, asset class restrictions, and kill switches are protocol-enforced.
+**Execution — built, on Base Sepolia testnet.** An MCP (Model Context Protocol) server exposes four tools: three free — product listing, eligibility register lookup, and a description of the 00–08 settlement workflow — and one paid, a diligence note priced at 0.10 testnet USDC. See [MCP Server](mcp-server-and-sdk.md).
 
-**Discovery.** Asset metadata is published in machine-readable form. An agent can query the available products, their target yields, lock-up status, NAV, and risk metrics through a standardized interface, without parsing PDF reports.
+**Discovery — partial.** The free tools return product metadata, contract addresses, implemented token standards, and the transfer restriction as structured JSON, so an agent does not have to parse a PDF. There is no NAV oracle and no NAV to publish.
 
-**Execution.** Subscription, redemption, secondary market trading, and yield claiming are accessible through TypeScript and Python SDKs, REST APIs, and a native MCP (Model Context Protocol) server.
+**Identity — design only.** KYA (Know Your Agent) is described in [KYA Framework](kya-framework.md) as a design. An eligibility register contract is deployed on testnet and gates transfers of the RWA token; no identity has been verified through it, and no other part of the KYA design is built.
 
-**Settlement.** Agents pay for OmniFlow protocol services autonomously through x402-based session keys (ERC-4337 + ERC-7710). Payment scope — daily limits, per-call limits, duration, permitted recipient — is delegated by the principal once and validated atomically with each call, removing the need for per-transaction human signing or pre-funded gas relayers. See [Settlement Layer](settlement-layer.md).
-
-**Risk.** Standardized risk metrics — volatility, liquidity score, concentration risk, counterparty risk, stress-test drawdown — are published per asset through the OmniFlow Risk Oracle. Agents consume these as structured data.
-
-**Composition.** Agents can compose OmniFlow positions with other DeFi primitives within OmniFlow's permissioned environment, including collateralization for stablecoin liquidity (Phase 3+).
+**Permissioning, Risk, and Composition — design only.** Scoped delegation, the Risk Oracle, and permissioned DeFi composition are not implemented. No operating bond exists in any denomination; the $OMNI token is Phase 2+ and is not active.
 
 ## The Agent-Native Stack
+
+The diagram below is the target architecture. Layers 4 and 5 are built on testnet; the others are design.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -65,22 +63,22 @@ Agents at OmniFlow are not a feature added on top of a human-only platform. They
 
 Layers 4 (Settlement) and 5 (Execution) operate as paired layers. The Execution interface returns HTTP 402 when payment is required; the Settlement Layer answers with a payment header within the same request-response cycle. The two are conceptually distinct but cycle-coupled in operation.
 
-## What Is Live, What Is Coming
-
-OmniFlow is honest about the current state of the agent stack. Some layers are operational from Phase 1; others are in active development for Phase 2 and beyond.
+## What Is Built, What Is Not
 
 | **Layer** | **Status** |
 | --- | --- |
-| Identity (KYA) | Phase 1 — operational |
-| Permissioning (ERC-7710 delegation) | Phase 1 — operational |
-| Discovery (metadata, NAV oracle) | Phase 1 — operational |
-| Execution (REST API, SDK) | Phase 1 — operational |
-| Execution (MCP Server) | Phase 1 — operational |
-| Settlement (x402 + session keys) | Phase 1 — spec, OmniFlow protocol fee scope; Phase 1.5 — self-paymaster; Phase 2 — external facilitator |
-| Risk Oracle (standard metrics) | Phase 1 — basic; Phase 2 — full standard |
-| Composition (collateralization) | Phase 3 — planned |
+| Identity (KYA) | Not built. Eligibility register contract deployed on testnet; no identity verified |
+| Permissioning (scoped delegation) | Not built |
+| Discovery (metadata) | Built on testnet — structured product metadata over MCP |
+| Discovery (NAV oracle) | Not built |
+| Execution (MCP server, four tools) | Built on testnet |
+| Execution (REST API, SDKs) | Not built |
+| Settlement (x402 + EIP-3009 + self-hosted facilitator) | Built on testnet |
+| Settlement (ERC-4337 session keys, paymaster) | Not built |
+| Risk Oracle | Not built |
+| Composition (collateralization) | Not built |
 
-We deliberately avoid claiming production-ready functionality for capabilities not yet deployed. Status above reflects the actual deployment state and is updated with each release.
+Nothing is deployed to mainnet. There are no real assets, no assets under management, no investors, and no distributions. The whole of the above runs against a mock settlement token and a fictional fund.
 
 ## Who Should Read This Section
 
@@ -92,4 +90,4 @@ The pages in this section are written for two audiences:
 
 For institutional human investors, the How It Works section is the primary reference.
 
-This documentation site is itself machine-readable: llms.txt, per-page markdown outputs, and an MCP endpoint are exposed automatically, so agents can ingest these pages directly without scraping.
+Machine-readable delivery of this documentation itself — llms.txt, per-page markdown outputs, a documentation MCP endpoint — is intended, so that agents can ingest these pages without scraping. None of it is published today.

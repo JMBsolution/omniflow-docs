@@ -1,16 +1,18 @@
 # Legal Structure
 
-This page describes OmniFlow's legal entity structure, the chain of legal rights from underlying assets to the on-chain RWA token, and the contractual relationships that govern the protocol. Detailed legal opinions are available to qualified institutional investors under non-disclosure agreement during due diligence.
+This page describes the legal entity structure OmniFlow intends to build, the chain of legal rights it is designed to produce, and the counterparty roles it depends on.
+
+**Status.** None of it exists yet. OmniFlow is pre-funding. No entity described below has been incorporated, no licence of any kind is held or applied for, no counterparty in any role has been engaged, and no legal opinion has been commissioned. What exists today is a smart contract deployment on the Base Sepolia **testnet** and an off-chain settlement workflow model. This page is a design document, not a disclosure of an operating structure. Read it as such.
 
 ## Entity Map
 
-OmniFlow's legal structure is composed of multiple entities, each playing a defined role within its respective regulatory framework. The structure is designed to provide investors with Singapore-jurisdiction legal rights while maintaining efficient access to Asian asset economics.
+The structure below is the target design. It is intended to give investors Singapore-jurisdiction legal rights while retaining access to Korean asset economics. No box in this diagram has been incorporated.
 
 ```
 ┌────────────────────────────────────────────────────────────────┐
 │                       INVESTOR LAYER                             │
-│  Institutional and Accredited Investors                          │
-│  (Holding ERC-3643 RWA Tokens in registered wallets)            │
+│  Institutional and Accredited Investors — none today             │
+│  (Testnet holders of an ERC-7943 uRWA token)                    │
 └────────────────────────────┬───────────────────────────────────┘
 │ Beneficial interest in
 │ VCC sub-fund
@@ -19,24 +21,23 @@ OmniFlow's legal structure is composed of multiple entities, each playing a defi
 │                  SINGAPORE ISSUANCE LAYER                        │
 │                                                                  │
 │  ┌──────────────────────────────────────────────────────────┐   │
-│  │  OmniFlow VCC (Variable Capital Company)                 │   │
-│  │  └─ Sub-Fund A — Tier 1 Korea Prime Income               │   │
-│  │  └─ Sub-Fund B — Tier 2 Korea Growth Plus                │   │
-│  │  └─ Sub-Fund C — Tier 3 Korea Alpha Opportunity          │   │
-│  │  └─ Sub-Fund D — Tier 4 Korea Core REIT (Phase 3)        │   │
+│  │  OmniFlow VCC (Variable Capital Company) — not formed     │   │
+│  │  └─ Sub-Fund A — Tier 1 Listed REIT Income               │   │
+│  │  └─ Sub-Fund B — Tier 2 Korea Logistics Income           │   │
+│  │  └─ Sub-Fund C — Tier 3 Senior Development Credit        │   │
+│  │  └─ Sub-Fund D — Tier 4 Opportunistic Credit             │   │
 │  │                                                           │   │
-│  │  Operated by: [TBD — Partner LFMC] (Phase 1)             │   │
-│  │  Operated by: OmniFlow LFMC Pte. Ltd. (Phase 2)          │   │
+│  │  Operator: a licensed fund manager — not engaged         │   │
 │  └──────────────────────────────────────────────────────────┘   │
 │                                                                  │
 │  ┌──────────────────────────────────────────────────────────┐   │
 │  │  OmniFlow Pte. Ltd. (Singapore Operating Company)        │   │
-│  │  Protocol operations, technology, IR, partner management │   │
+│  │  Intended holder of technology IP and protocol ops       │   │
 │  └──────────────────────────────────────────────────────────┘   │
 │                                                                  │
 │  ┌──────────────────────────────────────────────────────────┐   │
 │  │  OmniFlow Foundation (Cayman, Phase 2+)                  │   │
-│  │  $OMNI token issuance and governance                     │   │
+│  │  $OMNI token issuance and governance — not active        │   │
 │  └──────────────────────────────────────────────────────────┘   │
 └────────────────────────────┬───────────────────────────────────┘
 │ Limited partnership
@@ -46,37 +47,38 @@ OmniFlow's legal structure is composed of multiple entities, each playing a defi
 │                ASSET JURISDICTION LAYER (KOREA)                  │
 │                                                                  │
 │  ┌──────────────────────────────────────────────────────────┐   │
-│  │  Korean Real Estate Fund (REF)                           │   │
-│  │  Per-deal vehicle, holds underlying real estate or       │   │
+│  │  Korean Real Estate Fund (REF) — not established         │   │
+│  │  Per-deal vehicle, intended to hold real estate or       │   │
 │  │  real estate-backed credit positions                     │   │
 │  │                                                           │   │
-│  │  Operated by: [TBD — Partner Korean AMC] (Phase 1-2)     │   │
-│  │  Operated by: OmniFlow Korea AMC (Phase 3+)              │   │
+│  │  Operator: a Korean AMC — not engaged                    │   │
 │  └──────────────────────────────────────────────────────────┘   │
 │                                                                  │
 │                         ┌─────────────┐                          │
 │                         │             ▼                          │
 │  ┌───────────────────────────────────────────────────────────┐  │
-│  │  Underlying Assets                                         │  │
-│  │  Prime offices, logistics centers, hotels, PF loans,      │  │
-│  │  bridge loans, NPLs, REIT beneficial interests            │  │
+│  │  Underlying Assets — none acquired                        │  │
+│  │  Target sector is Seoul Capital Area logistics at a       │  │
+│  │  5.80% going-in cap                                       │  │
 │  └───────────────────────────────────────────────────────────┘  │
 └──────────────────────────────────────────────────────────────────┘
 ```
 
 ## Entity Roles
 
-**OmniFlow VCC (Singapore Variable Capital Company).** The primary issuance vehicle. Each product tier corresponds to a separate sub-fund within the VCC, providing legal segregation between products. The VCC structure is purpose-built for fund operations under Singapore law and provides tax-transparent treatment for cross-border investors who qualify under the Singapore-jurisdiction tax exemption framework.
+Each role below describes what the entity is intended to do. None has been incorporated, licensed or engaged.
 
-**OmniFlow Pte. Ltd. (Singapore Operating Company).** The protocol's operating entity. Holds technology IP, employs Singapore-based staff, manages partner relationships, conducts investor relations, and operates the protocol's day-to-day functions. This entity does not directly issue securities and does not require a CMS license; the LFMC partner (Phase 1) or OmniFlow's own LFMC subsidiary (Phase 2+) holds the regulated function.
+**OmniFlow VCC (Singapore Variable Capital Company).** The intended issuance vehicle. Each product tier would correspond to a separate sub-fund, providing legal segregation between products. The VCC is purpose-built for fund operations under Singapore law. No VCC has been incorporated and no sub-fund exists.
 
-**OmniFlow LFMC Pte. Ltd. (Capital Markets Services Licensee, Phase 2+).** OmniFlow's own MAS-licensed Capital Markets Services Licensed Fund Management Company. Phase 1 fund operations are conducted under partnership with an established LFMC; OmniFlow's CMS A/I LFMC application is targeted for completion in Phase 2 following operational scale milestones.
+**OmniFlow Pte. Ltd. (Singapore Operating Company).** The intended operating entity, holding technology IP and running the protocol's day-to-day functions. It would not itself issue securities and would not require a CMS licence; the regulated function would sit with a licensed fund manager.
 
-**OmniFlow Foundation (Cayman Foundation Company, Phase 2+).** A non-profit foundation with no beneficial owners that issues the $OMNI governance token, deploys protocol smart contracts, and manages the protocol treasury. The Foundation structure is the standard for permissioned DeFi protocols and provides separation between protocol governance and operating company commercial activities. The Foundation is not active prior to Phase 2.
+**OmniFlow LFMC Pte. Ltd. (Capital Markets Services Licensee, Phase 2+).** A future MAS-licensed fund management company. No CMS licence is held and no application has been filed. Earlier phases would depend on a licensed fund manager acting as operator — none has been engaged.
 
-**Korean Real Estate Fund (REF).** A Korean fund vehicle established under the Financial Investment Services and Capital Markets Act and managed by a MOLIT-licensed Korean Asset Management Company. Each deal typically corresponds to a dedicated REF, providing asset-level segregation. The OmniFlow VCC sub-fund holds limited partnership interests in the relevant REF.
+**OmniFlow Foundation (Cayman Foundation Company, Phase 2+).** A future non-profit foundation intended to issue the $OMNI governance token and hold protocol governance separate from operating-company activity. The Foundation does not exist, the $OMNI token does not exist, and there is no token sale of any kind.
 
-**OmniFlow Korea AMC (Phase 3+).** OmniFlow's own Korean Asset Management Company. Phase 1 and Phase 2 deals are managed by partner Korean AMCs; OmniFlow's acquisition of a Korean AMC is targeted for Phase 3, enabling full vertical integration of deal sourcing through asset management.
+**Korean Real Estate Fund (REF).** A Korean fund vehicle that would be established under the Financial Investment Services and Capital Markets Act and managed by a MOLIT-licensed Korean Asset Management Company. Each deal would correspond to a dedicated REF. No REF has been established.
+
+**OmniFlow Korea AMC (Phase 3+).** A future Korean Asset Management Company, contemplated for vertical integration of deal sourcing and asset management. No acquisition target has been identified.
 
 ## Chain of Legal Rights
 
@@ -96,9 +98,9 @@ Korean REF Beneficial Certificate (Korea)
 Underlying Real Estate or Loan Asset
 ```
 
-The on-chain RWA token is a cryptographic representation of the investor's beneficial interest in the VCC sub-fund. The legal source of truth for ownership is the VCC sub-register, maintained by the LFMC under MAS oversight. The on-chain token mirrors this register through the reconciliation process described in Architecture Overview.
+This chain is the design, not the current state. None of its four links exists: the token is deployed on testnet only, there is no VCC sub-fund, no Korean REF, and no underlying asset.
 
-In the event of any inconsistency between the on-chain state and the VCC sub-register, the VCC sub-register prevails as the legal record. OmniFlow operates reconciliation processes designed to prevent such inconsistencies and to detect them immediately if they arise.
+In the intended structure, the on-chain RWA token would be a cryptographic representation of the investor's beneficial interest in the VCC sub-fund. The legal source of truth for ownership would be the VCC sub-register, maintained by the licensed fund manager. Where on-chain state and the sub-register disagreed, the sub-register would prevail as the legal record, and the reconciliation process described in Architecture Overview would exist to prevent and detect such disagreement. No sub-register exists today, so nothing is currently being reconciled.
 
 ## Why Singapore VCC
 
@@ -108,42 +110,35 @@ The Singapore Variable Capital Company structure was selected for the following 
 
 - **Cross-border efficiency.** Singapore's network of double-tax treaties (including the Korea-Singapore treaty, under which dividend income to a qualifying Singapore resident is withheld at 15% rather than the 22% domestic rate) provides tax-efficient access to Asian asset economics.
 
-- **Sub-fund segregation.** Each product is structured as a separate sub-fund, providing legal segregation of assets and liabilities between products.
+- **Sub-fund segregation.** Each product would be structured as a separate sub-fund, providing legal segregation of assets and liabilities between products.
 
 - **Jurisdictional acceptance.** Singapore is a top-tier financial jurisdiction recognized by global institutional investors for compliance and dispute resolution standards.
 
-- **Token issuance compatibility.** VCC sub-fund interests can be issued in tokenized form under MAS guidance, with the on-chain representation legally enforceable as beneficial interest.
+- **Token issuance compatibility.** VCC sub-fund interests are capable of being issued in tokenized form. Whether a given on-chain representation is legally enforceable as beneficial interest is a question for counsel, and OmniFlow has not obtained an opinion on it.
 
 ## Why Not Tokenize the Korean REF Directly
 
-Direct tokenization of Korean REF beneficial certificates would conflict with Korean securities law (the Capital Markets Act and Electronic Securities Act). The VCC intermediary structure resolves this by ensuring that the tokenized instrument is the VCC sub-fund interest (under Singapore law), not the underlying Korean REF certificate. This structural choice has been the subject of formal legal opinions from Korean and Singapore counsel; summaries are provided to qualified investors under NDA.
+Direct tokenization of Korean REF beneficial certificates would conflict with Korean securities law (the Capital Markets Act and Electronic Securities Act). The VCC intermediary structure is intended to resolve this by making the tokenized instrument the VCC sub-fund interest under Singapore law, rather than the underlying Korean REF certificate. This is OmniFlow's own structural reasoning. It has not been tested by counsel in either jurisdiction, and no legal opinion supports it.
 
-## Counterparty Disclosure
+## Counterparties
 
-The following counterparties are central to OmniFlow's legal structure. Specific entity identities for the Phase 1 partners are disclosed during institutional due diligence.
+The structure above depends on counterparties in the following roles. **None of these roles is filled.** No party has been engaged, appointed, retained, or placed under a letter of intent in any of them, and no negotiation is disclosed as being under way.
 
-| **Role** | **Entity** | **Status** |
-| --- | --- | --- |
-| Singapore CMS LFMC (Phase 1) | [TBD — Partner LFMC, disclosed under NDA] | Engaged |
-| Singapore MPI DPT (Phase 1) | [TBD — Partner MPI, disclosed under NDA] | Engaged |
-| Korean AMC (Phase 1) | [TBD — Partner Korean AMC, disclosed under NDA] | Engaged |
-| VCC Service Provider | [TBD] | [TBD] |
-| Korean Legal Counsel | [TBD] | [TBD] |
-| Singapore Legal Counsel | [TBD] | [TBD] |
-| Big 4 Auditor | [TBD] | [TBD] |
+| **Role** | **Status** |
+| --- | --- |
+| Singapore CMS LFMC | Not engaged |
+| Singapore MPI DPT provider | Not engaged |
+| Korean AMC | Not engaged |
+| VCC service provider | Not engaged |
+| Korean legal counsel | Not engaged |
+| Singapore legal counsel | Not engaged |
+| Auditor | Not engaged |
+| Fund administrator | Not engaged |
+| Custodian | Not engaged |
+| Independent valuer | Not engaged |
 
-Counterparty changes are announced in advance to investors. Adverse counterparty changes (loss of license, material adverse event) trigger immediate disclosure under the standard disclosed in Trust & Security.
+Engaging a counterparty in any of these roles would be disclosed here. Until then, this table should be read as the list of things that still have to happen before OmniFlow can accept a single dollar.
 
 ## Legal Opinions
 
-The following legal opinions support OmniFlow's legal structure. Full opinions are available to qualified institutional investors under NDA.
-
-| **Opinion Subject** | **Counsel** | **Issued** | **Status** |
-| --- | --- | --- | --- |
-| Singapore VCC structure and SFA §274/§275 exemptions | [TBD — Singapore counsel] | [TBD] | [TBD] |
-| Korean cross-border structure and securities law applicability | [TBD — Korean counsel] | [TBD] | [TBD] |
-| Korea-Singapore tax treaty application | [TBD — Tax counsel] | [TBD] | [TBD] |
-| MAS Digital Token Guidance applicability to RWA tokens | [TBD — Singapore counsel] | [TBD] | [TBD] |
-| $OMNI token classification (Phase 2+) | [TBD] | [TBD] | [TBD] |
-
-Updates to legal opinions following regulatory changes or structural modifications are reflected in this list.
+**No legal opinion has been commissioned or obtained on any aspect of this structure.** That includes the Singapore VCC structure, the SFA §274/§275 exemption basis, the Korean cross-border analysis, the tax treaty position, and the classification of any token. The structural reasoning on this page is OmniFlow's own and has not been validated by counsel.

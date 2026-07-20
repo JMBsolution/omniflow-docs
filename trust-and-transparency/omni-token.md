@@ -1,20 +1,20 @@
 # The OMNI Token
 
-The $OMNI token is the protocol governance and value capture mechanism for OmniFlow.
+The $OMNI token is a Phase 2+ design. It has not been issued and nothing on this page is active today.
 
-**Important:** The $OMNI token is distinct from OmniFlow's RWA tokens. RWA tokens (ERC-3643) represent beneficial interest in tokenized real-world assets and are securities subject to private placement exemptions. The $OMNI token is a governance and utility token issued by the OmniFlow Foundation. The two token types serve different purposes and are governed by different documentation.
+**Important:** The $OMNI token is distinct from OmniFlow's RWA tokens. RWA tokens (ERC-7943 uRWA, deployed on Base Sepolia testnet) represent beneficial interest in tokenized real-world assets and are intended to be issued as securities under private placement exemptions. The $OMNI token would be a governance and utility token issued by the OmniFlow Foundation, which has not been established. The two token types serve different purposes and are governed by different documentation.
 
-## What $OMNI Is
+## What $OMNI Is Intended to Be
 
-$OMNI is a governance and protocol-utility token that:
+$OMNI is designed as a governance and protocol-utility token that would:
 
-- Serves as the operating bond for AI agents under the KYA Framework
+- Serve as the operating bond for AI agents under the KYA Framework. No bond mechanism is implemented and no bond has been posted in any denomination
 
-- Provides governance rights over non-constitutional protocol parameters (Phase 2+)
+- Provide governance rights over non-constitutional protocol parameters
 
-- Captures protocol value through an automated on-chain buyback-and-burn funded by protocol fee revenue — agent micropayments, API tier subscriptions, and secondary market fees — with a target allocation of 90% of net protocol fee revenue to buybacks. Fund management economics are excluded from the buyback pool. The parameter is subject to legal review and activates with the Foundation in Phase 2
+- Provide fee discount tiers for protocol services, including Settlement Layer agent payments (see [Settlement Layer](../for-ai-agents/settlement-layer.md))
 
-- Provides fee discount tiers for protocol services, including Settlement Layer agent payments (Phase 2+ activation; see [Settlement Layer](../for-ai-agents/settlement-layer.md))
+A buyback-and-burn value-capture mechanism has been discussed but no parameters are set, and there is no protocol fee revenue to fund one.
 
 ## What $OMNI Is Not
 
@@ -24,22 +24,22 @@ $OMNI is not:
 
 - A claim on OmniFlow Pte. Ltd. equity
 
-- A security under OmniFlow's current legal analysis
-
 - A representation of any underlying real estate or fund interest
+
+- Available for purchase. There is no sale, private or public, and no allocation or distribution has taken place
+
+Its classification under Singapore law has not been determined by external counsel.
 
 ## Where to Learn More
 
-Full $OMNI tokenomics, governance scope, distribution mechanics, and value accrual architecture are documented in the dedicated $OMNI Foundation documentation site:
+Full $OMNI tokenomics, governance scope, distribution mechanics, and value accrual architecture would be documented on a dedicated $OMNI Foundation documentation site:
 
-**Foundation Documentation:**[docs.omniflow.foundation](https://docs.omniflow.foundation) *(Phase 2+ — site activated upon Foundation establishment)*
+**Foundation Documentation:**[docs.omniflow.foundation](https://docs.omniflow.foundation) *(Phase 2+ — site activated upon Foundation establishment; not live today)*
 
-The $OMNI token is issued and governed by the OmniFlow Foundation, a Cayman Foundation Company that is operationally independent from OmniFlow Pte. Ltd. The Foundation maintains its own documentation, legal terms, and disclosure standards.
+Under the intended structure, the $OMNI token would be issued and governed by the OmniFlow Foundation, a Cayman Foundation Company operationally independent from OmniFlow Pte. Ltd., maintaining its own documentation, legal terms, and disclosure standards. That Foundation has not been established.
 
 ## Phase Status
 
-**Status:** $OMNI Foundation has not yet been established. $OMNI token has not been issued. KYA agent operating bonds in Phase 1 are denominated in stablecoins as a transitional measure pending Foundation establishment in Phase 2. **Last updated:** [TBD]
+**Status:** The $OMNI Foundation has not been established. The $OMNI token has not been issued, sold, or allocated. No KYA agent operating bond exists in any denomination; see [KYA Framework](../for-ai-agents/kya-framework.md).
 
-For more information on the protocol's roadmap, see Roadmap.
-
-For inquiries regarding the $OMNI Foundation, contact foundation@omniflow.foundation *(activated Phase 2+)*.
+The foundation@omniflow.foundation address is not monitored prior to Phase 2.

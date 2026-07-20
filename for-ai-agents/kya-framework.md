@@ -1,18 +1,22 @@
 # KYA Framework
 
-KYA — Know Your Agent — is OmniFlow's verification framework for AI agents that participate as investors. KYA is parallel to KYC and shares the same regulatory objectives: establishing accountable identity, screening for sanctions and prohibited activity, and creating an audit trail for compliance reporting.
+KYA — Know Your Agent — is OmniFlow's proposed verification framework for AI agents that participate as investors. It is parallel to KYC and shares the same objectives: establishing accountable identity, screening for sanctions and prohibited activity, and creating an audit trail.
 
-KYA is OmniFlow's own framework. It is not a regulatory standard adopted by MAS or any other authority. The framework is designed to satisfy the spirit and substance of MAS PSN02 AML/CFT requirements as applied to agent-mediated capital flows, by ensuring that every agent action has a verifiable, accountable principal.
+**KYA is a design. It is not built.** No agent has been verified, no principal has been onboarded, no bond has been posted in any denomination, and no slashing or kill-switch contract exists. The only related component deployed is an eligibility register on Base Sepolia testnet, which gates transfers of the RWA token; entries in it are workflow decisions recorded for the demonstration, not verifications of identity.
+
+KYA is also OmniFlow's own framework, not a regulatory standard adopted by MAS or any other authority. OmniFlow holds no licence of any kind. The framework is drafted with MAS PSN02 AML/CFT objectives in mind, but it has not been reviewed by a regulator or by counsel.
+
+The rest of this page describes the intended design.
 
 ## KYA Principles
 
 OmniFlow's KYA framework rests on three principles:
 
-**Principle 1 — Agents Have Principals.** Every agent on OmniFlow has a verified principal — a human individual or institutional entity that has passed KYC or KYB. The principal is legally and operationally accountable for the agent's actions. There is no "anonymous agent" tier.
+**Principle 1 — Agents Have Principals.** Every agent would have a verified principal — a human individual or institutional entity that has passed KYC or KYB — legally and operationally accountable for the agent's actions. No "anonymous agent" tier.
 
-**Principle 2 — Authority Is Scoped Cryptographically.** Agents operate under permissions that are enforced at the smart contract level, not merely declared in a contract. An agent's position limit, asset class restrictions, and rate limits cannot be exceeded even if the agent's runtime is compromised.
+**Principle 2 — Authority Is Scoped Cryptographically.** The intent is that an agent's position limit, asset class restrictions, and rate limits are enforced on chain rather than merely declared, so that they hold even if the agent's runtime is compromised. No such enforcement exists today. The deployed contracts do not check agent authority at all: `RwaToken.issue()` carries no access control, so an eligible wallet holding a subscription certificate could in principle mint itself fund tokens. Closing that gap is outstanding work.
 
-**Principle 3 — Misbehavior Is Bonded.** Each agent operates against a $OMNI operating bond posted by the principal. Defined classes of misbehavior — unauthorized transactions, attempts to bypass position limits, violations of OmniFlow protocol rules — result in slashing of the bond. The bond aligns the principal's incentives with the agent's good behavior.
+**Principle 3 — Misbehavior Is Bonded.** The design calls for an operating bond posted by the principal, with defined classes of misbehavior resulting in slashing. No bond mechanism is implemented. The $OMNI token, in which a bond would eventually be denominated, is Phase 2+ and is not active.
 
 ## Three-Layer Identity Stack
 
@@ -31,7 +35,7 @@ Tier 3 — Agent Identity
 AI agent runtime with code attestation and bond
 ```
 
-Each tier is independently verifiable on-chain. The Principal can revoke Custodial authority, and Custodial can revoke Agent authority, at any time through signed revocation transactions.
+In the design, each tier is independently verifiable on chain, and the Principal can revoke Custodial authority — and Custodial the Agent's — through signed revocation transactions. None of the three tiers is implemented.
 
 ## KYA Onboarding Workflow
 
@@ -41,29 +45,20 @@ Each tier is independently verifiable on-chain. The Principal can revoke Custodi
 | 2 | Custodial Designation | Wallet address, custody arrangement (self-custody, MPC, qualified custodian) |
 | 3 | Agent Registration | Agent code repository or hash, runtime environment description, intended strategy |
 | 4 | Permission Scoping | Position limits, asset class restrictions, rate limits, kill switch threshold |
-| 5 | Bond Posting | $OMNI operating bond deposit, sized to agent's authorized position limit |
+| 5 | Bond Posting | Operating bond deposit, sized to agent's authorized position limit |
 | 6 | Permission Grant | Principal signs grant transaction; Agent receives scoped authority |
 
-The end-to-end KYA process typically takes 7 to 14 business days following completion of Principal KYC/KYB.
+No step of this workflow is implemented, and no processing time is quoted because none has been observed.
 
-## Operating Bond — Sizing and Mechanics
+## Operating Bond
 
-The operating bond is denominated in $OMNI tokens and sized as a percentage of the agent's authorized position limit. The current parameters:
+The design calls for an operating bond posted by the principal and sized as a percentage of the agent's authorized position limit, held in a non-custodial slashing contract with the principal retaining ownership.
 
-| **Authorized Position Limit** | **Operating Bond Requirement** |
-| --- | --- |
-| Up to $1M | 0.5% of position limit |
-| $1M to $10M | 0.4% of position limit |
-| $10M to $100M | 0.3% of position limit |
-| Above $100M | 0.25% of position limit |
-
-Bond requirements are subject to adjustment by protocol governance based on observed agent behavior, slashing event history, and overall protocol risk parameters.
-
-The bond is held in a non-custodial slashing contract. The Principal retains ownership of the bond and may withdraw the bond at any time, subject to a 30-day notice period during which the agent's authority is wound down.
+Bond sizing parameters, the notice period for withdrawal, and the denomination are not settled and are therefore not published. No slashing contract has been written.
 
 ## Slashing Conditions
 
-The bond is subject to slashing under defined misbehavior conditions:
+The design contemplates slashing under the following misbehavior conditions:
 
 - **Unauthorized asset class.** Agent attempts to execute a transaction outside its permitted asset classes.
 
@@ -75,38 +70,28 @@ The bond is subject to slashing under defined misbehavior conditions:
 
 - **Sanctioned counterparty interaction.** Agent attempts to interact with a wallet on the protocol-maintained sanctions list.
 
-Slashing is executed automatically by the protocol when violation conditions are detected on-chain. Slashed amounts are sent to the OmniFlow safety reserve. The Principal retains the residual bond after the slashed amount is removed.
-
-Severe or repeated violations result in agent permission revocation in addition to bond slashing.
+Under the design, slashing executes when violation conditions are detected on chain, and severe or repeated violations revoke agent permissions in addition to slashing. Detection, slashing, and the destination of slashed amounts are all unimplemented.
 
 ## Kill Switch
 
-Each agent registration includes a kill switch — a signed transaction the Principal can submit at any time to immediately revoke the agent's authority. Kill switch execution is confirmed within one block of submission. After kill switch, the agent cannot execute new transactions; existing positions are unaffected and can be managed by the Principal directly.
+The design includes a kill switch — a signed transaction the Principal can submit to revoke the agent's authority, after which the agent cannot execute new transactions while existing positions remain manageable by the Principal directly. No kill switch is implemented, and no execution latency is quoted because none has been measured.
 
 ## Compliance and Audit Trail
 
-All agent actions are recorded on-chain with attribution to the agent's identity and, transitively, to the Principal. OmniFlow's compliance system aggregates this into:
+The design records agent actions on chain with attribution to the agent and, transitively, to the Principal, aggregated into a transaction summary, a violation log, a slashing history, and a permission grant and revocation history.
 
-- Daily transaction summary per agent
-
-- Violation event log
-
-- Bond slashing history
-
-- Permission grant and revocation history
-
-Compliance reports are available to Principals through the institutional dashboard and are used for OmniFlow's MAS reporting obligations.
+What exists today is narrower: the demonstration keeps an append-only event log of workflow steps in the off-chain operator application. There is no compliance reporting system, no investor dashboard delivering reports, and no regulatory reporting obligation, because OmniFlow holds no licence and is not a reporting entity.
 
 ## Limitations and Honest Acknowledgments
 
-KYA is OmniFlow's own framework, not a regulatory standard. The framework's effectiveness depends on:
+The most important acknowledgment is the one at the top of this page: KYA is a design, and an unbuilt design protects nobody. Assuming it were built, its effectiveness would still depend on:
 
 - **Principal accountability.** A Principal who provides false KYC information undermines the entire chain. Standard KYC controls apply.
 
 - **Correct permission scoping.** A Principal who grants overly broad permissions assumes elevated risk. OmniFlow provides guidance but cannot prevent overly permissive grants.
 
-- **Bond adequacy.** The operating bond is sized to deter misbehavior, not to fully indemnify against losses. Bond sizing parameters are subject to ongoing calibration.
+- **Bond adequacy.** A bond sized to deter misbehavior does not fully indemnify against losses.
 
-- **Detection completeness.** Slashing depends on detection of violations. OmniFlow operates monitoring systems but cannot guarantee detection of all possible misbehavior classes.
+- **Detection completeness.** Slashing depends on detecting violations, and no monitoring system can be assumed to catch every class of misbehavior.
 
-KYA is a framework that meaningfully reduces agent-related risk relative to ungated agent participation in DeFi. It is not a guarantee of agent good behavior or of investor protection from agent-induced losses.
+KYA is intended to reduce agent-related risk relative to ungated agent participation in DeFi. It would not be a guarantee of agent good behavior or of investor protection from agent-induced losses, and as an unimplemented design it currently provides neither.

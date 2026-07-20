@@ -1,6 +1,8 @@
 # Onboarding & KYB
 
-OmniFlow accepts only verified institutional and accredited investors. The onboarding process is designed to meet the requirements of MAS PSN02 (AML/CFT), FATF recommendations, and the Singapore Securities and Futures Act §274/§275 exemptions. The same onboarding process applies regardless of which product or asset category the investor subscribes to.
+This page sets out the onboarding standard OmniFlow is designed against: verified institutional and accredited investors only, with the process drawn against MAS PSN02 (AML/CFT), FATF recommendations, and the Singapore Securities and Futures Act §274/§275 exemptions.
+
+**No investor has been onboarded.** This is a requirements specification, not a description of a desk in operation. The build records an onboarding decision; it does not perform identity verification, sanctions screening or document forensics, and no licensed vendor is engaged to perform them. Read the sections below as what a live deployment would require.
 
 ## Required Documents — Institutional Investors
 
@@ -58,28 +60,30 @@ For individual investors qualifying under SFA §4A as Accredited Investors, the 
 
 ## Verification Workflow
 
-| **Step** | **Activity** | **Typical Duration** |
+| **Step** | **Activity** | **Target Duration** |
 | --- | --- | --- |
-| 1 | Initial inquiry and preliminary eligibility check | 1–2 days |
-| 2 | KYB document submission and entity verification | 3–7 days |
-| 3 | AML/CFT screening (sanctions, PEP, adverse media) | 1–3 days |
-| 4 | AI/II eligibility certification | 1–2 days |
+| 1 | Initial inquiry and preliminary eligibility check | Same day – 1 day |
+| 2 | KYB document submission and entity verification | 1–2 days |
+| 3 | AML/CFT screening (sanctions, PEP, adverse media) | Same day – 1 day |
+| 4 | AI/II eligibility certification | 1 day |
 | 5 | Subscription agreement execution | 1–3 days |
 | 6 | RWA token issuance (after settlement) | 5–7 days |
 
-Total elapsed time from initial inquiry to RWA token receipt: typically 12 to 24 business days for institutional investors and 7 to 14 business days for accredited individuals.
+Onboarding proper — steps 1 through 4, corresponding to step 01 of the settlement workflow — carries a target of **2 to 5 days**, which is what those four rows sum to. It is reported separately from settlement because it happens once per investor rather than once per subscription. Steps 5 and 6 sit inside the settlement cycle rather than inside onboarding: settlement, from payment received to token issued, targets **12 to 19 calendar days**. See Investment Flow.
+
+These are targets in a model. No onboarding has been run against them, so there is no observed elapsed time to report.
 
 ## Document Submission
 
-All documents are submitted through OmniFlow's secure investor portal. Document upload is encrypted in transit and at rest. Multilingual documents are accepted; OmniFlow performs OCR-based information extraction on Arabic, Chinese, Indonesian, Malay, Thai, and major European languages, and may request certified English translations for specific clauses where ambiguity exists.
+Documents would be submitted through the investor application, with the compliance review queue held in a separate operator application that is not part of the public build. The submission and review surfaces are not built.
 
-Document authenticity is verified through a combination of (a) cross-verification against official corporate registries (where available), (b) third-party document forensic analysis, and (c) where appropriate, direct verification with the issuing authority.
+Document authenticity would be established by cross-verification against official corporate registries where available, third-party document forensic analysis, and direct verification with the issuing authority where appropriate. None of these checks is implemented, and no forensics or registry-verification vendor is engaged.
 
 ## Risk Classification
 
-After verification, each investor is assigned a risk classification of Standard or Enhanced. Enhanced classification triggers additional due diligence and may include:
+After verification, each investor would be assigned a risk classification of Standard or Enhanced. Enhanced classification triggers additional due diligence and may include:
 
-- Engagement of a third-party EDD provider (Waystone, Acuity, or equivalent)
+- Engagement of a third-party enhanced due diligence provider
 
 - Additional source-of-funds documentation
 
@@ -87,17 +91,21 @@ After verification, each investor is assigned a risk classification of Standard 
 
 - Periodic re-verification at intervals shorter than the standard annual schedule
 
-Risk classification is internal and is not disclosed to the investor; however, any incremental documentation requirements are communicated through the relationship manager.
+Risk classification is internal and would not be disclosed to the investor; any incremental documentation requirement would be communicated directly.
 
 ## Periodic Re-Verification
 
-KYC/KYB is not a one-time event. OmniFlow re-screens all active investors against updated sanctions lists on a continuous basis, and conducts full re-verification at least annually. Investors are required to notify OmniFlow promptly of material changes to corporate structure, beneficial ownership, or contact information.
+KYC/KYB is not intended as a one-time event. The design calls for continuous re-screening of active investors against updated sanctions lists, full re-verification at least annually, and an obligation on investors to report material changes to corporate structure, beneficial ownership, or contact information.
+
+There are no active investors and no screening is running. Continuous screening requires a sanctions data vendor, which is not engaged.
 
 ## Restricted Persons
 
-OmniFlow does not onboard:
+The global track excludes:
 
-- Residents of jurisdictions whose securities laws may apply extraterritorially to the underlying asset offering — this list is determined per asset category and is currently configured to exclude residents of South Korea for Korean asset products, on the same principle that future asset categories may exclude residents of their respective asset jurisdictions
+- **Korean entities and residents.** South Korea is restricted on the global track without exception. Nothing is offered to anyone today, and the global track would exclude Korean persons if it opened; a separate Korean track is dated to the commencement of Korea's token-securities regime on **2027-02-04** and is not built. Korea appears on this page as restricted and nowhere as accepted.
+
+- Residents of other jurisdictions whose securities laws may apply extraterritorially to the underlying asset offering — determined per asset category, on the same principle that future asset categories may exclude residents of their respective asset jurisdictions
 
 - Residents of jurisdictions where the offering of private placement securities to local persons is prohibited
 
@@ -107,7 +115,7 @@ OmniFlow does not onboard:
 
 ## Onboarding Refusal
 
-OmniFlow reserves the right to decline onboarding without disclosed cause, in line with standard institutional banking and asset management practice. Common bases for refusal include:
+OmniFlow reserves the right to decline onboarding without disclosed cause, in line with standard institutional banking and asset management practice. Anticipated bases for refusal include:
 
 - Unverifiable beneficial ownership
 
@@ -121,4 +129,4 @@ OmniFlow reserves the right to decline onboarding without disclosed cause, in li
 
 Where a decision can be communicated, the prospective investor is informed and may withdraw without prejudice.
 
-For a complete eligibility determination, contact compliance@omniflow.xyz with a brief description of the investor entity and jurisdiction.
+OmniFlow has no compliance function and cannot render an eligibility determination today. For diligence questions, contact partners@omniflow.xyz.
