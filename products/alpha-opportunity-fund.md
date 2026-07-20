@@ -1,6 +1,22 @@
 # Korea Alpha Opportunity Fund (Tier 3)
 
-High-yield exposure to mezzanine PF, bridge loans, and non-performing loans. Target net yield of 9–12% per annum. **High risk.**
+Exposure to Korean mezzanine project finance, bridge lending, and non-performing loans. **High risk. Return target withheld pending underwriting** — the previously published 9–12% has been withdrawn and is not replaced with another number.
+
+## Why No Target Is Published
+
+Korean mezzanine and junior project finance has no published pricing index and no audited, vintage-level realised return series in the public domain. We modelled the tier bottom-up on an assumed 13% gross coupon and arrived at roughly 7% net — and then discarded that figure, because it fails an external check that any allocator can run.
+
+The five licensed Korean NPL buyers are the incumbent professionals in this asset class. On audited consolidated figures they earned a median **levered** return on equity of 3.7% in 2023, 5.3% in 2024 and approximately 8.7% annualised in 2025, at four to five and a half times leverage. The market leader returned 0.7% in the 2023 stress year. We do not consider an unlevered offshore vehicle, without origination or servicing infrastructure in Korea, capable of exceeding those returns, and we will not publish a target that implies otherwise.
+
+We will publish a target when we can evidence loss experience rather than model it.
+
+## Three Things Commonly Misstated About This Market
+
+**Discount to face.** Secured Korean bank NPL pools cleared at roughly 71% of unpaid principal in 2025 and 87% in 2023. Any pitch implying deep discounts is describing a different market. Note also that 매각가율 is a *purchase price* ratio and is not a recovery rate; the two are routinely conflated.
+
+**Headline IRRs.** The widely circulated 27% figure comes from a single-asset fund liquidated four months after launch and annualised. It is a marketing artifact, not a return series.
+
+**Impairment grades are not losses.** Regulatory assessments putting bridge-loan impairment above 20% and land-backed lending near 37% are point-in-time classifications, not realised loss-given-default. No public loss series exists for Korean junior or mezzanine tranches — which is precisely why we are not publishing a target.
 
 ## What It Is
 
@@ -33,7 +49,7 @@ The fund pursues four primary deal types:
 
 |  |  |
 | --- | --- |
-| **Target Net Yield** | 9–12% per annum |
+| **Net Yield Target** | Withheld pending underwriting. Previous 9–12% withdrawn |
 | **Minimum Investment** | SGD 500,000 |
 | **Term** | 1–3 years |
 | **Distribution Frequency** | Deal-by-deal at realization |

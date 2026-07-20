@@ -1,6 +1,24 @@
 # Korea Growth Plus Fund (Tier 2)
 
-Income with capital appreciation upside through senior PF lending and value-add acquisitions. Target net yield of 8–9% per annum.
+Income from senior Korean project-finance lending. **Estimated net distribution yield 3.5–4.5% per annum, and the estimate rests on assumptions we could not source.** The previously published 8–9% target has been withdrawn.
+
+## Why the Target Was Withdrawn
+
+Re-deriving this tier from sourced inputs produced approximately 3.8% net, not 8–9%. Working backwards, an 8.5% net figure would require roughly 12.5% gross at the Korean asset level after withholding — and nothing in Korea prices there except mezzanine and junior project finance, which is the Tier 3 mandate. Publishing 8–9% for a senior lending strategy would have described Tier 3 risk at a Tier 2 label.
+
+Two further corrections follow from the same work. The value-add equity sleeve has been removed from this tier: repositioning assets generate little distributable cash during the hold and their return is realised at exit, so they cannot back a product that pays a quarterly distribution. And the tier no longer describes its assets as "stabilised" or "near completion" — the Korean senior coupons that reach the high single digits are construction-phase bridge loans, a materially different risk.
+
+| **Line** | **Value** | **Basis** |
+| --- | --- | --- |
+| Gross senior term-PF coupon | 7.0% (6.5–7.5%) | **Assumption.** The most recent clean senior term-PF prints are from October 2024 in the 6% range, and they predate the Bank of Korea's July 2026 rate increase. No 2026 print could be sourced. This is the load-bearing input |
+| Less annualised credit loss | −1.00 pt | **Assumption, and probably too low.** Sector PF delinquency was 4.65% at March 2026 and the reported figure benefits from forbearance measures extended to end-2026 |
+| Less fund fee load on gross asset value | −1.25 pts | **Assumption.** No published fee schedule exists for Korean real-estate private debt funds |
+| Distributable at the Korean vehicle | 4.75% | |
+| Less Korean withholding at 15% | −0.71 pt → 4.04% | Distributions from a Korean collective investment vehicle are **dividend** income, not interest. The treaty's 10% interest rate is not available on this route |
+| Less VCC administration and conversion costs | −0.25 pt | **Assumption** |
+| **Estimated net distribution yield** | **~3.8% (band 3.5–4.5%)** | Confidence: low |
+
+An allocator should read this tier as unproven rather than as underwritten. We would rather publish the estimate with its weaknesses named than restate a figure we cannot support.
 
 ## What It Is
 
@@ -27,7 +45,7 @@ The fund deploys capital through two primary channels:
 
 |  |  |
 | --- | --- |
-| **Target Net Yield** | 8–9% per annum |
+| **Estimated Net Yield** | ~3.8% p.a. (band 3.5–4.5%), low confidence. Previous 8–9% target withdrawn |
 | **Minimum Investment** | SGD 200,000 |
 | **Term** | 2–4 years |
 | **Distribution Frequency** | Semi-annual |

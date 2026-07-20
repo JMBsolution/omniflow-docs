@@ -27,10 +27,22 @@ Investors hold tokenized representations of their VCC Sub-Fund interests. The VC
 
 | **Tier** | **Strategy** | **Asset Category** | **Illustrative Net Yield** | **Min. Investment** | **Term** | **Risk Profile** |
 | --- | --- | --- | --- | --- | --- | --- |
-| T1 | Prime Income | Korea | ≈5.5% p.a. — bridge published | SGD 200,000 | 3–5 yrs | Low |
-| T2 | Growth Plus | Korea | 8–9% p.a. — bridge not yet published | SGD 200,000 | 2–4 yrs | Moderate |
-| T3 | Alpha Opportunity | Korea | 9–12% p.a. — bridge not yet published | SGD 500,000 | 1–3 yrs | High |
-| T4 | Core REIT | Korea | 6–7% p.a. — bridge not yet published | SGD 200,000 | 7+ yrs | Low |
+| T1 | Prime Income | Korea | ≈5.5% p.a. | SGD 200,000 | 3–5 yrs | Low |
+| T2 | Growth Plus | Korea | ~3.8% p.a. (3.5–4.5%), low confidence | SGD 200,000 | 2–4 yrs | Moderate |
+| T3 | Alpha Opportunity | Korea | Withheld pending underwriting | SGD 500,000 | 1–3 yrs | High |
+| T4 | Core REIT | Korea | 4.5–5.1% p.a. | SGD 200,000 | 7+ yrs | Low |
+
+## This Is Not Currently a Risk Ladder
+
+All four tiers have now been re-derived from sourced inputs, and the result changes what the range means. On a net basis Tier 2 pays **less** than Tier 1 while taking more risk, and Tier 4 pays less than Tier 1 while adding daily mark-to-market. Tier 3 has no publishable target at all.
+
+We are stating that plainly rather than presenting four numbers that ascend on a page but not in reality. A product range that inverts once put on a net basis is a product problem, and it is ours to fix — by repricing, by restructuring, or by withdrawing tiers — not something to be managed through presentation. Until that work is done, **Tier 1 is the only tier we would put in front of an income-seeking allocator.**
+
+Two structural issues sit behind the numbers, and both are being addressed:
+
+**Tier 2 and Tier 3 currently underwrite the same risk.** To deliver its previously published 8–9%, Tier 2 would have needed roughly 12.5% gross at asset level — pricing that exists in Korea only in mezzanine and junior project finance, which is Tier 3's mandate. Selling one underwriting at two price points, described as two risk levels, is a disclosure problem and not a product range.
+
+**Tier 4's wrapper adds no return.** Korea abolished the Investment Registration Certificate in December 2023, so a foreign institution can now buy listed Korean REITs directly at its own treaty rate. Our wrapper offers settlement rails, aggregation and consolidated filing — operational benefits, not access value, and we no longer describe them as such.
 
 ## How to Read a Yield Figure
 
@@ -38,9 +50,11 @@ Every figure above is an objective, not a forecast and not a guarantee.
 
 **A net yield is only meaningful with its bridge.** The distance between an asset's cap rate and what reaches an investor is large, and most of it is not optional: financing cost, fund-level fees and expenses, and Korean withholding levied at source. Withholding in particular is deducted before money reaches the Singapore sub-fund — it is not an investor-level tax that can be set aside as a footnote, and any figure presented "before tax" for this structure overstates what an investor receives.
 
-**T1 has been re-derived from sourced inputs and its full bridge is published** on the Korea Prime Income Fund page, including the assumptions that could not be independently sourced. That re-derivation moved the figure down, and it also moved the strategy's emphasis: Korean senior debt prices at roughly 4.1%, above the Seoul prime office cap rate, so leverage on prime office adds no yield and the allocation now leads with logistics, which clears the debt cost.
+**Every tier now publishes its bridge** on its own page, including the assumptions that could not be independently sourced. Where the evidence does not support a number, we say so instead of estimating: Tier 3 publishes no target at all, and Tier 2 publishes its estimate with the load-bearing assumption named in the same sentence.
 
-**T2, T3 and T4 carry their original targets and have not yet been through the same exercise.** They should be read as indicative until their bridges are published. We would rather say that than restate them from figures we have not sourced.
+**One correction applies across every tier.** Distributions from a Korean collective investment vehicle reach a Singapore investor as *dividend* income, not as interest — so the Korea–Singapore treaty's 10% interest rate is not available on this route and 15% applies. Earlier material that assumed the interest rate overstated net yields. The 15% rate itself is not settled: whether a Singapore VCC sub-fund qualifies for treaty benefits appears untested, and there is an operational risk that Korean withholding agents apply 22% at source pending a refund claim.
+
+**And every model here rests on a rate environment that has just changed.** The Bank of Korea raised its base rate in July 2026, its first increase in three and a half years. Underwriting assumptions built on expected cuts — including the refinancing tailwind thesis common in Korean real-estate research — are stale, and figures on this page will be revisited.
 
 Actual returns will differ from any target based on asset performance, market conditions, vacancy and re-leasing, and the timing of distributions. Disposal is separately taxable in Korea and is not protected by the Korea–Singapore treaty.
 

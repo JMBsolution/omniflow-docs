@@ -1,6 +1,23 @@
 # Korea Core REIT Fund (Tier 4)
 
-Long-duration income from listed and managed REITs. Target net yield of 6–7% per annum. Available from Phase 3.
+Long-duration income from listed Korean REITs. Estimated **net** distribution yield of 4.5–5.1% per annum against a gross listed-market yield of approximately 7%. Available from Phase 3.
+
+## How the Yield Is Built
+
+| **Line** | **Value** | **Basis** |
+| --- | --- | --- |
+| Gross portfolio dividend yield | ~7.0% | Listed K-REIT market snapshot, June 2026 |
+| Less Korean withholding at the 15% treaty rate | −1.05 pts → 5.95% | Korea–Singapore treaty dividend article, inclusive of local income tax |
+| Less management fee on gross asset value | −0.75 pts → 5.20% | **Assumption — not independently sourced** |
+| Less VCC administration, audit and custody | −0.15 to −0.30 pts | **Assumption — obtain an administrator quote** |
+| **Estimated net distribution yield** | **4.9–5.1%** | |
+| Downside: Korean look-through rules apply and withholding is 22% | ~4.4–4.5% | |
+
+**Two things an allocator will notice, so we state them first.**
+
+This tier delivers *less* net income than Tier 1 while adding daily mark-to-market volatility. Listed REIT prices move with the equity market and with rates; the largest constituents have had drawdowns exceeding 20% over twelve months. Tier 1 does not mark daily. If income is the objective, Tier 1 is the better instrument.
+
+**The wrapper adds no return.** Korea abolished the Investment Registration Certificate in December 2023: a foreign institution can now buy listed Korean REITs directly, claiming its own treaty rate, without look-through exposure. Holding them through a Singapore VCC gives at best the same 15% and at worst 22%, plus fund administration, audit, directors and custody. What the wrapper does provide is stablecoin settlement rails, small-ticket aggregation below the size at which direct custody is practical, a single consolidated treaty filing, and centralised currency hedging. Those are operational benefits, not return enhancements, and we do not present them as access value.
 
 ## What It Is
 
@@ -20,14 +37,14 @@ The fund invests through two channels:
 
 | **Asset Type** | **Target Yield** |
 | --- | --- |
-| Listed Korean CR-REIT beneficial interests (publicly traded prime REITs) | 6–7% |
+| Listed Korean REIT shares (exchange-traded) | ~7% gross portfolio dividend yield |
 | OmniFlow-operated CR-REIT (Phase 3+, direct asset selection and management) | 6–7% |
 
 ## Product Terms
 
 |  |  |
 | --- | --- |
-| **Target Net Yield** | 6–7% per annum |
+| **Estimated Net Yield** | 4.5–5.1% per annum. The ~7% headline is a **gross** listed-market yield; see the bridge below |
 | **Minimum Investment** | SGD 200,000 |
 | **Term** | 7+ years |
 | **Distribution Frequency** | Quarterly |
