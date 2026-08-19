@@ -33,7 +33,22 @@ Per-Token Distribution =
 
 ÷ (Total Outstanding RWA Tokens for the Product)
 
-For the Korean asset, the local currency is KRW and the applicable withholding rate is **15%** — the Korea-Singapore treaty rate, inclusive of local income tax, subject to treaty benefit eligibility. For future asset categories, the equivalent local currency and treaty rates apply.
+For the Korean asset the local currency is KRW, and the withholding rate is published as a **band — 10% / 15% / 22% — with 15% as the central case.** Which rate applies is a structuring question that is not yet settled, and stating a single figure would imply a certainty we do not have.
+
+- **10%** — Article 10(2)(a) of the Korea-Singapore treaty, available only where the recipient is a **company directly owning at least 25% of the capital** of the company paying the dividend. Reaching it requires a **company-form Korean fund** and a holding at or above that threshold. That is the structure we intend to form, so 10% is the design target — not the published assumption.
+- **15%** — Article 10(2)(b), the portfolio rate, inclusive of Korean local income tax. **This is the central case in every published bridge**, because it is what applies if the 25% test is not met.
+- **22%** — the Korean domestic rate (20% plus a 10% local surtax) where treaty relief is unavailable or is denied pending a refund claim.
+
+Three dependencies sit behind this band and none is resolved. **First**, whether a distribution from a *trust-form* Korean fund is an Article 10 "dividend paid by a company" at all — the treaty defines a company as a body corporate, and trust-form holders take beneficiary certificates rather than capital. If it falls outside Article 10 it falls to Other Income, which carries no source-state cap. **Second**, whether a Singapore VCC sub-fund is accepted as the beneficial owner: Korea's default is to look through an offshore investment vehicle to its investors, in which case **there is no single net figure across a register** — holders resident in different jurisdictions can face different withholding on the same distribution, and any quoted net applies only to a single named holder profile. **Third**, whether Korean corporate tax applies at the fund level before withholding at all; it does unless the fund satisfies the dividend-paid-deduction distribution test, and a failure there would dwarf every rate above.
+
+**Preliminary structuring advice, 2026-08-19.** A first pass with a Korean structuring adviser gives working answers to all three, and they point the same way — toward a **company-form fund (회사형 REF)** rather than a trust.
+
+- **Character.** A company-form fund is expected to fall under the treaty's dividend article rather than Other Income, which is the difference between a capped rate and no source-state cap at all. This is the primary reason to prefer the company form.
+- **The 10% rate** is formally reachable with a company-form fund and a holding at or above the 25% threshold, and beneficiary interests are generally recognised as capital for that test — but it requires documentation that does not yet exist.
+- **Beneficial ownership is not automatic.** A Singapore VCC is not accepted as beneficial owner by default. It requires an IRAS tax residency certificate renewed annually, plus evidence of genuine substance. This is an operating obligation, not a one-time filing.
+- **Entity-level tax can be eliminated.** A company-form fund that distributes at least 90% of distributable income, and actually pays it, is expected to reach a 0% corporate rate. One structural condition attaches: **any disposal performance fee must be paid at the holding-vehicle level through the distribution waterfall, not charged inside the fund** — a fee charged inside the fund reduces distributable income and puts the 90% test, and therefore the 0% rate, at risk.
+
+None of this is yet documented, no entity is formed, and the adviser's answers are preliminary rather than a formal opinion. **So the published central case stays 15%, and 10% is recorded as the design target rather than an assumption.** Every published yield carries the band and not a point estimate until the structure exists and the documentation is in place. For future asset categories, the equivalent local currency and treaty rates apply.
 
 A live deployment would have this calculation performed by a fund accounting function, reviewed by a licensed fund manager, and audited annually. None of those parties is engaged, no audit of any kind has been performed, and no distribution statement has been produced.
 
