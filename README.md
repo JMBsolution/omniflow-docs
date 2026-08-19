@@ -10,7 +10,7 @@ Our first asset category is Korean logistics real estate and real estate-backed 
 
 The intended investor base is accredited and institutional capital allocators — family offices, treasury operators, multi-strategy funds, and sovereign wealth pools. Two agent-facing capabilities are built and run on Base Sepolia testnet: an x402 agent payment rail, and an MCP server exposing four tools. A KYA (Know Your Agent) workflow is designed to admit agents as first-class participants; it is not built.
 
-Each OmniFlow product is designed to deliver real economic yield from underlying asset cash flows rather than from token inflation. No asset has been acquired and no distribution has ever been paid. One tier is live in this build: **Korea Logistics Income (Tier 2)**, at a 5.50% illustrative net distribution yield on testnet. Tiers 1, 3, and 4 are documented but not open, and no yield is published for them.
+Each OmniFlow product is designed to deliver real economic yield from underlying asset cash flows rather than from token inflation. No asset has been acquired and no distribution has ever been paid. One tier is live in this build: **Korea Logistics Income (Tier 2)**, at a 3.43% illustrative net distribution yield on testnet. Tiers 1, 3, and 4 are documented but not open, and no yield is published for them.
 
 ## Get Started
 

@@ -22,7 +22,7 @@ Investment in products of this kind carries material risk of partial or total lo
 
 ### 1.2 No Guaranteed Returns
 
-The 5.50% net distribution yield published for Tier 2 is illustrative — a derivation from a stated cap rate, debt cost, fee assumption and treaty withholding rate, not an observed return. It may not be achieved. Actual returns would vary with underlying asset performance, market conditions, currency movements, operating expenses, and other factors.
+The 3.43% net distribution yield published for Tier 2 is illustrative — a derivation from a stated cap rate, debt cost, fee assumption and treaty withholding rate, not an observed return. It may not be achieved. Actual returns would vary with underlying asset performance, market conditions, currency movements, operating expenses, and other factors.
 
 ### 1.3 No Performance History
 
@@ -58,7 +58,7 @@ Every tier OmniFlow documents is concentrated in Korean real estate; no product 
 
 ### 3.1 FX Risk
 
-Distributions and redemption proceeds would be converted from Korean won to USD and delivered in stablecoin. KRW/USD movements affect distribution amounts measured in USD or stablecoin terms. **The published 5.50% yield excludes FX hedge carry of +75 to 100 bp**; no hedging arrangement is in place, and residual currency risk is borne by investors.
+Distributions and redemption proceeds would be converted from Korean won to USD and delivered in stablecoin. KRW/USD movements affect distribution amounts measured in USD or stablecoin terms. **The published 3.43% yield is stated unhedged and excludes any currency hedge carry**; no hedging arrangement is in place, and residual currency risk is borne by investors. A one-standard-deviation KRW move exceeds the entire published yield.
 
 ### 3.2 Stablecoin Risk
 

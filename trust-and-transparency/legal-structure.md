@@ -59,7 +59,7 @@ The structure below is the target design. It is intended to give investors Singa
 │  ┌───────────────────────────────────────────────────────────┐  │
 │  │  Underlying Assets — none acquired                        │  │
 │  │  Target sector is Seoul Capital Area logistics at a       │  │
-│  │  5.80% going-in cap                                       │  │
+│  │  5.32% going-in cap (RSquare Q2 2026)                     │  │
 │  └───────────────────────────────────────────────────────────┘  │
 └──────────────────────────────────────────────────────────────────┘
 ```

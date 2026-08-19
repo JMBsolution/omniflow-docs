@@ -88,7 +88,7 @@ Detailed tax treatment for each investor situation is the subject of individual 
 
 ## Variability of Distributions
 
-Only one yield figure is published: an **illustrative net distribution yield of 5.50%** for Tier 2, derived from a 5.80% going-in cap on Seoul Capital Area logistics, 60% LTV interest-only senior debt at 4.10%, fund fees assumed at 0.75% of GAV, and 15% Korean withholding — 8.35% levered cash-on-cash, 6.47% after fees, 5.50% after withholding. It falls to approximately 5.0% if withholding reverts to the 22% domestic rate. FX hedge carry of +75 to 100 bp is excluded. It is illustrative and has never been earned or paid.
+Only one yield figure is published: an **illustrative net distribution yield of 3.43%** for Tier 2, derived from a 5.32% going-in cap on Seoul Capital Area logistics and 60% LTV interest-only senior debt at 4.93% all-in — both RSquare Q2 2026, one source and one quarter — with fund fees assumed at 0.75% of GAV and 15% Korean withholding: 5.91% levered cash-on-cash, 4.03% after fees, 3.43% after withholding. Across the withholding band it is 3.63% at 10% and 3.14% at 22%. FX hedge carry is excluded and no hedge is in place. It is illustrative and has never been earned or paid. **This figure was corrected on 2026-08-19 from a previously published 5.50%, which mixed a 2025 cap rate with a policy-rate debt proxy and overstated the yield by roughly 207 basis points.**
 
 Actual distribution amounts would vary from period to period and from that figure, based on:
 

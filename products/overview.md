@@ -28,7 +28,7 @@ Under this design an investor would hold a tokenized representation of a sub-fun
 | **Tier** | **Strategy** | **Availability** | **Illustrative Net Yield** | **Min. Subscription** | **Term** | **Risk Profile** |
 | --- | --- | --- | --- | --- | --- | --- |
 | T1 | Listed REIT Income | Documented · not open in this build | Not published | Not set | Not set | Lowest |
-| T2 | Korea Logistics Income | **Live — Base Sepolia testnet** | 5.50% p.a. — illustrative | SGD 200,000 | 3 years | Moderate |
+| T2 | Korea Logistics Income | **Live — Base Sepolia testnet** | 3.43% p.a. — illustrative | SGD 200,000 | 3 years | Moderate |
 | T3 | Senior Development Credit | Pipeline | Not published | Not set | Not set | High |
 | T4 | Opportunistic Credit | Pipeline | Not published | Not set | Not set | Highest |
 
@@ -44,7 +44,7 @@ The tiers were previously ordered by target yield. Re-deriving each of them from
 
 So the range has been rebuilt around **risk**, which we can order honestly, rather than around yield, which we could not.
 
-**One product was withdrawn outright, and it is the clearest thing on this page.** A Seoul prime office product could not clear its own cost of capital: a 4.2% going-in cap rate against a 4.10% debt cost produces no yield at any leverage. Rather than soften the target and keep the asset, we repositioned to Seoul Capital Area logistics at a 5.80% cap — which is Tier 2.
+**One product was withdrawn outright, and it is the clearest thing on this page.** A Seoul prime office product could not clear its own cost of capital: a 4.2% going-in cap rate against a 4.10% debt cost produces no yield at any leverage. Rather than soften the target and keep the asset, we repositioned to Seoul Capital Area logistics — which is Tier 2. On 2026 data that logistics cap is 5.32% against senior debt at 4.93% all-in, a spread of 39 basis points, so leverage still adds but thinly.
 
 **Only Tier 2 publishes a yield**, and it publishes the full gross-to-net bridge behind it, including the assumption we could not source. Tier 1 publishes none; its page explains why.
 
